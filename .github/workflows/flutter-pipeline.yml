@@ -1,0 +1,66 @@
+name: flutter pipeline
+
+on: push
+
+jobs:
+  analyze:
+    # This job will run on ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:
+
+      # Setup Java environment in order to build the Android app.
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '16.x'
+
+      # Setup the flutter environment.
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+
+      # Get flutter dependencies.
+      - run: flutter pub get
+      # Check for any formatting issues in the code.
+      - run: dart format --set-exit-if-changed .
+
+      # Statically analyze the Dart code for any errors.
+      - run: dart analyze .
+  test:
+    runs-on: ubuntu-latest
+    needs: analyze
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '16.x'
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+
+      # Run tests for our flutter project.
+      - run: flutter test
+  build:
+    # This job will run on ubuntu virtual machine
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '16.x'
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+
+        # Build apk.
+      - run: flutter build apk
+
+        # Upload generated apk to the artifacts.
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
