@@ -15,7 +15,8 @@ class BrewingMethod extends Equatable {
     required this.description,
   });
 
-  factory BrewingMethod.fromJson(Map<String, dynamic> json) => _$BrewingMethodFromJson(json);
+  factory BrewingMethod.fromJson(Map<String, dynamic> json) =>
+      _$BrewingMethodFromJson(json);
 
   @override
   List<Object?> get props => [

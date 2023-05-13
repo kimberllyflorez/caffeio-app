@@ -6,6 +6,7 @@ class DiAdapters {
   static Future<void> setUp(GetIt getIt) async {
     await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
     final supaBaseClient = Supabase.instance.client;
-    getIt.registerSingleton<SupabaseAdapter>(SupabaseAdapterImpl(supaBaseClient));
+    getIt.registerSingleton<SupabaseAdapter>(
+        SupabaseAdapterImpl(supaBaseClient));
   }
 }

@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 class DiRepositories {
   static Future<void> setUp(GetIt getIt) async {
-    getIt.registerSingleton<BrewingMethodsRepository>(BrewingMethodsRepositoryImpl(getIt.get()));
+    getIt.registerSingleton<BrewingMethodsRepository>(
+        BrewingMethodsRepositoryImpl(getIt.get()));
   }
 }

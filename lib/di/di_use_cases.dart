@@ -4,8 +4,9 @@ import 'package:get_it/get_it.dart';
 
 class DiUseCase {
   static Future<void> setUp(GetIt getIt) async {
-    getIt.registerFactory<FetchBrewingMethodsUseCase>(() => FetchBrewingMethodsUseCase(getIt.get()));
-    getIt.registerFactory<GetBrewingMethodsUseCase>(() => GetBrewingMethodsUseCase(getIt.get()));
-
+    getIt.registerFactory<FetchBrewingMethodsUseCase>(
+        () => FetchBrewingMethodsUseCase(getIt.get()));
+    getIt.registerFactory<GetBrewingMethodsUseCase>(
+        () => GetBrewingMethodsUseCase(getIt.get()));
   }
 }

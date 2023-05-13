@@ -10,7 +10,7 @@ class BrewingMethodsDataSourceImpl extends BrewingMethodsDataSource {
   BrewingMethodsDataSourceImpl(this._supabase);
 
   @override
-  Future<List<dynamic>> fetchBrewingMethods(){
+  Future<List<dynamic>> fetchBrewingMethods() {
     return _supabase.selectAll('brewing_methods');
   }
 }
