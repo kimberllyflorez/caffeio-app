@@ -1,11 +1,10 @@
-import 'package:caffeio/app/home/home_page.dart';
 import 'package:caffeio/app/router/app_router.dart';
 import 'package:caffeio/di/di.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
   final dependency = DependencyInjection();
-  dependency.setup();
+  await dependency.setup();
   runApp(CaffeioApp(appRouter: locator.get<AppRouter>()));
 }
 
