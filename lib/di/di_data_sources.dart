@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 
 class DiDataSources {
   static Future<void> setUp(GetIt getIt) async {
-    getIt.registerFactory<BrewingMethodsDataSource>(() => BrewingMethodsDataSourceImpl(getIt.get()));
+    getIt.registerFactory<BrewingMethodsDataSource>(
+        () => BrewingMethodsDataSourceImpl(getIt.get()));
   }
 }
