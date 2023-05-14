@@ -15,6 +15,12 @@ class HomePage extends StatelessWidget {
     locator.get<FetchBrewingMethodsUseCase>().fetchBrewingMethods();
     final stream = locator.get<GetBrewingMethodsUseCase>().brewingMethods;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Home page',
+          style: context.theme.typo.title,
+        ),
+      ),
       body: StreamBuilder<List<BrewingMethod>>(
         stream: stream,
         builder: (context, snapshot) {
