@@ -1,12 +1,19 @@
-import 'package:caffeio/adapters/supabase/supabase_adapter.dart';
+import 'package:caffeio/adapters/storage_adapter.dart';
+import 'package:caffeio/adapters/supabase_adapter.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DiAdapters {
   static Future<void> setUp(GetIt getIt) async {
     await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
-    final supaBaseClient = Supabase.instance.client;
+    final supabaseClient = Supabase.instance.client;
+
     getIt.registerSingleton<SupabaseAdapter>(
-        SupabaseAdapterImpl(supaBaseClient));
+      SupabaseAdapterImpl(supabaseClient),
+    );
+
+    const storage = FlutterSecureStorage();
+    getIt.registerSingleton<SecureStorage>(SecureStorageImpl(storage));
   }
 }
