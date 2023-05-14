@@ -5,8 +5,7 @@ import 'package:caffeio/app/di/di.dart';
 import 'package:flutter/material.dart';
 
 abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
-    extends State<T> with AutoRouteAware {
-
+    extends State<T> {
   late final V _viewModel;
 
   V get viewModel => _viewModel;
@@ -44,18 +43,6 @@ abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
           break;
       }
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Example App'),
-      ),
-      body: const Center(
-        child: Text('Example Screen'),
-      ),
-    );
   }
 
   @override
