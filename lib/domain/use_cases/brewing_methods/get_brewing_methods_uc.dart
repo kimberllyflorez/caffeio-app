@@ -6,6 +6,7 @@ class GetBrewingMethodsUseCase {
 
   GetBrewingMethodsUseCase(this._repository);
 
-  Stream<List<BrewingMethod>> get brewingMethods =>
-      _repository.brewingMethodsStream;
+  Stream<List<BrewingMethod>> call() {
+    return _repository.brewingMethodsStream;
+  }
 }
