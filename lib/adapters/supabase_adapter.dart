@@ -6,6 +6,10 @@ const String supabaseKey =
 // final String supabaseKey = String.fromEnvironment('SUPABASE_KEY')
 
 abstract class SupabaseAdapter {
+  Future<AuthResponse> signUp(String email, String password);
+
+  Future<AuthResponse> signInWithPassword(String email, String password);
+
   Future<List<dynamic>> selectAll(String table);
 }
 
@@ -17,5 +21,15 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
   @override
   Future<List<dynamic>> selectAll(String table) {
     return _client.from(table).select();
+  }
+
+  @override
+  Future<AuthResponse> signUp(String email, String password) async {
+    return _client.auth.signUp(email: email, password: password);
+  }
+
+  @override
+  Future<AuthResponse> signInWithPassword(String email, String password) async {
+    return _client.auth.signInWithPassword(email: email, password: password);
   }
 }
