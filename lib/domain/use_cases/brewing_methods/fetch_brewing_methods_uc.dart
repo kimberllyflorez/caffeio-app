@@ -5,5 +5,5 @@ class FetchBrewingMethodsUseCase {
 
   FetchBrewingMethodsUseCase(this._repository);
 
-  Future<void> fetchBrewingMethods() => _repository.fetchBrewingMethods();
+  Future<void> call() => _repository.fetchBrewingMethods();
 }
