@@ -5,7 +5,6 @@ import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
