@@ -14,7 +14,6 @@ abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
   void initState() {
     super.initState();
     _viewModel = locator.get<V>();
-    _viewModel.init();
   }
 
   void listenToNavigation(Stream<RouteSpec> stream) {
