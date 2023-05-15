@@ -5,8 +5,8 @@ import 'package:caffeio/app/router/app_router.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, initial: true),
-        AutoRoute(page: MethodSelectionRoute.page),
+        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: MethodSelectionRoute.page, initial: true),
         AutoRoute(page: RatioRoute.page),
         AutoRoute(page: RecommendationsRoute.page),
         AutoRoute(page: MethodRoute.page),
