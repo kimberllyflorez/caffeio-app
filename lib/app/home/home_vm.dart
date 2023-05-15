@@ -57,7 +57,7 @@ class HomeViewModel extends ViewModel {
     }));
   }
 
-  void onUserPressed(){
+  void onUserPressed() {
     _router.add(RouteSpec.push(route: const LoginRoute()));
   }
 

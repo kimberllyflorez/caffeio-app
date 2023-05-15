@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Typo {
-
   const Typo();
 
   TextStyle get title => const TextStyle(

@@ -1,5 +1,4 @@
 class Spacing {
-
   const Spacing();
 
   double get none => 0;
