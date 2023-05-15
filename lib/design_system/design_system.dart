@@ -1,6 +1,6 @@
-import 'package:caffeio/design_system/colors.dart';
-import 'package:caffeio/design_system/spacing.dart';
-import 'package:caffeio/design_system/title.dart';
+import 'package:caffeio/design_system/theme/colors.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
+import 'package:caffeio/design_system/typo/typo.dart';
 import 'package:flutter/material.dart';
 
 extension Theme on BuildContext {
