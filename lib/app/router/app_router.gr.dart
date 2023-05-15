@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:caffeio/app/auth/login_page.dart' as _i7;
+import 'package:caffeio/app/auth/login/login_page.dart' as _i7;
 import 'package:caffeio/app/brew/method_selection_page.dart' as _i3;
 import 'package:caffeio/app/brew/ratio_page.dart' as _i4;
 import 'package:caffeio/app/brew/recommendations_page.dart' as _i5;
