@@ -9,6 +9,7 @@ extension Theme on BuildContext {
 }
 
 class CaffeioTheme {
+
   Spacing get spacing => const Spacing();
 
   Palette get palette => const Palette();
