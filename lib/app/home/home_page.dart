@@ -13,6 +13,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ViewState<HomePage, HomeViewModel> {
+
+  @override
+  void initState() {
+    super.initState();
+    listenToNavigation(viewModel.router);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +28,14 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
           'Home page',
           style: context.theme.typo.title,
         ),
+        actions: [
+          GestureDetector(
+            onTap: viewModel.onUserPressed,
+            child: Icon(
+              Icons.warehouse_rounded,
+            ),
+          ),
+        ],
       ),
       body: StreamBuilder<HomePageState>(
         stream: viewModel.state,

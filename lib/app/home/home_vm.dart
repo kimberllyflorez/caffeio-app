@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
+import 'package:caffeio/app/router/app_router.gr.dart';
+import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
 import 'package:caffeio/entities/brewing_methods/brewing_method.dart';
@@ -38,6 +40,10 @@ class HomeViewModel extends ViewModel {
 
   Stream<HomePageState> get state => _state.stream;
 
+  final _router = BehaviorSubject<RouteSpec>();
+
+  Stream<RouteSpec> get router => _router;
+
   HomeViewModel(
     this._fetchBrewingMethodsUseCase,
     this._getBrewingMethodsUseCase,
@@ -49,6 +55,10 @@ class HomeViewModel extends ViewModel {
     _subscriptions.add(_getBrewingMethodsUseCase().listen((methods) {
       _state.add(_state.value.copyWith(brewingMethods: methods));
     }));
+  }
+
+  void onUserPressed(){
+    _router.add(RouteSpec.push(route: const LoginRoute()));
   }
 
   @override
