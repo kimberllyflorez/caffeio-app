@@ -71,7 +71,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                     visible: state.history.isNotEmpty,
                     replacement: Center(
                       child: CaffeioButton(
-                        callback: () {},
+                        callback: viewModel.onLoginPressed,
                         text: 'Login',
                       ),
                     ),
