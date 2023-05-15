@@ -3,27 +3,39 @@ import 'dart:ui';
 class Palette {
   const Palette();
 
-  GrayScale get grayScale => GrayScale();
+  final grayScale = const GrayScale();
 
-  BlueScale get blueScale => BlueScale();
+  final blueScale = const BlueScale();
 
-  YellowScale get yellowScale => YellowScale();
+  final yellowScale = const YellowScale();
 
-  PurpleScale get purpleScale => PurpleScale();
+  final brownScale = const BrownScale();
 }
 
 class GrayScale {
-  static const gray200 = Color(0xffd6dbdf);
+  const GrayScale();
+
+  Color get gray => const Color(0xffd6dbdf);
+
+  Color get white => const Color(0xFFFFFFFF);
 }
 
 class BlueScale {
-  static const blue200 = Color(0xff85c1e9);
+  const BlueScale();
+
+  Color get primaryColor => const Color(0xFF00A096);
 }
 
 class YellowScale {
-  static const yellow = Color(0xfff7dc6f);
+  const YellowScale();
+
+  Color get secondaryColor => const Color(0xFFFF6A00);
+
+  Color get accentColor => const Color(0xFFFFFF00);
 }
 
-class PurpleScale {
-  static const purple = Color(0xffebdef0);
+class BrownScale {
+  const BrownScale();
+
+  Color get tertiaryColor => const Color(0xFF4D4B46);
 }
