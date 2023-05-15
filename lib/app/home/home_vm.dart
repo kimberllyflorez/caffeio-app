@@ -11,22 +11,27 @@ import 'package:rxdart/rxdart.dart';
 
 class HomePageState extends Equatable {
   final List<BrewingMethod> brewingMethods;
+  final List<dynamic> history;
 
   const HomePageState({
     this.brewingMethods = const [],
+    this.history = const [],
   });
 
   HomePageState copyWith({
     List<BrewingMethod>? brewingMethods,
+    List<dynamic>? history,
   }) {
     return HomePageState(
       brewingMethods: brewingMethods ?? this.brewingMethods,
+      history: history ?? this.history,
     );
   }
 
   @override
   List<Object?> get props => [
         brewingMethods,
+        history,
       ];
 }
 
@@ -65,5 +70,6 @@ class HomeViewModel extends ViewModel {
   void dispose() {
     _subscriptions.cancel();
     _state.close();
+    _router.close();
   }
 }
