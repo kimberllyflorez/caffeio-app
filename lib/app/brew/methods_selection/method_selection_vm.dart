@@ -11,7 +11,8 @@ class MethodSelectionState extends Equatable {
   final List<BrewingMethod> brewingMethods;
 
   const MethodSelectionState({
-    this.pageSelection = 1,
+    this.pageSelection = 1
+    ,
     this.brewingMethods = const [],
   });
 
