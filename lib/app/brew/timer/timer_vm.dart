@@ -84,7 +84,7 @@ class TimerViewModel extends ViewModel {
   }
 
   void nextPage() {
-    _router.add(RouteSpec.push(route: const HomeRoute()));
+    _router.add(RouteSpec.replaceAllWithOne( route: const HomeRoute()));
   }
 
   @override

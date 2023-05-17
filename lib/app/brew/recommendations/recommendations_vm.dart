@@ -5,28 +5,31 @@ import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecommendationState extends Equatable {
+  final List<String> videos;
   final String urlVideo;
 
   const RecommendationState({
+    this.videos = const [],
     this.urlVideo = "",
   });
 
   RecommendationState copyWith({
+    List<String>? videos,
     String? urlVideo,
   }) {
     return RecommendationState(
+      videos: videos ?? this.videos,
       urlVideo: urlVideo ?? this.urlVideo,
     );
   }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [videos];
 }
 
 class RecommendationViewModel extends ViewModel {
   final _state = BehaviorSubject<RecommendationState>.seeded(
-    const RecommendationState(
-        urlVideo: "https://www.youtube.com/watch?v=1oB1oDrDkHM&t=3s"),
+    const RecommendationState(),
   );
 
   Stream<RecommendationState> get state => _state;
@@ -37,7 +40,18 @@ class RecommendationViewModel extends ViewModel {
   Stream<RouteSpec> get router => _router;
 
   @override
-  void init() {}
+  void init() {
+    listVideos();
+  }
+
+  void listVideos() {
+    final List<String> list = [
+      "https://www.youtube.com/watch?v=1oB1oDrDkHM&t=3s",
+      "https://www.youtube.com/watch?v=K_r5kpXPRYo",
+      "https://www.youtube.com/watch?v=K_r5kpXPRYo",
+    ];
+    _state.add(RecommendationState(videos: list));
+  }
 
   void nextPage() {
     _router.add(RouteSpec.push(route: const TimerRoute()));
