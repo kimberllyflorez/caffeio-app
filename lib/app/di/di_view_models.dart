@@ -2,9 +2,6 @@ import 'package:caffeio/app/brew/methods_selection/method_selection_vm.dart';
 import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/brew/recommendations/recommendations_vm.dart';
 import 'package:caffeio/app/auth/login/login_vm.dart';
-import 'package:caffeio/app/brew/method_selection_vm.dart';
-import 'package:caffeio/app/brew/ratio_vm.dart';
-import 'package:caffeio/app/brew/recommendations_vm.dart';
 import 'package:caffeio/app/home/home_vm.dart';
 import 'package:caffeio/app/settings/settings_vm.dart';
 import 'package:get_it/get_it.dart';
@@ -27,12 +24,14 @@ class DiViewModel {
       return MethodSelectionViewModel(getIt.get());
     });
 
-    getIt.registerFactory<RatioViewModel>((){
+    getIt.registerFactory<RatioViewModel>(() {
       return RatioViewModel(getIt.get());
     });
-    getIt.registerFactory<RecommendationViewModel>((){
+    getIt.registerFactory<RecommendationViewModel>(() {
       return RecommendationViewModel();
     });
-    getIt.registerFactory<TimerViewModel>(() {return TimerViewModel(getIt.get());});
+    getIt.registerFactory<TimerViewModel>(() {
+      return TimerViewModel(getIt.get());
+    });
   }
 }
