@@ -22,6 +22,7 @@ dependencies:
   json_serializable: ^6.6.2
   json_annotation: ^4.8.1
   smooth_page_indicator: ^1.1.0
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:

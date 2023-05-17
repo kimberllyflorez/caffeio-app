@@ -1,18 +1,22 @@
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
-
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecommendationState extends Equatable {
-  const RecommendationState();
+  final String urlVideo;
 
-  RecommendationsRoute copyWith({
-    String? ratio,
-    List<String>? listRatios,
+  const RecommendationState({
+    this.urlVideo = "",
+  });
+
+  RecommendationState copyWith({
+    String? urlVideo,
   }) {
-    return const RecommendationsRoute();
+    return RecommendationState(
+      urlVideo: urlVideo ?? this.urlVideo,
+    );
   }
 
   @override
@@ -20,6 +24,12 @@ class RecommendationState extends Equatable {
 }
 
 class RecommendationViewModel extends ViewModel {
+  final _state = BehaviorSubject<RecommendationState>.seeded(
+    const RecommendationState(
+        urlVideo: "https://www.youtube.com/watch?v=1oB1oDrDkHM&t=3s"),
+  );
+
+  Stream<RecommendationState> get state => _state;
   final _subscription = CompositeSubscription();
 
   final _router = BehaviorSubject<RouteSpec>();
@@ -35,6 +45,8 @@ class RecommendationViewModel extends ViewModel {
 
   @override
   void dispose() {
+    _state.close();
     _subscription.cancel();
+    //_state.value.controller.dispose();
   }
 }
