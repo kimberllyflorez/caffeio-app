@@ -29,53 +29,49 @@ class _RecommendationsPageState
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Center(
-        child: StreamBuilder<RecommendationState>(
-            stream: viewModel.state,
-            builder: (context, snapshot) {
-              final state = snapshot.data;
-              if (state != null) {
-                return Column(
-                  children: [
-                    const Text('Recommended brewing'),
-                    const Text('Technic V60'),
-                    Container(
-                      margin: context.theme.insets.xs,
-                      height: 150,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      child: YoutubePlayer(
-                        controller: YoutubePlayerController(
-                          initialVideoId:
-                              YoutubePlayer.convertUrlToId(state.urlVideo)!,
-                          flags: const YoutubePlayerFlags(autoPlay: false),
-                        ),
-                        showVideoProgressIndicator: true,
-                        progressIndicatorColor:
-                            context.theme.palette.grayScale.gray,
-                      ),
+      body: StreamBuilder<RecommendationState>(
+          stream: viewModel.state,
+          builder: (context, snapshot) {
+            final state = snapshot.data;
+            if (state != null) {
+              print(state.videos.length);
+              return Column(
+                children: [
+                  const Text('Recommended brewing'),
+                  const Text('Technic V60'),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: state.videos.length,
+                      itemBuilder: (context, i){
+                        return  Container(
+                          margin: context.theme.insets.xs,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0)),
+                          child: Column(
+                            children: [
+                              const Text("Name of Method"),
+                              YoutubePlayer(
+                                controller: YoutubePlayerController(
+                                  initialVideoId:
+                                  YoutubePlayer.convertUrlToId(state.videos[i])!,
+                                  flags: const YoutubePlayerFlags(autoPlay: false),
+                                ),
+                                showVideoProgressIndicator: true,
+                                progressIndicatorColor:
+                                context.theme.palette.grayScale.gray,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+
                     ),
-                    const Text('4:5'),
-                    Container(
-                      margin: const EdgeInsets.all(8.0),
-                      height: 160,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(color: Colors.cyan),
-                    ),
-                    const Text('Others'),
-                    Container(
-                      margin: const EdgeInsets.all(8.0),
-                      height: 100,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(color: Colors.cyan),
-                    ),
-                  ],
-                );
-              }
-              return const LoadingIndicator();
-            }),
-      ),
+                  ),
+                ],
+              );
+            }
+            return const LoadingIndicator();
+          }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: CaffeioButton(
