@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:caffeio/app/brew/recommendations_vm.dart';
+import 'package:caffeio/app/brew/recommendations/recommendations_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:flutter/material.dart';
