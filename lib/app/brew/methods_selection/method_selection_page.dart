@@ -106,12 +106,11 @@ class _SelectorMethodCarousel extends StatelessWidget {
     required this.onChangePage,
     required this.list,
     required this.descriptions,
-    super.key,
   });
 
   final PageController controller;
   final List<Widget> list;
-  final Function(int) onChangePage;
+  final void Function(int) onChangePage;
   final List<Widget> descriptions;
 
   @override

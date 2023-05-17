@@ -11,8 +11,7 @@ class MethodSelectionState extends Equatable {
   final List<BrewingMethod> brewingMethods;
 
   const MethodSelectionState({
-    this.pageSelection = 1
-    ,
+    this.pageSelection = 1,
     this.brewingMethods = const [],
   });
 
@@ -54,9 +53,11 @@ class MethodSelectionViewModel extends ViewModel {
   void changePageView(int index) {
     _state.add(MethodSelectionState(pageSelection: index));
   }
-void nextPage(){
+
+  void nextPage() {
     _router.add(RouteSpec.push(route: const RatioRoute()));
-}
+  }
+
   @override
   void dispose() {
     _subscription.cancel();

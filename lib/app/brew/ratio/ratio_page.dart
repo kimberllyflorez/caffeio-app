@@ -31,7 +31,7 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
         stream: viewModel.state,
         builder: (context, snapshot) {
           final data = snapshot.data;
-          if (data !=null) {
+          if (data != null) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,12 +65,12 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                     ),
                   ],
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                     const  Text("Total water"),
+                      const Text("Total water"),
                       Text(viewModel.totalWater()),
                     ],
                   ),

@@ -33,7 +33,7 @@ class RatioState extends Equatable {
 
 class RatioViewModel extends ViewModel {
   final RatioCalculateWater _water;
-  final _state = BehaviorSubject<RatioState>.seeded( const RatioState());
+  final _state = BehaviorSubject<RatioState>.seeded(const RatioState());
 
   RatioViewModel(this._water);
 

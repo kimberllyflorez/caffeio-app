@@ -15,13 +15,12 @@ class Ratio extends Equatable {
     required this.ratio,
   });
 
-  factory Ratio.fromJson(Map<String, dynamic> json) =>
-      _$RatioFromJson(json);
+  factory Ratio.fromJson(Map<String, dynamic> json) => _$RatioFromJson(json);
 
   @override
   List<Object?> get props => [
-    ratio,
-    gramsCoffee,
-    water,
-  ];
+        ratio,
+        gramsCoffee,
+        water,
+      ];
 }
