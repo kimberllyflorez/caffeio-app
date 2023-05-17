@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:caffeio/app/brew/ratio_vm.dart';
+import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
@@ -42,6 +42,7 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                   child: Container(
                     color: Colors.purple,
                     child: TextFormField(
+                      onChanged: (grams) => viewModel.saveGramsCoffee(grams),
                       decoration: const InputDecoration(
                         hintText: "20",
                       ),
@@ -53,23 +54,24 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                 const Text("Ratio"),
                 Column(
                   children: [
-                    Text(data.ratioLabel),
+                    Text("1: ${data.ratioModel.ratio.toString()}"),
                     Slider(
-                      min: 0,
-                      max: 10,
-                      label: data.ratioLabel,
+                      divisions: 25,
+                      min: 10,
+                      max: 25,
+                      label: "1:${data.ratioModel.ratio.toString()}",
                       value: data.ratio,
                       onChanged: (value) => viewModel.saveRatio(value),
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                 Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("Ratio"),
-                      Text("200"),
+                     const  Text("Total water"),
+                      Text(viewModel.totalWater()),
                     ],
                   ),
                 )
