@@ -11,6 +11,8 @@ abstract class SupabaseAdapter {
   Future<AuthResponse> signInWithPassword(String email, String password);
 
   Future<List<dynamic>> selectAll(String table);
+
+  Future<void> logOut();
 }
 
 class SupabaseAdapterImpl implements SupabaseAdapter {
@@ -24,12 +26,16 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
   }
 
   @override
-  Future<AuthResponse> signUp(String email, String password) async {
+  Future<AuthResponse> signUp(String email, String password) {
     return _client.auth.signUp(email: email, password: password);
   }
 
   @override
-  Future<AuthResponse> signInWithPassword(String email, String password) async {
+  Future<AuthResponse> signInWithPassword(String email, String password) {
     return _client.auth.signInWithPassword(email: email, password: password);
+  }
+
+  Future<void> logOut() {
+    return _client.auth.signOut();
   }
 }
