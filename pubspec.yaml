@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  supabase_flutter: ^1.9.1
+  supabase_flutter: ^1.9.2
   get_it: ^7.6.0
   rxdart: ^0.27.7
   auto_route: ^7.1.0
@@ -19,7 +19,7 @@ dependencies:
   equatable: ^2.0.5
   shared_preferences: ^2.1.0
   flutter_secure_storage: ^8.0.0
-  json_serializable: ^6.6.2
+  json_serializable: ^6.7.0
   json_annotation: ^4.8.1
   smooth_page_indicator: ^1.1.0
   youtube_player_flutter: ^8.1.2

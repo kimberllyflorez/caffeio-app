@@ -436,10 +436,10 @@ packages:
     dependency: "direct main"
     description:
       name: json_serializable
-      sha256: "43793352f90efa5d8b251893a63d767b2f7c833120e3cc02adad55eefec04dc7"
+      sha256: "61a60716544392a82726dd0fa1dd6f5f1fd32aec66422b6e229e7b90d52325c4"
       url: "https://pub.dev"
     source: hosted
-    version: "6.6.2"
+    version: "6.7.0"
   jwt_decode:
     dependency: transitive
     description:
@@ -849,10 +849,10 @@ packages:
     dependency: "direct main"
     description:
       name: supabase_flutter
-      sha256: "7cbdd9a7264dd5b7ab5a6e2da63346054b8e5ddf358467c7f2bc23d5c14d732c"
+      sha256: "774cee66dd02c6da17f17086ae213886431b7a00227953842c5951012538e98e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.2"
   term_glyph:
     dependency: transitive
     description:
