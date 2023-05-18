@@ -50,7 +50,7 @@ class SettingsViewModel extends ViewModel {
     _router.add(RouteSpec.push(route: const LoginRoute()));
   }
 
-  void onLogOut(){
+  void onLogOut() {
     _logOutUseCase();
   }
 

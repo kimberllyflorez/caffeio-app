@@ -55,6 +55,7 @@ class LoginPageViewModel extends ViewModel {
     if (result) {
       _router.add(RouteSpec.pop());
     }
+
     ///TODO: handle login errors
   }
 
