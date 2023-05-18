@@ -10,28 +10,18 @@ import '../brew/timer/timer_vm.dart';
 
 class DiViewModel {
   static Future<void> setUp(GetIt getIt) async {
-    getIt.registerFactory<HomeViewModel>(() {
-      return HomeViewModel(getIt.get(), getIt.get());
-    });
-    getIt.registerFactory<SettingsViewModel>(() {
-      return SettingsViewModel();
-    });
-    getIt.registerFactory<LoginViewModel>(() {
-      return LoginViewModel();
-    });
-
-    getIt.registerFactory<MethodSelectionViewModel>(() {
-      return MethodSelectionViewModel(getIt.get());
-    });
-
-    getIt.registerFactory<RatioViewModel>(() {
-      return RatioViewModel(getIt.get());
-    });
-    getIt.registerFactory<RecommendationViewModel>(() {
-      return RecommendationViewModel();
-    });
-    getIt.registerFactory<TimerViewModel>(() {
-      return TimerViewModel(getIt.get());
+    getIt.registerFactory(() => HomeViewModel(getIt.get(), getIt.get()));
+    getIt.registerFactory(() => SettingsViewModel());
+    getIt.registerFactory(() => LoginViewModel());
+    getIt.registerFactory(() => MethodSelectionViewModel(getIt.get()));
+    getIt.registerFactory(() => RatioViewModel(getIt.get()));
+    getIt.registerFactory(() => RecommendationViewModel());
+    getIt.registerFactory(() {
+      return TimerViewModel(
+        getIt.get(),
+        getIt.get(),
+        getIt.get(),
+      );
     });
   }
 }

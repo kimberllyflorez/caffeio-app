@@ -1,7 +1,9 @@
+import 'package:caffeio/adapters/secure_storage_adapter.dart';
 import 'package:caffeio/adapters/storage_adapter.dart';
 import 'package:caffeio/adapters/supabase_adapter.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DiAdapters {
@@ -15,5 +17,8 @@ class DiAdapters {
 
     const storage = FlutterSecureStorage();
     getIt.registerSingleton<SecureStorage>(SecureStorageImpl(storage));
+
+    final preferences = await SharedPreferences.getInstance();
+    getIt.registerSingleton<Storage>(StorageImpl(preferences));
   }
 }

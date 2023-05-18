@@ -1,4 +1,5 @@
 import 'package:caffeio/app/di/di_data_sources.dart';
+import 'package:caffeio/app/di/di_guards.dart';
 import 'package:caffeio/app/di/di_respositories.dart';
 import 'package:caffeio/app/di/di_adapters.dart';
 import 'package:caffeio/app/di/di_use_cases.dart';
@@ -14,5 +15,6 @@ class DependencyInjection {
     DiRepositories.setUp(locator);
     DiUseCase.setUp(locator);
     DiViewModel.setUp(locator);
+    DiGuards.setUp(locator);
   }
 }
