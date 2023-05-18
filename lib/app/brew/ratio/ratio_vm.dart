@@ -2,7 +2,7 @@ import 'package:caffeio/app/brew/ratio/ratio_model.dart';
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
-import 'package:caffeio/domain/use_cases/ratio/ratio_calculate_water.dart';
+import 'package:caffeio/domain/use_cases/ratio/caculate_water_ratio_uc.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -32,7 +32,7 @@ class RatioState extends Equatable {
 }
 
 class RatioViewModel extends ViewModel {
-  final RatioCalculateWater _water;
+  final CalculateWaterRatioUseCase _water;
   final _state = BehaviorSubject<RatioState>.seeded(const RatioState());
 
   RatioViewModel(this._water);
