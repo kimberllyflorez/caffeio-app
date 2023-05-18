@@ -11,10 +11,13 @@ class HomeHistoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(
-        history.length + 200,
-        (index) => const _HistoryItemCard(),
+    return Expanded(
+      child: ListView.separated(
+        shrinkWrap: true,
+        padding: const EdgeInsets.only(bottom: 112),
+        itemCount: 200,
+        itemBuilder: (_, index) => const _HistoryItemCard(),
+        separatorBuilder: (_, index) => const Divider(),
       ),
     );
   }

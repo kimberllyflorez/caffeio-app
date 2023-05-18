@@ -33,56 +33,60 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
           style: context.theme.typo.title,
         ),
         actions: [
-          GestureDetector(
-            onTap: viewModel.onUserPressed,
-            child: const Icon(Icons.warehouse_rounded),
-          ),
+          IconButton(
+            onPressed: viewModel.onUserPressed,
+            icon: const Icon(Icons.warehouse_rounded),
+          )
         ],
       ),
       body: StreamBuilder<HomePageState>(
         stream: viewModel.state,
         builder: (context, snapshot) {
           final state = snapshot.data;
-          if (state != null) {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: theme.spacing.xs),
-                  Padding(
-                    padding: theme.insets.xs.toLRB,
-                    child: Text(
-                      'Meet the methods',
-                      style: context.theme.typo.subtitle,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  HomeMethodsList(methods: state.brewingMethods),
-                  SizedBox(height: theme.spacing.s),
-                  Padding(
-                    padding: theme.insets.xs.toLRB,
-                    child: Text(
-                      'Brewing history',
-                      style: context.theme.typo.subtitle,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  Visibility(
-                    visible: state.history.isNotEmpty,
-                    replacement: Center(
-                      child: CaffeioButton(
-                        callback: viewModel.onLoginPressed,
-                        text: 'Login',
-                      ),
-                    ),
-                    child: HomeHistoryList(history: state.history),
-                  ),
-                ],
-              ),
-            );
+          if (state == null || state.loading) {
+            return const LoadingIndicator();
           }
-          return const LoadingIndicator();
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: theme.spacing.xs),
+              Padding(
+                padding: theme.insets.xs.toLRB,
+                child: Text(
+                  'Meet the methods',
+                  style: context.theme.typo.subtitle,
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              HomeMethodsList(methods: state.brewingMethods),
+              SizedBox(height: theme.spacing.s),
+              Padding(
+                padding: theme.insets.xs.toLRB,
+                child: Text(
+                  'Brewing history',
+                  style: context.theme.typo.subtitle,
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              Visibility(
+                visible: state.isUserLogged,
+                replacement: Center(
+                  child: CaffeioButton(
+                    callback: viewModel.onLoginPressed,
+                    text: 'Login',
+                  ),
+                ),
+                child: HomeHistoryList(history: state.history),
+              ),
+            ],
+          );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: viewModel.onBrewPressed,
+        child: const Icon(
+          Icons.cloud_upload,
+        ),
       ),
     );
   }
