@@ -1,22 +1,27 @@
 import 'package:caffeio/app/router/app_router.dart';
 import 'package:caffeio/app/di/di.dart';
+import 'package:caffeio/app/router/guards/first_user_brew_guard.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   await DependencyInjection.setup();
-  runApp(CaffeioApp());
+  final appRouter = AppRouter(locator.get<FirstUserBrewGuard>());
+  runApp(CaffeioApp(appRouter: appRouter));
 }
 
 class CaffeioApp extends StatelessWidget {
-  final AppRouter _appRouter = AppRouter();
+  final AppRouter appRouter;
 
-  CaffeioApp({super.key});
+  const CaffeioApp({
+    super.key,
+    required this.appRouter,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: _appRouter.config(),
+      routerConfig: appRouter.config(),
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
