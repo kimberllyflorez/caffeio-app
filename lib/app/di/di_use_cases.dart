@@ -1,3 +1,9 @@
+import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/get_session_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/log_out_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/sign_up_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_user_brew_uc.dart';
@@ -8,6 +14,12 @@ import 'package:get_it/get_it.dart';
 
 class DiUseCase {
   static Future<void> setUp(GetIt getIt) async {
+    getIt.registerFactory(() => SignUpUseCase(getIt.get()));
+    getIt.registerFactory(() => SignInWithPasswordUseCase(getIt.get()));
+    getIt.registerFactory(() => GetSessionUseCase(getIt.get()));
+    getIt.registerFactory(() => IsSessionValidUseCase(getIt.get()));
+    getIt.registerFactory(() => GetProfileUseCase(getIt.get()));
+    getIt.registerFactory(() => LogOutUseCase(getIt.get()));
     getIt.registerFactory(() => FetchBrewingMethodsUseCase(getIt.get()));
     getIt.registerFactory(() => GetBrewingMethodsUseCase(getIt.get()));
     getIt.registerFactory(() => FormatStopwatchTimeUseCase());
