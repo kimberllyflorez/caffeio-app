@@ -1,4 +1,4 @@
-import 'package:caffeio/adapters/storage_adapter.dart';
+import 'package:caffeio/adapters/secure_storage_adapter.dart';
 import 'package:caffeio/adapters/supabase_adapter.dart';
 import 'package:caffeio/data/repositories/auth_repository.abs.dart';
 import 'package:rxdart/rxdart.dart';

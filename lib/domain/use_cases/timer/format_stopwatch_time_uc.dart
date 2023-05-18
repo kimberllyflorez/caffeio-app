@@ -1,6 +1,6 @@
 import 'package:caffeio/domain/use_cases.abs.dart';
 
-class TimerFormatUseCase extends UseCase<String, Duration> {
+class FormatStopwatchTimeUseCase extends UseCase<String, Duration> {
   @override
   String call(Duration params) {
     final minutes = _twoDigits(params.inMinutes.remainder(60));
