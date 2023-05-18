@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
-import 'package:caffeio/domain/use_cases/timer/timer_formated_use_case.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/get_user_brew_uc.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/set_user_brew_uc.dart';
+import 'package:caffeio/domain/use_cases/timer/format_stopwatch_time_uc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
@@ -40,10 +42,17 @@ class TimerState extends Equatable {
 }
 
 class TimerViewModel extends ViewModel {
-  final TimerFormatUseCase _formatUseCase;
+  final FormatStopwatchTimeUseCase _formatUseCase;
+  final SetUserBrewUseCase _setUserBrewUseCase;
+  final GetUserBrewUseCase _getUserBrewUseCase;
+
   final _router = BehaviorSubject<RouteSpec>();
 
-  TimerViewModel(this._formatUseCase);
+  TimerViewModel(
+    this._formatUseCase,
+    this._setUserBrewUseCase,
+    this._getUserBrewUseCase,
+  );
 
   Stream<RouteSpec> get router => _router;
   final _state = BehaviorSubject<TimerState>.seeded(const TimerState());
@@ -84,6 +93,9 @@ class TimerViewModel extends ViewModel {
   }
 
   void nextPage() {
+    if (_getUserBrewUseCase() == null) {
+      _setUserBrewUseCase();
+    }
     _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
   }
 
