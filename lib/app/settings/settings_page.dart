@@ -23,37 +23,55 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings Page'),
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Account',
-              style: theme.typo.subtitle,
-              textAlign: TextAlign.left,
+    return StreamBuilder<SettingsPageState>(
+        stream: viewModel.state,
+        builder: (context, snapshot) {
+          final state = snapshot.data ?? const SettingsPageState();
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Settings Page'),
+              actions: [
+                Visibility(
+                  visible: state.userProfile != null,
+                  child: IconButton(
+                    onPressed: viewModel.onLogOut,
+                    icon: const Icon(Icons.exit_to_app),
+                  ),
+                )
+              ],
             ),
-            CaffeioButton(
-              callback: viewModel.onLoginPressed,
-              text: 'Login',
+            body: SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: state.userProfile == null,
+                    replacement: ListTile(
+                      leading: const CircleAvatar(),
+                      title: Text(
+                        state.userProfile?.email ?? '',
+                      ),
+                    ),
+                    child: CaffeioButton(
+                      callback: viewModel.onLoginPressed,
+                      text: 'Login',
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    'v0.0.1',
+                    style: theme.typo.subtitle,
+                  ),
+                  Text(
+                    'Bimbly Studios',
+                    style: theme.typo.subtitle,
+                  ),
+                  const SizedBox(height: kToolbarHeight),
+                ],
+              ),
             ),
-            const Spacer(),
-            Text(
-              'v0.0.1',
-              style: theme.typo.subtitle,
-            ),
-            Text(
-              'Bimbly Studios',
-              style: theme.typo.subtitle,
-            ),
-            const SizedBox(height: kToolbarHeight),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }
