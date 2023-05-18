@@ -1,5 +1,13 @@
-abstract class AuthRepository {
-  Future<void> signUp(String email, String password);
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-  Future<void> signInWithPassword(String email, String password);
+abstract class AuthRepository {
+  Future<bool> signUp(String email, String password);
+
+  Future<bool> signInWithPassword(String email, String password);
+
+  Stream<Session?> get sessionStream;
+
+  Stream<User?> get profileStream;
+
+  void cleanSession();
 }
