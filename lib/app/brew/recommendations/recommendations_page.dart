@@ -42,8 +42,8 @@ class _RecommendationsPageState
                   Expanded(
                     child: ListView.builder(
                       itemCount: state.videos.length,
-                      itemBuilder: (context, i){
-                        return  Container(
+                      itemBuilder: (context, i) {
+                        return Container(
                           margin: context.theme.insets.xs,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15.0)),
@@ -52,19 +52,19 @@ class _RecommendationsPageState
                               const Text("Name of Method"),
                               YoutubePlayer(
                                 controller: YoutubePlayerController(
-                                  initialVideoId:
-                                  YoutubePlayer.convertUrlToId(state.videos[i])!,
-                                  flags: const YoutubePlayerFlags(autoPlay: false),
+                                  initialVideoId: YoutubePlayer.convertUrlToId(
+                                      state.videos[i])!,
+                                  flags:
+                                      const YoutubePlayerFlags(autoPlay: false),
                                 ),
                                 showVideoProgressIndicator: true,
                                 progressIndicatorColor:
-                                context.theme.palette.grayScale.gray,
+                                    context.theme.palette.grayScale.gray,
                               ),
                             ],
                           ),
                         );
                       },
-
                     ),
                   ),
                 ],
