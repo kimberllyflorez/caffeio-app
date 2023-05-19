@@ -46,7 +46,7 @@ class _MethodSelectionPageState
                 SizedBox(
                   height: 250,
                   child: PageView(
-                    onPageChanged: viewModel.changePageView,
+                    onPageChanged: viewModel.onChangePageView,
                     controller: _pageController,
                     scrollDirection: Axis.horizontal,
                     children: state.brewingMethods
@@ -85,9 +85,9 @@ class _MethodSelectionPageState
         },
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding:  EdgeInsets.all(theme.spacing.xs),
         child: CaffeioButton(
-          callback: viewModel.nextPage,
+          callback: viewModel.onNextPressed,
           text: "Next",
         ),
       ),
