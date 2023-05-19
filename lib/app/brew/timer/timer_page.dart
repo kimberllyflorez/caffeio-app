@@ -39,7 +39,6 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel> {
                     state.seeTimer,
                     style: const TextStyle(
                       fontSize: 48,
-                      color: Colors.purple,
                     ),
                   ),
                   Row(

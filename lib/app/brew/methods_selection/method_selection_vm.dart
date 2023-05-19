@@ -20,12 +20,16 @@ class MethodSelectionState extends Equatable {
     List<BrewingMethod>? brewingMethods,
   }) {
     return MethodSelectionState(
-        pageSelection: pageSelection ?? this.pageSelection,
-        brewingMethods: brewingMethods ?? this.brewingMethods);
+      pageSelection: pageSelection ?? this.pageSelection,
+      brewingMethods: brewingMethods ?? this.brewingMethods,
+    );
   }
 
   @override
-  List<Object?> get props => [pageSelection, brewingMethods];
+  List<Object?> get props => [
+        pageSelection,
+        brewingMethods,
+      ];
 }
 
 class MethodSelectionViewModel extends ViewModel {
@@ -33,7 +37,7 @@ class MethodSelectionViewModel extends ViewModel {
 
   final _subscription = CompositeSubscription();
   final _state = BehaviorSubject<MethodSelectionState>.seeded(
-    const MethodSelectionState(),
+    MethodSelectionState(),
   );
 
   MethodSelectionViewModel(this._getBrewingMethodsUseCase);
@@ -51,11 +55,11 @@ class MethodSelectionViewModel extends ViewModel {
   }
 
   void changePageView(int index) {
-    _state.add(MethodSelectionState(pageSelection: index));
+    _state.add(_state.value.copyWith(pageSelection: index));
   }
 
   void nextPage() {
-    _router.add(RouteSpec.push(route: const RatioRoute()));
+    _router.add(RouteSpec.push(route: const RecommendationsRoute()));
   }
 
   @override
