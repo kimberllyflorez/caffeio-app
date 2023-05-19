@@ -11,23 +11,19 @@ import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
 
 class TimerState extends Equatable {
-  final bool isRunning;
   final Duration elapsedTime;
   final String seeTimer;
 
   const TimerState({
-    this.isRunning = false,
     this.elapsedTime = Duration.zero,
     this.seeTimer = '00:00',
   });
 
   TimerState copyWith({
-    bool? isRunning,
     String? seeTimer,
     Duration? elapsedTime,
   }) {
     return TimerState(
-      isRunning: isRunning ?? this.isRunning,
       elapsedTime: elapsedTime ?? this.elapsedTime,
       seeTimer: seeTimer ?? this.seeTimer,
     );
@@ -35,7 +31,6 @@ class TimerState extends Equatable {
 
   @override
   List<Object?> get props => [
-        isRunning,
         seeTimer,
         elapsedTime,
       ];
@@ -65,7 +60,8 @@ class TimerViewModel extends ViewModel {
   void init() {}
 
   void startTimer() {
-    _timer ??= Timer.periodic(
+    if(_timer == null || !_timer!.isActive) {
+      _timer = Timer.periodic(
       const Duration(seconds: 1),
       (_) {
         final timer = _state.value.elapsedTime + const Duration(seconds: 1);
@@ -74,15 +70,14 @@ class TimerViewModel extends ViewModel {
           _state.value.copyWith(
             elapsedTime: timer,
             seeTimer: seeTimer,
-            isRunning: true,
           ),
         );
       },
     );
+    }
   }
 
   void pauseTimer() {
-    _state.add(_state.value.copyWith(isRunning: false));
     _timer?.cancel();
   }
 
