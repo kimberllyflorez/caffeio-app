@@ -15,7 +15,7 @@ class HomeBrewMethodCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Icon(Icons.add),
+          const Icon(Icons.add),
           Text(methodName),
         ],
       ),
