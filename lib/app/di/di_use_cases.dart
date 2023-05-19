@@ -5,7 +5,9 @@ import 'package:caffeio/domain/use_cases/auth/log_out_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_up_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/fetch_method_videos_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/get_methods_video_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/set_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/ratio/caculate_water_ratio_uc.dart';
@@ -26,5 +28,7 @@ class DiUseCase {
     getIt.registerFactory(() => CalculateWaterRatioUseCase());
     getIt.registerFactory(() => GetUserBrewUseCase(getIt.get()));
     getIt.registerFactory(() => SetUserBrewUseCase(getIt.get()));
+    getIt.registerFactory(() => FetchMethodVideosUseCase(getIt.get()));
+    getIt.registerFactory(() => GetMethodVideosUseCase(getIt.get()));
   }
 }
