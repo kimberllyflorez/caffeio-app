@@ -7,6 +7,7 @@ class DiDataSources {
     getIt.registerFactory<BrewingMethodsDataSource>(
       () => BrewingMethodsDataSourceImpl(getIt.get()),
     );
-    getIt.registerFactory<MethodsVideosDataSource>(() => MethodsVideosDataSourceImpl(getIt.get()));
+    getIt.registerFactory<MethodsVideosDataSource>(
+        () => MethodsVideosDataSourceImpl(getIt.get()));
   }
 }

@@ -10,7 +10,7 @@ class MethodVideo extends Equatable {
   final int methodId;
   final String url;
 
-  const MethodVideo( {
+  const MethodVideo({
     required this.id,
     required this.methodId,
     required this.url,
