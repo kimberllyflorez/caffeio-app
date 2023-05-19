@@ -1,5 +1,5 @@
 import 'package:caffeio/design_system/design_system.dart';
-import 'package:caffeio/entities/brewing_methods/brewing_method.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 
 class HomeMethodsList extends StatelessWidget {
