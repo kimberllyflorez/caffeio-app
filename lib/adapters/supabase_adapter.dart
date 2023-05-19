@@ -49,7 +49,8 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
     String field,
     String condition,
   ) async {
-    final result = await _client.from(table).select().eq(field, condition);
-    return result as List<dynamic>;
+    final result =
+        await _client.from(table).select<List<dynamic>>().eq(field, condition);
+    return result;
   }
 }
