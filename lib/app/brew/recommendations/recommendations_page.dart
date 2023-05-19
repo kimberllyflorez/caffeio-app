@@ -9,7 +9,12 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 @RoutePage()
 class RecommendationsPage extends StatefulWidget {
-  const RecommendationsPage({Key? key}) : super(key: key);
+  final int id;
+
+  const RecommendationsPage({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   State<RecommendationsPage> createState() => _RecommendationsPageState();
@@ -21,62 +26,57 @@ class _RecommendationsPageState
   void initState() {
     super.initState();
     listenToNavigation(viewModel.router);
+    viewModel.listVideos(widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        title: const Text('Recommended brew'),
       ),
       body: StreamBuilder<RecommendationState>(
-          stream: viewModel.state,
-          builder: (context, snapshot) {
-            final state = snapshot.data;
-            if (state != null) {
-              print(state.videos.length);
-              return Column(
-                children: [
-                  const Text('Recommended brewing'),
-                  const Text('Technic V60'),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: state.videos.length,
-                      itemBuilder: (context, i) {
-                        return Container(
-                          margin: context.theme.insets.xs,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0)),
-                          child: Column(
-                            children: [
-                              const Text("Name of Method"),
-                              YoutubePlayer(
-                                controller: YoutubePlayerController(
-                                  initialVideoId: YoutubePlayer.convertUrlToId(
-                                      state.videos[i])!,
-                                  flags:
-                                      const YoutubePlayerFlags(autoPlay: false),
-                                ),
-                                showVideoProgressIndicator: true,
-                                progressIndicatorColor:
-                                    context.theme.palette.grayScale.gray,
-                              ),
-                            ],
+        stream: viewModel.state,
+        builder: (context, snapshot) {
+          final state = snapshot.data;
+          if (state != null) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: state.videos.length,
+                    itemBuilder: (context, i) {
+                      return Padding(
+                        padding: EdgeInsets.all(context.theme.spacing.xs),
+                        child: Card(
+                          elevation: context.theme.spacing.xxs,
+                          child: YoutubePlayer(
+                            controller: YoutubePlayerController(
+                              initialVideoId: YoutubePlayer.convertUrlToId(
+                                  state.videos[i].url)!,
+                              flags:
+                                  const YoutubePlayerFlags(autoPlay: false),
+                            ),
+                            showVideoProgressIndicator: true,
+                            progressIndicatorColor:
+                                context.theme.palette.grayScale.gray,
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                ],
-              );
-            }
-            return const LoadingIndicator();
-          }),
+                ),
+              ],
+            );
+          }
+          return const LoadingIndicator();
+        },
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: CaffeioButton(
           text: 'Next',
-          callback: viewModel.nextPage,
+          callback: viewModel.onNextPressed,
         ),
       ),
     );
