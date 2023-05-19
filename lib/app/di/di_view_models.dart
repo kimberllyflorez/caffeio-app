@@ -21,7 +21,12 @@ class DiViewModel {
     getIt.registerFactory(() => LoginPageViewModel(getIt.get()));
     getIt.registerFactory(() => MethodSelectionViewModel(getIt.get()));
     getIt.registerFactory(() => RatioViewModel(getIt.get()));
-    getIt.registerFactory(() => RecommendationViewModel());
+    getIt.registerFactory(() {
+      return RecommendationViewModel(
+        getIt.get(),
+        getIt.get(),
+      );
+    });
     getIt.registerFactory(() {
       return TimerViewModel(
         getIt.get(),

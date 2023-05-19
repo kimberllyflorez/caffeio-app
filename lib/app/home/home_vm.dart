@@ -6,7 +6,7 @@ import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
-import 'package:caffeio/entities/brewing_methods/brewing_method.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 

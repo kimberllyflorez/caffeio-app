@@ -19,6 +19,7 @@ import 'package:caffeio/app/brew/timer/timer_page.dart' as _i7;
 import 'package:caffeio/app/home/home_page.dart' as _i2;
 import 'package:caffeio/app/method/method_page.dart' as _i1;
 import 'package:caffeio/app/settings/settings_page.dart' as _i8;
+import 'package:flutter/material.dart' as _i10;
 
 abstract class $AppRouter extends _i9.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -44,9 +45,13 @@ abstract class $AppRouter extends _i9.RootStackRouter {
       );
     },
     RecommendationsRoute.name: (routeData) {
+      final args = routeData.argsAs<RecommendationsRouteArgs>();
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.RecommendationsPage(),
+        child: _i4.RecommendationsPage(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     MethodSelectionRoute.name: (routeData) {
@@ -120,16 +125,40 @@ class LoginRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.RecommendationsPage]
-class RecommendationsRoute extends _i9.PageRouteInfo<void> {
-  const RecommendationsRoute({List<_i9.PageRouteInfo>? children})
-      : super(
+class RecommendationsRoute extends _i9.PageRouteInfo<RecommendationsRouteArgs> {
+  RecommendationsRoute({
+    _i10.Key? key,
+    required int id,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
           RecommendationsRoute.name,
+          args: RecommendationsRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RecommendationsRoute';
 
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+  static const _i9.PageInfo<RecommendationsRouteArgs> page =
+      _i9.PageInfo<RecommendationsRouteArgs>(name);
+}
+
+class RecommendationsRouteArgs {
+  const RecommendationsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i10.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'RecommendationsRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

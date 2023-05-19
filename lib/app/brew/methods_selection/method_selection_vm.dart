@@ -2,7 +2,7 @@ import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
-import 'package:caffeio/entities/brewing_methods/brewing_method.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -11,7 +11,7 @@ class MethodSelectionState extends Equatable {
   final List<BrewingMethod> brewingMethods;
 
   const MethodSelectionState({
-    this.pageSelection = 1,
+    this.pageSelection = 0,
     this.brewingMethods = const [],
   });
 
@@ -37,7 +37,7 @@ class MethodSelectionViewModel extends ViewModel {
 
   final _subscription = CompositeSubscription();
   final _state = BehaviorSubject<MethodSelectionState>.seeded(
-    MethodSelectionState(),
+    const MethodSelectionState(),
   );
 
   MethodSelectionViewModel(this._getBrewingMethodsUseCase);
@@ -54,12 +54,15 @@ class MethodSelectionViewModel extends ViewModel {
     }));
   }
 
-  void changePageView(int index) {
+  void onChangePageView(int index) {
     _state.add(_state.value.copyWith(pageSelection: index));
   }
 
-  void nextPage() {
-    _router.add(RouteSpec.push(route: const RecommendationsRoute()));
+  void onNextPressed() {
+    final methodSelected =
+        _state.value.brewingMethods[_state.value.pageSelection];
+    _router.add(
+        RouteSpec.push(route: RecommendationsRoute(id: methodSelected.id)));
   }
 
   @override

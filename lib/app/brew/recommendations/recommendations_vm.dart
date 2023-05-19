@@ -1,11 +1,14 @@
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/fetch_method_videos_uc.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/get_methods_video_uc.dart';
+import 'package:caffeio/entities/brew/method_video.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RecommendationState extends Equatable {
-  final List<String> videos;
+  final List<MethodVideo> videos;
   final String urlVideo;
 
   const RecommendationState({
@@ -14,7 +17,7 @@ class RecommendationState extends Equatable {
   });
 
   RecommendationState copyWith({
-    List<String>? videos,
+    List<MethodVideo>? videos,
     String? urlVideo,
   }) {
     return RecommendationState(
@@ -28,6 +31,14 @@ class RecommendationState extends Equatable {
 }
 
 class RecommendationViewModel extends ViewModel {
+  final GetMethodVideosUseCase _getMethodVideosUseCase;
+  final FetchMethodVideosUseCase _fetchMethodVideosUseCase;
+
+  RecommendationViewModel(
+    this._getMethodVideosUseCase,
+    this._fetchMethodVideosUseCase,
+  );
+
   final _state = BehaviorSubject<RecommendationState>.seeded(
     const RecommendationState(),
   );
@@ -40,20 +51,16 @@ class RecommendationViewModel extends ViewModel {
   Stream<RouteSpec> get router => _router;
 
   @override
-  void init() {
-    listVideos();
+  void init() {}
+
+  Future<void> listVideos(int id) async {
+    await _fetchMethodVideosUseCase(id);
+    _subscription.add(_getMethodVideosUseCase().listen((event) {
+      _state.add(_state.value.copyWith(videos: event));
+    }));
   }
 
-  void listVideos() {
-    final List<String> list = [
-      "https://www.youtube.com/watch?v=1oB1oDrDkHM&t=3s",
-      "https://www.youtube.com/watch?v=K_r5kpXPRYo",
-      "https://www.youtube.com/watch?v=K_r5kpXPRYo",
-    ];
-    _state.add(RecommendationState(videos: list));
-  }
-
-  void nextPage() {
+  void onNextPressed() {
     _router.add(RouteSpec.push(route: const RatioRoute()));
   }
 

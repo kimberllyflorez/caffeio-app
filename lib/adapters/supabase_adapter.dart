@@ -13,6 +13,9 @@ abstract class SupabaseAdapter {
   Future<List<dynamic>> selectAll(String table);
 
   Future<void> logOut();
+
+  Future<List<dynamic>> selectWhere(
+      String table, String field, String condition);
 }
 
 class SupabaseAdapterImpl implements SupabaseAdapter {
@@ -35,7 +38,19 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
     return _client.auth.signInWithPassword(email: email, password: password);
   }
 
+  @override
   Future<void> logOut() {
     return _client.auth.signOut();
+  }
+
+  @override
+  Future<List<dynamic>> selectWhere(
+    String table,
+    String field,
+    String condition,
+  ) async {
+    final result =
+        await _client.from(table).select<List<dynamic>>().eq(field, condition);
+    return result;
   }
 }
