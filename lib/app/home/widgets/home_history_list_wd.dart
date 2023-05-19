@@ -12,12 +12,12 @@ class HomeHistoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.separated(
+      child: ListView.builder(
         shrinkWrap: true,
         padding: const EdgeInsets.only(bottom: 112),
         itemCount: 200,
         itemBuilder: (_, index) => const _HistoryItemCard(),
-        separatorBuilder: (_, index) => const Divider(),
+        // separatorBuilder: (_, index) => const Divider(),
       ),
     );
   }
@@ -29,28 +29,55 @@ class _HistoryItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    return Container(
-      padding: EdgeInsets.symmetric(
+    return Card(
+      margin: EdgeInsets.symmetric(
         horizontal: theme.spacing.xs,
         vertical: theme.spacing.xxs,
       ),
-      child: const Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('V60'),
-              Text('16:1'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('20 gr'),
-              Text('200 ml'),
-            ],
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Image.asset(
+              // 'assets/images/aeropress-icon.png',
+              // 'assets/images/chemex-icon.png',
+              'assets/images/v60-icon.png',
+              // 'assets/images/french-press-icon.png',
+              width: 60,
+              height: 60,
+            ),
+            SizedBox(width: theme.spacing.xxs),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'V60',
+                    style: theme.typo.title.copyWith(
+                      color: theme.palette.brownScale.tertiaryColor,
+                    ),
+                  ),
+                  SizedBox(width: theme.spacing.xxs),
+                  Text('20 gr', style: theme.typo.body),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text('1:16', style: theme.typo.body),
+                Text(
+                  '200 ml',
+                  style: theme.typo.title.copyWith(
+                    color: theme.palette.blueScale.primaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

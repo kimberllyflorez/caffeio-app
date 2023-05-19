@@ -25,4 +25,10 @@ class Typo {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       );
+
+  TextStyle get small => const TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+  );
 }

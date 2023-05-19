@@ -24,54 +24,113 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return StreamBuilder<SettingsPageState>(
-        stream: viewModel.state,
-        builder: (context, snapshot) {
-          final state = snapshot.data ?? const SettingsPageState();
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Settings Page'),
-              actions: [
+      stream: viewModel.state,
+      builder: (context, snapshot) {
+        final state = snapshot.data ?? const SettingsPageState();
+        return Scaffold(
+          appBar: AppBar(),
+          body: Container(
+            width: double.infinity,
+            padding: theme.insets.xxs,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Visibility(
+                  visible: state.userProfile == null,
+                  replacement: _UserCard(
+                    name: state.userProfile?.email?.split('@').first ?? '',
+                    email: state.userProfile?.email ?? '',
+                  ),
+                  child: CaffeioButton(
+                    callback: viewModel.onLoginPressed,
+                    text: 'Login',
+                  ),
+                ),
+                const Spacer(),
                 Visibility(
                   visible: state.userProfile != null,
-                  child: IconButton(
-                    onPressed: viewModel.onLogOut,
-                    icon: const Icon(Icons.exit_to_app),
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: theme.insets.xs,
+                    child: ElevatedButton(
+                      onPressed: viewModel.onLogOut,
+                      child: const Text('Log out'),
+                    ),
                   ),
-                )
+                ),
+                const _VersionSection(),
+                SizedBox(height: theme.spacing.m),
               ],
             ),
-            body: SizedBox(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: state.userProfile == null,
-                    replacement: ListTile(
-                      leading: const CircleAvatar(),
-                      title: Text(
-                        state.userProfile?.email ?? '',
-                      ),
-                    ),
-                    child: CaffeioButton(
-                      callback: viewModel.onLoginPressed,
-                      text: 'Login',
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    'v0.0.1',
-                    style: theme.typo.subtitle,
-                  ),
-                  Text(
-                    'Bimbly Studios',
-                    style: theme.typo.subtitle,
-                  ),
-                  const SizedBox(height: kToolbarHeight),
-                ],
-              ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _UserCard extends StatelessWidget {
+  final String name;
+  final String email;
+
+  const _UserCard({
+    Key? key,
+    required this.name,
+    required this.email,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    return Padding(
+      padding: theme.insets.xs,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  ///TODO: Move this logic to vm
+                  name,
+                  style: theme.typo.title,
+                ),
+                Text(email),
+              ],
             ),
-          );
-        });
+          ),
+          const CircleAvatar(
+            child: Icon(Icons.account_circle_outlined),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VersionSection extends StatelessWidget {
+  const _VersionSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'v0.0.1',
+            style: theme.typo.small,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            'Bimbly Studios',
+            style: theme.typo.small,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
   }
 }
