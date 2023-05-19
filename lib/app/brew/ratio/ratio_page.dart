@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
-import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,111 +23,149 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Coffee Ratio',
-          style: context.theme.typo.title,
-        ),
-      ),
-      body: StreamBuilder<RatioState>(
-        stream: viewModel.state,
-        builder: (context, snapshot) {
-          final data = snapshot.data;
-          if (data != null) {
-            return Stack(
-              alignment: AlignmentDirectional.topEnd,
+    return StreamBuilder<RatioState>(
+      stream: viewModel.state,
+      builder: (context, snapshot) {
+        final state = snapshot.data ?? const RatioState();
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Preparation'),
+          ),
+          body: GestureDetector(
+            onTap: FocusScope.of(context).unfocus,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          SizedBox(height: context.theme.spacing.xxl),
-                          Padding(
-                            padding: context.theme.insets.xs.toHorizontal,
-                            child: Text(
-                                'How many grams of coffee do you want to prepared?',
-                                style: context.theme.typo.subtitle),
-                          ),
-                          SizedBox(height: context.theme.spacing.m),
-                          Padding(
-                            padding: context.theme.insets.xs.toHorizontal,
-                            child: TextFormField(
-                              onChanged: (grams) =>
-                                  viewModel.saveGramsCoffee(grams),
-                              decoration: const InputDecoration(
-                                  hintText: "20", suffixText: "gr"),
-                              textAlign: TextAlign.center,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(3)
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: context.theme.spacing.m),
-                          Padding(
-                            padding: context.theme.insets.xs.toHorizontal,
-                            child: Text(
-                              "Ratio:  1: ${data.ratioModel.ratio.toString()}",
-                              style: context.theme.typo.subtitle,
-                            ),
-                          ),
-                          SizedBox(height: context.theme.spacing.m),
-                          Slider(
-                            divisions: 10,
-                            min: 10,
-                            max: 25,
-                            label: "1:${data.ratioModel.ratio.toString()}",
-                            value: data.ratio,
-                            onChanged: (value) => viewModel.saveRatio(value),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(context.theme.spacing.xl),
-                          topLeft: Radius.circular(context.theme.spacing.xl),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: context.theme.insets.xs.toHorizontal,
+                        child: Text(
+                          'How many grams of coffee do you want to brew?',
+                          style: context.theme.typo.title,
                         ),
-                        color: context.theme.palette.blueScale.primaryColor,
                       ),
-                      padding: context.theme.insets.xs.toHorizontal,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                viewModel.totalWater(),
-                                style: context.theme.typo.title.copyWith(
-                                  color: Colors.white,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Text(" of water do you need",
-                                  style: context.theme.typo.subtitle),
-                            ],
+                      SizedBox(height: context.theme.spacing.xxs),
+                      Padding(
+                        padding: context.theme.insets.xs.toHorizontal,
+                        child: TextFormField(
+                          onChanged: (grams) =>
+                              viewModel.saveGramsCoffee(grams),
+                          decoration: const InputDecoration(
+                            hintText: "20",
+                            suffixText: "gr",
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: CaffeioButton(
-                              text: 'Next',
-                              callback: viewModel.nextPage,
-                            ),
-                          )
-                        ],
+                          keyboardType: TextInputType.number,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context).unfocus();
+                          },
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(2)
+                          ],
+                        ),
                       ),
-                    )
-                  ],
+                      SizedBox(height: context.theme.spacing.l),
+                      Container(
+                        width: double.maxFinite,
+                        padding: context.theme.insets.xs.toHorizontal,
+                        child: Text(
+                          "Which ratio do you want to use?",
+                          style: context.theme.typo.title,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      SizedBox(height: context.theme.spacing.s),
+                      Container(
+                        width: double.maxFinite,
+                        padding: context.theme.insets.xs.toHorizontal,
+                        child: Text(
+                          "1:${state.ratioModel.ratio.toString()}",
+                          style: context.theme.typo.body,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Slider(
+                        min: 12,
+                        max: 20,
+                        divisions: 8,
+                        value: state.ratio,
+                        onChanged: viewModel.onRatioSliderChange,
+                        activeColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(.12),
+                        inactiveColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(.12),
+                        thumbColor: Theme.of(context).colorScheme.primary,
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            );
-          }
-          return const LoadingIndicator();
-        },
+            ),
+          ),
+          bottomNavigationBar: _BottomSection(
+            totalWater: state.totalWater.toString(),
+            onNextPageCallback: viewModel.nextPage,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BottomSection extends StatelessWidget {
+  final VoidCallback onNextPageCallback;
+  final String totalWater;
+
+  const _BottomSection({
+    Key? key,
+    required this.onNextPageCallback,
+    required this.totalWater,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.2,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(context.theme.spacing.xl),
+          topLeft: Radius.circular(context.theme.spacing.xl),
+        ),
+        color: context.theme.palette.blueScale.primaryColor,
+      ),
+      padding: context.theme.insets.xs.toHorizontal,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Text(
+                totalWater,
+                style: context.theme.typo.title.copyWith(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                " of water do you need",
+                style: context.theme.typo.subtitle,
+              ),
+            ],
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: CaffeioButton(
+              text: 'Next',
+              callback: onNextPageCallback,
+            ),
+          )
+        ],
       ),
     );
   }

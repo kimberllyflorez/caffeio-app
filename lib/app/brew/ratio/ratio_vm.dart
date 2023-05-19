@@ -10,25 +10,32 @@ import 'package:rxdart/rxdart.dart';
 class RatioState extends Equatable {
   final RatioModelView ratioModel;
   final double ratio;
+  final int totalWater;
 
   const RatioState({
     this.ratioModel = const RatioModelView(),
     this.ratio = 16,
+    this.totalWater = 320,
   });
 
   RatioState copyWith({
     RatioModelView? ratioModel,
     double? ratio,
-    String? ratioLabel,
+    int? totalWater,
   }) {
     return RatioState(
       ratioModel: ratioModel ?? this.ratioModel,
       ratio: ratio ?? this.ratio,
+      totalWater: totalWater ?? this.totalWater,
     );
   }
 
   @override
-  List<Object?> get props => [ratio, ratioModel];
+  List<Object?> get props => [
+        ratio,
+        ratioModel,
+        totalWater,
+      ];
 }
 
 class RatioViewModel extends ViewModel {
@@ -45,23 +52,29 @@ class RatioViewModel extends ViewModel {
   @override
   void init() {}
 
-  void saveRatio(double ratio) {
+  void onRatioSliderChange(double ratio) {
+    final ratioModel = _state.value.ratioModel.copyWith(ratio: ratio.floor());
+    final water = totalWater(ratioModel);
     _state.add(
-      RatioState(
-          ratio: ratio,
-          ratioModel: _state.value.ratioModel.copyWith(ratio: ratio.floor())),
+      _state.value.copyWith(
+        ratio: ratio,
+        ratioModel: _state.value.ratioModel.copyWith(ratio: ratio.floor()),
+        totalWater: water,
+      ),
     );
   }
 
   void saveGramsCoffee(String grams) {
     final double? gramsValue = double.tryParse(grams);
-    _state.add(RatioState(
-        ratioModel: _state.value.ratioModel.copyWith(gramsCoffee: gramsValue)));
+    _state.add(
+      RatioState(
+        ratioModel: _state.value.ratioModel.copyWith(gramsCoffee: gramsValue),
+      ),
+    );
   }
 
-  String totalWater() {
-    final data = _state.value.ratioModel;
-    return _water(data).floor().toString();
+  int totalWater(RatioModelView ratioModel) {
+    return _water(ratioModel).floor();
   }
 
   void nextPage() {

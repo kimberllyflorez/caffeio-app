@@ -17,9 +17,10 @@ class RatioModelView extends Equatable {
     double? gramsCoffee,
   }) {
     return RatioModelView(
-        gramsCoffee: gramsCoffee ?? this.gramsCoffee,
-        ratio: ratio ?? this.ratio,
-        water: water ?? this.water);
+      gramsCoffee: gramsCoffee ?? this.gramsCoffee,
+      ratio: ratio ?? this.ratio,
+      water: water ?? this.water,
+    );
   }
 
   @override

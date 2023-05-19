@@ -38,11 +38,14 @@ class _MethodSelectionPageState
           if (state != null) {
             return Column(
               children: [
-                Text(
-                  state.brewingMethods[state.pageSelection].name,
-                  style: theme.typo.title,
+                Container(
+                  width: double.maxFinite,
+                  padding: theme.insets.xs.toHorizontal,
+                  child: Text(
+                    'Which method do you want to use today?',
+                    style: theme.typo.title,
+                  ),
                 ),
-                SizedBox(height: theme.spacing.xs),
                 SizedBox(
                   height: 250,
                   child: PageView(
@@ -71,8 +74,18 @@ class _MethodSelectionPageState
                     activeDotColor: theme.palette.blueScale.primaryColor,
                   ),
                 ),
+                SizedBox(height: theme.spacing.xs),
+                Container(
+                  width: double.maxFinite,
+                  padding: theme.insets.xs.toHorizontal,
+                  child: Text(
+                    state.brewingMethods[state.pageSelection].name,
+                    style: theme.typo.title,
+                  ),
+                ),
+                SizedBox(height: theme.spacing.xxs),
                 Padding(
-                  padding: theme.insets.xs,
+                  padding: theme.insets.xs.toHorizontal,
                   child: Text(
                     state.brewingMethods[state.pageSelection].description,
                     style: theme.typo.body,

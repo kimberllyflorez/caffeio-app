@@ -4,7 +4,7 @@ import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:caffeio/design_system/typo/typo.dart';
 import 'package:flutter/material.dart';
 
-extension Theme on BuildContext {
+extension AppTheme on BuildContext {
   CaffeioTheme get theme => CaffeioTheme();
 }
 

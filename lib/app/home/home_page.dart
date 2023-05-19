@@ -28,10 +28,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
     final theme = context.theme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Home page',
-          style: context.theme.typo.title,
-        ),
+        title: Text('Home page'),
         actions: [
           IconButton(
             onPressed: viewModel.onUserPressed,
