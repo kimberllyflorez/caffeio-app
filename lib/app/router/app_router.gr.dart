@@ -11,24 +11,24 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:caffeio/app/auth/login/login_page.dart' as _i3;
 import 'package:caffeio/app/brew/methods_selection/method_selection_page.dart'
-    as _i7;
+    as _i5;
 import 'package:caffeio/app/brew/ratio/ratio_page.dart' as _i6;
 import 'package:caffeio/app/brew/recommendations/recommendations_page.dart'
-    as _i5;
-import 'package:caffeio/app/brew/timer/timer_page.dart' as _i4;
+    as _i4;
+import 'package:caffeio/app/brew/timer/timer_page.dart' as _i7;
 import 'package:caffeio/app/home/home_page.dart' as _i2;
-import 'package:caffeio/app/method/method_page.dart' as _i8;
-import 'package:caffeio/app/settings/settings_page.dart' as _i1;
+import 'package:caffeio/app/method/method_page.dart' as _i1;
+import 'package:caffeio/app/settings/settings_page.dart' as _i8;
 
 abstract class $AppRouter extends _i9.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i9.PageFactory> pagesMap = {
-    SettingsRoute.name: (routeData) {
+    MethodRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.SettingsPage(),
+        child: const _i1.MethodPage(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -43,16 +43,16 @@ abstract class $AppRouter extends _i9.RootStackRouter {
         child: const _i3.LoginPage(),
       );
     },
-    TimerRoute.name: (routeData) {
-      return _i9.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.TimerPage(),
-      );
-    },
     RecommendationsRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.RecommendationsPage(),
+        child: const _i4.RecommendationsPage(),
+      );
+    },
+    MethodSelectionRoute.name: (routeData) {
+      return _i9.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.MethodSelectionPage(),
       );
     },
     RatioRoute.name: (routeData) {
@@ -61,31 +61,31 @@ abstract class $AppRouter extends _i9.RootStackRouter {
         child: const _i6.RatioPage(),
       );
     },
-    MethodSelectionRoute.name: (routeData) {
+    TimerRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.MethodSelectionPage(),
+        child: const _i7.TimerPage(),
       );
     },
-    MethodRoute.name: (routeData) {
+    SettingsRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.MethodPage(),
+        child: const _i8.SettingsPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.SettingsPage]
-class SettingsRoute extends _i9.PageRouteInfo<void> {
-  const SettingsRoute({List<_i9.PageRouteInfo>? children})
+/// [_i1.MethodPage]
+class MethodRoute extends _i9.PageRouteInfo<void> {
+  const MethodRoute({List<_i9.PageRouteInfo>? children})
       : super(
-          SettingsRoute.name,
+          MethodRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'SettingsRoute';
+  static const String name = 'MethodRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
@@ -119,21 +119,7 @@ class LoginRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.TimerPage]
-class TimerRoute extends _i9.PageRouteInfo<void> {
-  const TimerRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          TimerRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TimerRoute';
-
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.RecommendationsPage]
+/// [_i4.RecommendationsPage]
 class RecommendationsRoute extends _i9.PageRouteInfo<void> {
   const RecommendationsRoute({List<_i9.PageRouteInfo>? children})
       : super(
@@ -142,6 +128,20 @@ class RecommendationsRoute extends _i9.PageRouteInfo<void> {
         );
 
   static const String name = 'RecommendationsRoute';
+
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i5.MethodSelectionPage]
+class MethodSelectionRoute extends _i9.PageRouteInfo<void> {
+  const MethodSelectionRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          MethodSelectionRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MethodSelectionRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
@@ -161,29 +161,29 @@ class RatioRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.MethodSelectionPage]
-class MethodSelectionRoute extends _i9.PageRouteInfo<void> {
-  const MethodSelectionRoute({List<_i9.PageRouteInfo>? children})
+/// [_i7.TimerPage]
+class TimerRoute extends _i9.PageRouteInfo<void> {
+  const TimerRoute({List<_i9.PageRouteInfo>? children})
       : super(
-          MethodSelectionRoute.name,
+          TimerRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MethodSelectionRoute';
+  static const String name = 'TimerRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.MethodPage]
-class MethodRoute extends _i9.PageRouteInfo<void> {
-  const MethodRoute({List<_i9.PageRouteInfo>? children})
+/// [_i8.SettingsPage]
+class SettingsRoute extends _i9.PageRouteInfo<void> {
+  const SettingsRoute({List<_i9.PageRouteInfo>? children})
       : super(
-          MethodRoute.name,
+          SettingsRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MethodRoute';
+  static const String name = 'SettingsRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }

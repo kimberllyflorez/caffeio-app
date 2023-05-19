@@ -21,11 +21,5 @@ class BrewingMethod extends Equatable {
       _$BrewingMethodFromJson(json);
 
   @override
-  List<Object?> get props =>
-      [
-        id,
-        name,
-        description,
-        image
-      ];
+  List<Object?> get props => [id, name, description, image];
 }
