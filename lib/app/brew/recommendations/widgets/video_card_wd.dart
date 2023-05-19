@@ -31,10 +31,17 @@ class _RecommendationVideoCardState extends State<RecommendationVideoCard> {
   Widget build(BuildContext context) {
     return Card(
       elevation: context.theme.spacing.xxs,
-      child: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
-        progressIndicatorColor: context.theme.palette.grayScale.gray,
+      child: YoutubePlayerBuilder(
+        player: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: context.theme.palette.grayScale.gray,
+          bottomActions: [
+          ],
+        ),
+        builder: (_, player) {
+          return player;
+        },
       ),
     );
   }
