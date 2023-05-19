@@ -17,6 +17,8 @@ class MethodSelectionPage extends StatefulWidget {
 
 class _MethodSelectionPageState
     extends ViewState<MethodSelectionPage, MethodSelectionViewModel> {
+  final PageController _pageController = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -25,36 +27,56 @@ class _MethodSelectionPageState
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
+      appBar: AppBar(title: const Text('Select Method')),
       body: StreamBuilder<MethodSelectionState>(
         stream: viewModel.state,
         builder: (context, snapshot) {
-          final data = snapshot.data;
-          if (data != null) {
+          final state = snapshot.data;
+          if (state != null) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'select method',
-                  style: context.theme.typo.title,
+                  state.brewingMethods[state.pageSelection].name,
+                  style: theme.typo.title,
                 ),
-                Text(
-                  "select that you what to brew your coffee today",
-                  style: context.theme.typo.subtitle,
+                SizedBox(height: theme.spacing.xs),
+                SizedBox(
+                  height: 250,
+                  child: PageView(
+                    onPageChanged: viewModel.changePageView,
+                    controller: _pageController,
+                    scrollDirection: Axis.horizontal,
+                    children: state.brewingMethods
+                        .map(
+                          (e) => _Card(
+                            name: e.name,
+                            description: e.description,
+                            image: e.image,
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ),
-                _SelectorMethodCarousel(
-                  controller: PageController(initialPage: data.pageSelection),
-                  onChangePage: (index) => viewModel.changePageView(index),
-                  list: _list,
-                  descriptions: data.brewingMethods
-                      .map(
-                        (method) => Text(method.description),
-                      )
-                      .toList(),
+                SizedBox(height: theme.spacing.xs),
+                SmoothPageIndicator(
+                  controller: _pageController,
+                  count: state.brewingMethods.length,
+                  effect: ScaleEffect(
+                    dotHeight: 10,
+                    dotWidth: 10,
+                    dotColor: Colors.grey,
+                    activeDotColor: theme.palette.blueScale.primaryColor,
+                  ),
+                ),
+                Padding(
+                  padding: theme.insets.xs,
+                  child: Text(
+                    state.brewingMethods[state.pageSelection].description,
+                    style: theme.typo.body,
+                  ),
                 ),
               ],
             );
@@ -65,82 +87,45 @@ class _MethodSelectionPageState
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
         child: CaffeioButton(
-          text: 'Next',
           callback: viewModel.nextPage,
+          text: "Next",
         ),
       ),
     );
   }
 
-  final List<Widget> _list = <Widget>[
-    Center(
-      child: Container(
-        height: 160,
-        width: 260,
-        color: Colors.grey,
-        child: const Text("Page one"),
-      ),
-    ),
-    Center(
-      child: Container(
-        height: 160,
-        width: 260,
-        color: Colors.purple,
-        child: const Text("Page two"),
-      ),
-    ),
-    Center(
-      child: Container(
-        height: 160,
-        width: 260,
-        color: Colors.blue,
-        child: const Text("Page Three"),
-      ),
-    ),
-  ];
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 }
 
-class _SelectorMethodCarousel extends StatelessWidget {
-  const _SelectorMethodCarousel({
-    required this.controller,
-    required this.onChangePage,
-    required this.list,
-    required this.descriptions,
-  });
+class _Card extends StatelessWidget {
+  final String name;
+  final String description;
+  final String image;
 
-  final PageController controller;
-  final List<Widget> list;
-  final void Function(int) onChangePage;
-  final List<Widget> descriptions;
+  const _Card({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 300,
-          child: PageView(
-            onPageChanged: onChangePage,
-            controller: controller,
-            scrollDirection: Axis.horizontal,
-            children: list,
-          ),
+    return Card(
+      margin: context.theme.insets.xs,
+      child: Container(
+        padding: context.theme.insets.xs,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
         ),
-        SmoothPageIndicator(
-          controller: controller,
-          count: list.length,
-          effect: const ScrollingDotsEffect(
-              dotHeight: 10,
-              dotWidth: 10,
-              dotColor: Colors.grey,
-              activeDotColor: Colors.purple),
-        ),
-        SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: descriptions),
-        )
-      ],
+        width: 300,
+        height: 200,
+        child: Image.asset(image),
+      ),
     );
   }
 }
