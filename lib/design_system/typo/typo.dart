@@ -27,8 +27,8 @@ class Typo {
       );
 
   TextStyle get small => const TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    fontStyle: FontStyle.normal,
-  );
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+      );
 }

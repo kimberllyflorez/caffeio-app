@@ -11,7 +11,8 @@ class RecommendationVideoCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<RecommendationVideoCard> createState() => _RecommendationVideoCardState();
+  State<RecommendationVideoCard> createState() =>
+      _RecommendationVideoCardState();
 }
 
 class _RecommendationVideoCardState extends State<RecommendationVideoCard> {
