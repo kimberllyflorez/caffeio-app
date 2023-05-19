@@ -14,14 +14,13 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
   final _methodsVideos = BehaviorSubject<List<MethodVideo>>();
 
   BrewingMethodsRepositoryImpl(
-      this._brewingMethodsDataSource,
-      this._methodsVideosDataSource,
-      );
+    this._brewingMethodsDataSource,
+    this._methodsVideosDataSource,
+  );
 
   @override
   Stream<List<BrewingMethod>> get brewingMethodsStream =>
       _brewingMethods.stream;
-
 
   @override
   Stream<List<MethodVideo>> get methodsVideo => _methodsVideos.stream;
@@ -40,10 +39,9 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
     final data = await _methodsVideosDataSource.fetchMethodsVideos(methodId);
     final result = data
         .map((methodsVideos) =>
-        MethodVideo.fromJson(methodsVideos as Map<String, dynamic>))
+            MethodVideo.fromJson(methodsVideos as Map<String, dynamic>))
         .toList();
 
     _methodsVideos.add(result);
   }
-
 }

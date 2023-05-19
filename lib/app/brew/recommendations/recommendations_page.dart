@@ -54,8 +54,7 @@ class _RecommendationsPageState
                             controller: YoutubePlayerController(
                               initialVideoId: YoutubePlayer.convertUrlToId(
                                   state.videos[i].url)!,
-                              flags:
-                                  const YoutubePlayerFlags(autoPlay: false),
+                              flags: const YoutubePlayerFlags(autoPlay: false),
                             ),
                             showVideoProgressIndicator: true,
                             progressIndicatorColor:

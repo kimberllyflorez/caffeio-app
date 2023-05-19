@@ -85,7 +85,7 @@ class _MethodSelectionPageState
         },
       ),
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.all(theme.spacing.xs),
+        padding: EdgeInsets.all(theme.spacing.xs),
         child: CaffeioButton(
           callback: viewModel.onNextPressed,
           text: "Next",
