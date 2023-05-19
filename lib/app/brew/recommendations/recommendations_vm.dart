@@ -54,7 +54,7 @@ class RecommendationViewModel extends ViewModel {
   }
 
   void nextPage() {
-    _router.add(RouteSpec.push(route: const TimerRoute()));
+    _router.add(RouteSpec.push(route: const RatioRoute()));
   }
 
   @override
