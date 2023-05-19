@@ -130,7 +130,6 @@ class _BottomSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(context.theme.spacing.xl),
@@ -140,31 +139,35 @@ class _BottomSection extends StatelessWidget {
       ),
       padding: context.theme.insets.xs.toHorizontal,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: context.theme.spacing.l),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                totalWater,
+                '${totalWater}ml',
                 style: context.theme.typo.title.copyWith(
-                  color: Colors.white,
-                ),
+                    color: Colors.cyanAccent, fontSize: 32.0, height: 0),
                 textAlign: TextAlign.center,
               ),
               Text(
-                " of water do you need",
-                style: context.theme.typo.subtitle,
+                " water needed",
+                style:
+                    context.theme.typo.subtitle.copyWith(color: Colors.white),
               ),
             ],
           ),
+          SizedBox(height: context.theme.spacing.l),
           SizedBox(
             width: double.infinity,
             child: CaffeioButton(
               text: 'Next',
               callback: onNextPageCallback,
             ),
-          )
+          ),
+          SizedBox(height: context.theme.spacing.xs),
         ],
       ),
     );
