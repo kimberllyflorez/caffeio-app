@@ -2,6 +2,8 @@ import 'package:caffeio/adapters/supabase_adapter.dart';
 
 abstract class BrewingMethodsDataSource {
   Future<List<dynamic>> fetchBrewingMethods();
+
+
 }
 
 class BrewingMethodsDataSourceImpl extends BrewingMethodsDataSource {
