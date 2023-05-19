@@ -12,20 +12,17 @@ class HomeMethodsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: theme.spacing.xs),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: methods.map((e) {
-            return _HomeBrewMethodCard(
-              callback: () {},
-              methodName: e.name,
-            );
-          }).toList(),
-        ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: methods.map((method) {
+          return _HomeBrewMethodCard(
+            callback: () {},
+            methodName: method.name,
+            image: method.image,
+          );
+        }).toList(),
       ),
     );
   }
@@ -33,22 +30,46 @@ class HomeMethodsList extends StatelessWidget {
 
 class _HomeBrewMethodCard extends StatelessWidget {
   final String methodName;
+  final String image;
   final VoidCallback callback;
 
   const _HomeBrewMethodCard({
     Key? key,
     required this.methodName,
     required this.callback,
+    required this.image,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return Card(
-      child: Column(
-        children: [
-          const Icon(Icons.add),
-          Text(methodName),
-        ],
+      margin: theme.insets.xxs,
+      child: Container(
+        width: 120,
+        height: 120,
+        padding: theme.insets.xxs,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 60,
+              height: 60,
+              child: Image.asset(
+                image,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+            SizedBox(height: theme.spacing.xxs),
+            Text(
+              methodName,
+              maxLines: 1,
+              style: theme.typo.body.copyWith(
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

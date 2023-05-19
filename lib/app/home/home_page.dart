@@ -35,7 +35,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
         actions: [
           IconButton(
             onPressed: viewModel.onUserPressed,
-            icon: const Icon(Icons.warehouse_rounded),
+            icon: const Icon(Icons.account_circle_outlined),
           )
         ],
       ),
@@ -47,7 +47,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
             return const LoadingIndicator();
           }
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: theme.spacing.xs),
               Padding(
@@ -84,8 +84,10 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: viewModel.onBrewPressed,
-        child: const Icon(
-          Icons.cloud_upload,
+        child: Image.asset(
+          'assets/images/coffee-bean-icon.png',
+          width: 30,
+          height: 30,
         ),
       ),
     );
