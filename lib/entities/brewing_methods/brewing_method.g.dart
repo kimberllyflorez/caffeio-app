@@ -11,4 +11,5 @@ BrewingMethod _$BrewingMethodFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
+      image: json['image'] as String,
     );
