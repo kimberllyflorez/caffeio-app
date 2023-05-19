@@ -60,20 +60,20 @@ class TimerViewModel extends ViewModel {
   void init() {}
 
   void startTimer() {
-    if(_timer == null || !_timer!.isActive) {
+    if (_timer == null || !_timer!.isActive) {
       _timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (_) {
-        final timer = _state.value.elapsedTime + const Duration(seconds: 1);
-        final String seeTimer = _formatUseCase(timer);
-        _state.add(
-          _state.value.copyWith(
-            elapsedTime: timer,
-            seeTimer: seeTimer,
-          ),
-        );
-      },
-    );
+        const Duration(seconds: 1),
+        (_) {
+          final timer = _state.value.elapsedTime + const Duration(seconds: 1);
+          final String seeTimer = _formatUseCase(timer);
+          _state.add(
+            _state.value.copyWith(
+              elapsedTime: timer,
+              seeTimer: seeTimer,
+            ),
+          );
+        },
+      );
     }
   }
 

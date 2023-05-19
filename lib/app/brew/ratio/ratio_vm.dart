@@ -65,7 +65,7 @@ class RatioViewModel extends ViewModel {
   }
 
   void nextPage() {
-    _router.add(RouteSpec.push(route: const RecommendationsRoute()));
+    _router.add(RouteSpec.push(route: const TimerRoute()));
   }
 
   @override
