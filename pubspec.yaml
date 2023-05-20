@@ -23,6 +23,7 @@ dependencies:
   json_annotation: ^4.8.1
   smooth_page_indicator: ^1.1.0
   youtube_player_flutter: ^8.1.2
+  wave: ^0.2.2
 
 dev_dependencies:
   flutter_test:

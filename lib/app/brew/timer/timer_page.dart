@@ -6,6 +6,8 @@ import 'package:caffeio/design_system/atoms/buttons/caffeio_circular_button.dart
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 @RoutePage()
 class TimerPage extends StatefulWidget {
@@ -92,37 +94,54 @@ class _TimerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+    final colors = isRunning
+        ? [
+            const Color(0x90603020),
+            const Color(0xFF5C4740),
+            const Color(0x70603020)
+          ]
+        : [
+            const Color(0x00603020),
+            const Color(0x005C4740),
+            const Color(0x00603020)
+          ];
 
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            if (isRunning) {
-              onPause();
-            } else {
-              onStart();
-            }
-          },
-          child: Stack(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 100,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: Colors.white),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.16),
-                      offset: const Offset(0.0, 2.0),
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                ),
-                child: Text(
+    const durations = [15000, 10000, 5000];
+
+    const heightPercentages = <double>[0.65, 0.66, 0.67];
+    return GestureDetector(
+      onTap: isRunning ? onPause : onStart,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.white),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.16),
+              offset: const Offset(0.0, 2.0),
+              blurRadius: 6.0,
+            ),
+          ],
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            WaveWidget(
+              config: CustomConfig(
+                colors: colors,
+                durations: durations,
+                heightPercentages: heightPercentages,
+              ),
+              backgroundColor: Colors.transparent,
+              size: const Size(300, 320),
+              waveAmplitude: 0,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
                   timer,
                   style: theme.typo.title.copyWith(
                     color: theme.palette.blueScale.primaryColor,
@@ -130,11 +149,7 @@ class _TimerSection extends StatelessWidget {
                     height: 0,
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 70,
-                right: 43,
-                child: Text(
+                Text(
                   milliseconds,
                   style: theme.typo.title.copyWith(
                     color:
@@ -143,11 +158,11 @@ class _TimerSection extends StatelessWidget {
                     height: 0,
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
