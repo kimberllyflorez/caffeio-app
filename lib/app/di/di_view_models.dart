@@ -37,6 +37,7 @@ class DiViewModel {
         getIt.get(),
         getIt.get(),
         getIt.get(),
+        getIt.get(),
       );
     });
     getIt.registerFactory(() {

@@ -81,7 +81,7 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
         padding: const EdgeInsets.all(12.0),
         child: CaffeioButton(
           text: 'Finish',
-          callback: () => viewModel.nextPage,
+          callback: () => viewModel.nextPage(widget.ratioMode),
         ),
       ),
     );
