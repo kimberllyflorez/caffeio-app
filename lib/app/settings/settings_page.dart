@@ -59,7 +59,6 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
                   ),
                 ),
                 const _VersionSection(),
-                SizedBox(height: theme.spacing.m),
               ],
             ),
           ),
@@ -114,20 +113,32 @@ class _VersionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    return SizedBox(
+    return Container(
+      padding: context.theme.insets.xs,
       width: double.infinity,
-      child: Column(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'v0.0.1',
-            style: theme.typo.small,
-            textAlign: TextAlign.center,
+          Image.asset(
+            'assets/images/caffeio-icon.png',
+            width: 36,
+            height: 36,
           ),
-          Text(
-            'Bimbly Studios',
-            style: theme.typo.small,
-            textAlign: TextAlign.center,
+          SizedBox(width: theme.spacing.xs),
+          Column(
+            children: [
+              Text(
+                'v0.0.1',
+                style: theme.typo.small,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Bimbly Studios',
+                style: theme.typo.small,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ],
       ),

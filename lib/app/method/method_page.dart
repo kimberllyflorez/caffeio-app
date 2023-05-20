@@ -35,16 +35,19 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Hero(
               tag: widget.method.name,
-              child: Container(
-                margin: theme.insets.xs,
-                width: 150,
-                height: 150,
-                child: Image.asset(
-                  widget.method.image,
-                  fit: BoxFit.fitHeight,
+              child: Center(
+                child: Container(
+                  margin: theme.insets.xs,
+                  width: 150,
+                  height: 150,
+                  child: Image.asset(
+                    widget.method.image,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
             ),
