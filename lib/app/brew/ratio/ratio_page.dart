@@ -114,7 +114,7 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
             ),
           ),
           bottomNavigationBar: _BottomSection(
-            totalWater: state.totalWater.toString(),
+            totalWater: state.ratioModel.water.toString(),
             onNextPageCallback: () => viewModel.nextPage(widget.brewingMethod),
           ),
         );

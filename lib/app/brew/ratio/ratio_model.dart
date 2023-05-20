@@ -8,7 +8,7 @@ class RatioModelView extends Equatable {
   final BrewingMethod method;
 
   const RatioModelView({
-    this.water = 200,
+    this.water = 320,
     this.gramsCoffee = 20,
     this.ratio = 16,
     this.method = const BrewingMethod(
