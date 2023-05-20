@@ -1,3 +1,4 @@
+import 'package:caffeio/entities/brew/brew.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:caffeio/entities/brew/method_video.dart';
 
@@ -9,4 +10,6 @@ abstract class BrewingMethodsRepository {
   Stream<List<BrewingMethod>> get brewingMethodsStream;
 
   Stream<List<MethodVideo>> get methodsVideo;
+
+  Future<void> saveBrew(Brew brew);
 }
