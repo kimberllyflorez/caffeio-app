@@ -16,7 +16,7 @@ class FirstUserBrewGuard extends AutoRouteGuard {
     if (userBrew != null) {
       resolver.next(true);
     } else {
-      router.replaceAll([const MethodSelectionRoute()]);
+      router.replaceAll([const OnboardingRoute()]);
     }
   }
 }
