@@ -25,7 +25,6 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   wave: ^0.2.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,7 +35,6 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
 
 flutter:
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
