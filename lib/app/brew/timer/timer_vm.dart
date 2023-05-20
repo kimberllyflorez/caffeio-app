@@ -13,26 +13,41 @@ import 'package:rxdart/subjects.dart';
 class TimerState extends Equatable {
   final Duration elapsedTime;
   final String seeTimer;
+  final String milliseconds;
+  final bool isRunning;
+  final bool isPaused;
 
   const TimerState({
     this.elapsedTime = Duration.zero,
     this.seeTimer = '00:00',
+    this.milliseconds = '00',
+    this.isRunning = false,
+    this.isPaused = false,
   });
 
   TimerState copyWith({
     String? seeTimer,
+    String? milliseconds,
     Duration? elapsedTime,
+    bool? isRunning,
+    bool? isPaused,
   }) {
     return TimerState(
+      isPaused: isPaused ?? this.isPaused,
+      isRunning: isRunning ?? this.isRunning,
       elapsedTime: elapsedTime ?? this.elapsedTime,
       seeTimer: seeTimer ?? this.seeTimer,
+      milliseconds: milliseconds ?? this.milliseconds,
     );
   }
 
   @override
   List<Object?> get props => [
         seeTimer,
+        milliseconds,
         elapsedTime,
+        isRunning,
+        isPaused,
       ];
 }
 
@@ -62,23 +77,49 @@ class TimerViewModel extends ViewModel {
   void startTimer() {
     if (_timer == null || !_timer!.isActive) {
       _timer = Timer.periodic(
-        const Duration(seconds: 1),
+        const Duration(milliseconds: 10),
         (_) {
-          final timer = _state.value.elapsedTime + const Duration(seconds: 1);
+          final timer =
+              _state.value.elapsedTime + const Duration(milliseconds: 10);
           final String seeTimer = _formatUseCase(timer);
-          _state.add(
-            _state.value.copyWith(
-              elapsedTime: timer,
-              seeTimer: seeTimer,
-            ),
-          );
+          String milliseconds = timer.inMilliseconds.toString();
+          int secondLastDigit = getSecondLastDigit(milliseconds);
+          int beforeSecondLastDigit = getBeforeSecondLastDigit(milliseconds);
+          _state.add(_state.value.copyWith(
+            elapsedTime: timer,
+            seeTimer: seeTimer,
+            milliseconds: '$beforeSecondLastDigit$secondLastDigit',
+            isRunning: true,
+            isPaused: false,
+          ));
         },
       );
     }
   }
 
+  int getSecondLastDigit(String number) {
+    int length = number.length;
+
+    if (length >= 2) {
+      return int.parse(number[length - 2]);
+    } else {
+      return 0;
+    }
+  }
+
+  int getBeforeSecondLastDigit(String number) {
+    int length = number.length;
+
+    if (length >= 3) {
+      return int.parse(number[length - 3]);
+    } else {
+      return 0;
+    }
+  }
+
   void pauseTimer() {
     _timer?.cancel();
+    _state.add(_state.value.copyWith(isRunning: false, isPaused: true));
   }
 
   void resetTimer() {
