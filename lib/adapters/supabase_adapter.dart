@@ -16,6 +16,8 @@ abstract class SupabaseAdapter {
 
   Future<List<dynamic>> selectWhere(
       String table, String field, String condition);
+
+  Future<void> insert(String tabla, Map<String, dynamic> body);
 }
 
 class SupabaseAdapterImpl implements SupabaseAdapter {
@@ -52,5 +54,14 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
     final result =
         await _client.from(table).select<List<dynamic>>().eq(field, condition);
     return result;
+  }
+
+  @override
+  Future<void> insert(String table, Map<String, dynamic> body) async {
+    try{
+      await _client.from(table).insert(body);
+    }catch(e){
+      print(e);
+    }
   }
 }
