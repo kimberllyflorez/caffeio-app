@@ -132,8 +132,8 @@ class _BottomSection extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(context.theme.spacing.xl),
-          topLeft: Radius.circular(context.theme.spacing.xl),
+          topRight: Radius.circular(context.theme.spacing.l),
+          topLeft: Radius.circular(context.theme.spacing.l),
         ),
         color: context.theme.palette.blueScale.primaryColor,
       ),
@@ -144,18 +144,24 @@ class _BottomSection extends StatelessWidget {
         children: [
           SizedBox(height: context.theme.spacing.l),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                '${totalWater}ml',
-                style: context.theme.typo.title.copyWith(
-                    color: Colors.cyanAccent, fontSize: 32.0, height: 0),
-                textAlign: TextAlign.center,
+              Flexible(
+                child: Text(
+                  "The amount of water(ml) that you need for this brew is:",
+                  style: context.theme.typo.subtitle.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
               ),
               Text(
-                " water needed",
-                style:
-                    context.theme.typo.subtitle.copyWith(color: Colors.white),
+                totalWater,
+                style: context.theme.typo.title.copyWith(
+                  color: Colors.cyanAccent,
+                  fontSize: 54.0,
+                  height: 0,
+                ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
