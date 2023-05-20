@@ -9,17 +9,25 @@ class BrewingMethod extends Equatable {
   final String name;
   final String description;
   final String image;
+  final String history;
 
   const BrewingMethod({
     required this.id,
     required this.name,
     required this.description,
     required this.image,
+    required this.history,
   });
 
   factory BrewingMethod.fromJson(Map<String, dynamic> json) =>
       _$BrewingMethodFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, description, image];
+  List<Object?> get props => [
+        id,
+        name,
+        description,
+        image,
+        history,
+      ];
 }
