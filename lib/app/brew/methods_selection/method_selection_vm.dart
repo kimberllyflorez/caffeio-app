@@ -68,7 +68,7 @@ class MethodSelectionViewModel extends ViewModel {
     final methodSelected =
         _state.value.brewingMethods[_state.value.pageSelection];
     _router.add(
-        RouteSpec.push(route: RecommendationsRoute(id: methodSelected.id)));
+        RouteSpec.push(route: RecommendationsRoute(method: methodSelected)));
   }
 
   @override

@@ -6,6 +6,7 @@ import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/set_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/timer/format_stopwatch_time_uc.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/subjects.dart';
@@ -134,7 +135,7 @@ class TimerViewModel extends ViewModel {
     _timer = null;
   }
 
-  void nextPage() {
+  void nextPage(BrewingMethod method) {
     if (_getUserBrewUseCase() == null) {
       _setUserBrewUseCase();
     }

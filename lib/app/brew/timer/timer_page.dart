@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:caffeio/app/brew/ratio/ratio_model.dart';
 import 'package:caffeio/app/brew/timer/timer_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
@@ -11,7 +12,12 @@ import 'package:wave/wave.dart';
 
 @RoutePage()
 class TimerPage extends StatefulWidget {
-  const TimerPage({Key? key}) : super(key: key);
+  final RatioModelView ratioMode;
+
+  const TimerPage({
+    Key? key,
+    required this.ratioMode,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TimerPageState();
@@ -43,12 +49,11 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  children: [
-                    Text('V60 / 20gr'),
-                    Text('1:16 / 200ml'),
-                  ],
-                ),
+                _preparationData(
+                    ratio: widget.ratioMode.ratio.toString(),
+                    water: widget.ratioMode.water.toString(),
+                    gramsCoffee: widget.ratioMode.gramsCoffee.toString(),
+                    preparationSelected: widget.ratioMode.method.name),
                 _TimerSection(
                   timer: state.seeTimer,
                   milliseconds: state.milliseconds,
@@ -74,8 +79,36 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: CaffeioButton(text: 'Finish', callback: viewModel.nextPage),
+        child: CaffeioButton(
+          text: 'Finish',
+          callback: () => viewModel.nextPage,
+        ),
       ),
+    );
+  }
+}
+
+class _preparationData extends StatelessWidget {
+  final String ratio;
+  final String water;
+  final String gramsCoffee;
+  final String preparationSelected;
+
+  const _preparationData(
+      {Key? key,
+      required this.ratio,
+      required this.water,
+      required this.gramsCoffee,
+      required this.preparationSelected})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("$preparationSelected   $water ml"),
+        Text("$gramsCoffee ,  $ratio"),
+      ],
     );
   }
 }

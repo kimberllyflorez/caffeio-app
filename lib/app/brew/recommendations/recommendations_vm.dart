@@ -3,6 +3,7 @@ import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_method_videos_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_methods_video_uc.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:caffeio/entities/brew/method_video.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -53,15 +54,15 @@ class RecommendationViewModel extends ViewModel {
   @override
   void init() {}
 
-  Future<void> listVideos(int id) async {
-    await _fetchMethodVideosUseCase(id);
+  Future<void> listVideos(BrewingMethod method) async {
+    await _fetchMethodVideosUseCase(method.id);
     _subscription.add(_getMethodVideosUseCase().listen((event) {
       _state.add(_state.value.copyWith(videos: event));
     }));
   }
 
-  void onNextPressed() {
-    _router.add(RouteSpec.push(route: const RatioRoute()));
+  void onNextPressed(BrewingMethod method) {
+    _router.add(RouteSpec.push(route: RatioRoute(brewingMethod: method)));
   }
 
   @override
