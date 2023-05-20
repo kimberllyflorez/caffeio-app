@@ -4,6 +4,7 @@ import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/log_out_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_up_uc.dart';
+import 'package:caffeio/domain/use_cases/brew/save_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_method_videos_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
@@ -30,5 +31,6 @@ class DiUseCase {
     getIt.registerFactory(() => SetUserBrewUseCase(getIt.get()));
     getIt.registerFactory(() => FetchMethodVideosUseCase(getIt.get()));
     getIt.registerFactory(() => GetMethodVideosUseCase(getIt.get()));
+    getIt.registerFactory(() => SaveBrewUseCase(getIt.get(), getIt.get()));
   }
 }
