@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class CaffeioBottomContainer extends StatelessWidget {
   final Widget child;
+  final Color? backgroundColor;
 
   const CaffeioBottomContainer({
     Key? key,
     required this.child,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class CaffeioBottomContainer extends StatelessWidget {
           topRight: Radius.circular(theme.spacing.l),
           topLeft: Radius.circular(theme.spacing.l),
         ),
-        color: theme.palette.blueScale.primaryColor,
+        color: backgroundColor ?? theme.palette.blueScale.primaryColor,
       ),
       padding: theme.insets.xs.toHorizontal,
       child: child,

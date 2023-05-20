@@ -36,7 +36,7 @@ class _RecommendationVideoCardState extends State<RecommendationVideoCard> {
           controller: _controller,
           showVideoProgressIndicator: true,
           progressIndicatorColor: context.theme.palette.grayScale.gray,
-          bottomActions: [],
+          bottomActions: const [],
         ),
         builder: (_, player) {
           return player;

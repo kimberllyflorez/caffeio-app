@@ -11,14 +11,12 @@ class HomeHistoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        padding: const EdgeInsets.only(bottom: 112),
-        itemCount: 200,
-        itemBuilder: (_, index) => const _HistoryItemCard(),
-        // separatorBuilder: (_, index) => const Divider(),
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      padding: const EdgeInsets.only(bottom: 112),
+      itemCount: 200,
+      itemBuilder: (_, index) => const _HistoryItemCard(),
+      // separatorBuilder: (_, index) => const Divider(),
     );
   }
 }
@@ -35,7 +33,10 @@ class _HistoryItemCard extends StatelessWidget {
         vertical: theme.spacing.xxs,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: theme.spacing.xs,
+          vertical: theme.spacing.xxs,
+        ),
         child: Row(
           children: [
             Image.asset(
