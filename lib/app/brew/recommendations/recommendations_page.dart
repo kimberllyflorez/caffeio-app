@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/recommendations/recommendations_vm.dart';
 import 'package:caffeio/app/brew/recommendations/widgets/video_card_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
-import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -62,10 +61,19 @@ class _RecommendationsPageState
         },
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: CaffeioButton(
-          text: 'Next',
-          callback: viewModel.onNextPressed,
+        padding: context.theme.insets.xs,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              onPressed: viewModel.onNextPressed,
+              icon: Icon(
+                Icons.navigate_next_rounded,
+                color: context.theme.palette.blueScale.primaryColor,
+                size: 36,
+              ),
+            ),
+          ],
         ),
       ),
     );

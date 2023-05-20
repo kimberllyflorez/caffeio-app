@@ -43,6 +43,12 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Column(
+                  children: [
+                    Text('V60 / 20gr'),
+                    Text('1:16 / 200ml'),
+                  ],
+                ),
                 _TimerSection(
                   timer: state.seeTimer,
                   milliseconds: state.milliseconds,

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/methods_selection/method_selection_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
-import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
@@ -103,12 +102,18 @@ class _MethodSelectionPageState
                         ),
                       ),
                       SizedBox(height: context.theme.spacing.l),
-                      SizedBox(
-                        width: double.maxFinite,
-                        child: CaffeioButton(
-                          callback: viewModel.onNextPressed,
-                          text: "Next",
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            onPressed: viewModel.onNextPressed,
+                            icon: const Icon(
+                              Icons.navigate_next_rounded,
+                              color: Colors.white,
+                              size: 36,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: context.theme.spacing.xs),
                     ],
