@@ -4,6 +4,7 @@ import 'package:caffeio/app/brew/recommendations/recommendations_vm.dart';
 import 'package:caffeio/app/auth/login/login_page_vm.dart';
 import 'package:caffeio/app/home/home_vm.dart';
 import 'package:caffeio/app/method/method_page_vm.dart';
+import 'package:caffeio/app/onboarding/onboarding_page_vm.dart';
 import 'package:caffeio/app/settings/settings_vm.dart';
 import 'package:get_it/get_it.dart';
 
@@ -40,6 +41,9 @@ class DiViewModel {
     });
     getIt.registerFactory(() {
       return MethodPageViewModel();
+    });
+    getIt.registerFactory(() {
+      return OnboardingPageViewModel();
     });
   }
 }
