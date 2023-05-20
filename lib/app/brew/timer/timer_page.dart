@@ -99,7 +99,7 @@ class _TimerSection extends StatelessWidget {
           onTap: () {
             if (isRunning) {
               onPause();
-            } else if (isPaused) {
+            } else {
               onStart();
             }
           },

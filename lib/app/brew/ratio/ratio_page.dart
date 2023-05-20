@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
+import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -129,51 +130,47 @@ class _BottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(context.theme.spacing.l),
-          topLeft: Radius.circular(context.theme.spacing.l),
-        ),
-        color: context.theme.palette.blueScale.primaryColor,
-      ),
-      padding: context.theme.insets.xs.toHorizontal,
+    final theme = context.theme;
+    return CaffeioBottomContainer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: context.theme.spacing.l),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(
-                child: Text(
-                  "The amount of water(ml) that you need for this brew is:",
-                  style: context.theme.typo.subtitle.copyWith(
-                    color: Colors.white,
+          SizedBox(height: theme.spacing.l),
+          Padding(
+            padding: theme.insets.xs.toHorizontal,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Text(
+                    "Required amount of water (ml) for this brew is:",
+                    style: theme.typo.subtitle.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                totalWater,
-                style: context.theme.typo.title.copyWith(
-                  color: Colors.cyanAccent,
-                  fontSize: 54.0,
-                  height: 0,
+                Text(
+                  totalWater,
+                  style: theme.typo.title.copyWith(
+                    color: Colors.cyanAccent,
+                    fontSize: 54.0,
+                    height: 0,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+              ],
+            ),
           ),
-          SizedBox(height: context.theme.spacing.l),
+          SizedBox(height: theme.spacing.l),
           SizedBox(
-            width: double.infinity,
+            width: double.maxFinite,
             child: CaffeioButton(
               text: 'Next',
               callback: onNextPageCallback,
             ),
           ),
-          SizedBox(height: context.theme.spacing.xs),
+          SizedBox(height: theme.spacing.xs),
         ],
       ),
     );

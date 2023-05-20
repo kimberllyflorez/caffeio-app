@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/methods_selection/method_selection_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
+import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,16 @@ class _MethodSelectionPageState
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Select Method')),
-      body: StreamBuilder<MethodSelectionState>(
-        stream: viewModel.state,
-        builder: (context, snapshot) {
-          final state = snapshot.data ?? const MethodSelectionState();
-          if (state.brewingMethods.isNotEmpty) {
-            return Column(
+    return StreamBuilder<MethodSelectionState>(
+      stream: viewModel.state,
+      builder: (context, snapshot) {
+        final state = snapshot.data ?? const MethodSelectionState();
+        return Scaffold(
+          appBar: AppBar(title: const Text('Select Method')),
+          body: Visibility(
+            visible: state.brewingMethods.isNotEmpty,
+            replacement: const LoadingIndicator(),
+            child: Column(
               children: [
                 Container(
                   width: double.maxFinite,
@@ -74,36 +77,46 @@ class _MethodSelectionPageState
                     activeDotColor: theme.palette.blueScale.primaryColor,
                   ),
                 ),
-                SizedBox(height: theme.spacing.xs),
-                Container(
-                  width: double.maxFinite,
-                  padding: theme.insets.xs.toHorizontal,
-                  child: Text(
-                    state.brewingMethods[state.pageSelection].name,
-                    style: theme.typo.title,
-                  ),
-                ),
-                SizedBox(height: theme.spacing.xxs),
-                Padding(
-                  padding: theme.insets.xs.toHorizontal,
-                  child: Text(
-                    state.brewingMethods[state.pageSelection].description,
-                    style: theme.typo.body,
-                  ),
-                ),
               ],
-            );
-          }
-          return const LoadingIndicator();
-        },
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(theme.spacing.xs),
-        child: CaffeioButton(
-          callback: viewModel.onNextPressed,
-          text: "Next",
-        ),
-      ),
+            ),
+          ),
+          bottomNavigationBar: state.brewingMethods.isNotEmpty
+              ? CaffeioBottomContainer(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: theme.spacing.l),
+                      Container(
+                        width: double.maxFinite,
+                        padding: theme.insets.xs.toHorizontal,
+                        child: Text(
+                          state.brewingMethods[state.pageSelection].name,
+                          style: theme.typo.title.copyWith(color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(height: context.theme.spacing.xxs),
+                      Padding(
+                        padding: theme.insets.xs.toHorizontal,
+                        child: Text(
+                          state.brewingMethods[state.pageSelection].description,
+                          style: theme.typo.body.copyWith(color: Colors.white),
+                        ),
+                      ),
+                      SizedBox(height: context.theme.spacing.l),
+                      SizedBox(
+                        width: double.maxFinite,
+                        child: CaffeioButton(
+                          callback: viewModel.onNextPressed,
+                          text: "Next",
+                        ),
+                      ),
+                      SizedBox(height: context.theme.spacing.xs),
+                    ],
+                  ),
+                )
+              : const SizedBox.shrink(),
+        );
+      },
     );
   }
 
