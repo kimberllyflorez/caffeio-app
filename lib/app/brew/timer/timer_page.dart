@@ -50,6 +50,7 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
                   onStart: viewModel.startTimer,
                   isRunning: state.isRunning,
                   isPaused: state.isPaused,
+                  time: state.time,
                 ),
                 _TimerActions(
                   onPause: viewModel.pauseTimer,
@@ -74,6 +75,7 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
 }
 
 class _TimerSection extends StatelessWidget {
+  final int time;
   final String timer;
   final String milliseconds;
   final VoidCallback onStart;
@@ -89,12 +91,13 @@ class _TimerSection extends StatelessWidget {
     required this.onPause,
     required this.isRunning,
     required this.isPaused,
+    required this.time,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    final colors = isRunning
+    final colors = isRunning || isPaused
         ? [
             const Color(0x90603020),
             const Color(0xFF5C4740),
@@ -109,9 +112,12 @@ class _TimerSection extends StatelessWidget {
     const durations = [15000, 10000, 5000];
 
     const heightPercentages = <double>[0.65, 0.66, 0.67];
+    final heightValue = time.toDouble() / 20;
     return GestureDetector(
       onTap: isRunning ? onPause : onStart,
       child: Container(
+        width: 300,
+        height: 320,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -128,17 +134,21 @@ class _TimerSection extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            WaveWidget(
-              config: CustomConfig(
-                colors: colors,
-                durations: durations,
-                heightPercentages: heightPercentages,
+            Positioned(
+              bottom: 0,
+              child: WaveWidget(
+                config: CustomConfig(
+                  colors: colors,
+                  durations: durations,
+                  heightPercentages: heightPercentages,
+                ),
+                backgroundColor: Colors.transparent,
+                size: Size(300, heightValue >= 320.0 ? 320.0 : heightValue),
+                waveAmplitude: 0,
               ),
-              backgroundColor: Colors.transparent,
-              size: const Size(300, 320),
-              waveAmplitude: 0,
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
