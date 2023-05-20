@@ -34,8 +34,8 @@ class _MethodSelectionPageState
       body: StreamBuilder<MethodSelectionState>(
         stream: viewModel.state,
         builder: (context, snapshot) {
-          final state = snapshot.data;
-          if (state != null) {
+          final state = snapshot.data ?? const MethodSelectionState();
+          if (state.brewingMethods.isNotEmpty) {
             return Column(
               children: [
                 Container(
