@@ -16,6 +16,7 @@ class TimerState extends Equatable {
   final String milliseconds;
   final bool isRunning;
   final bool isPaused;
+  final int time;
 
   const TimerState({
     this.elapsedTime = Duration.zero,
@@ -23,6 +24,7 @@ class TimerState extends Equatable {
     this.milliseconds = '00',
     this.isRunning = false,
     this.isPaused = false,
+    this.time = 0,
   });
 
   TimerState copyWith({
@@ -31,6 +33,7 @@ class TimerState extends Equatable {
     Duration? elapsedTime,
     bool? isRunning,
     bool? isPaused,
+    int? time,
   }) {
     return TimerState(
       isPaused: isPaused ?? this.isPaused,
@@ -38,6 +41,7 @@ class TimerState extends Equatable {
       elapsedTime: elapsedTime ?? this.elapsedTime,
       seeTimer: seeTimer ?? this.seeTimer,
       milliseconds: milliseconds ?? this.milliseconds,
+      time: time ?? this.time,
     );
   }
 
@@ -48,6 +52,7 @@ class TimerState extends Equatable {
         elapsedTime,
         isRunning,
         isPaused,
+        time,
       ];
 }
 
@@ -91,6 +96,7 @@ class TimerViewModel extends ViewModel {
             milliseconds: '$beforeSecondLastDigit$secondLastDigit',
             isRunning: true,
             isPaused: false,
+            time: timer.inMilliseconds,
           ));
         },
       );
