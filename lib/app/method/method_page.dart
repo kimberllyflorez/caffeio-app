@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/method/method_page_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
-import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
@@ -67,13 +66,11 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
           ],
         ),
       ),
-      bottomNavigationBar: CaffeioBottomContainer(
-        child: Padding(
-          padding: theme.insets.xs,
-          child: CaffeioButton(
-            callback: () => viewModel.onBrewButtonPressed(widget.method.id),
-            text: 'Brew',
-          ),
+      bottomNavigationBar: Padding(
+        padding: theme.insets.xs,
+        child: CaffeioButton(
+          callback: () => viewModel.onBrewButtonPressed(widget.method.id),
+          text: 'Brew',
         ),
       ),
     );
