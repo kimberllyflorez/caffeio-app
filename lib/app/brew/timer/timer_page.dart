@@ -114,6 +114,13 @@ class _TimerSection extends StatelessWidget {
                   color: Colors.white,
                   border: Border.all(color: Colors.white),
                   shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: const Offset(0.0, 2.0),
+                      blurRadius: 6.0,
+                    ),
+                  ],
                 ),
                 child: Text(
                   timer,
