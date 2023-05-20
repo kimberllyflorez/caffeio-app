@@ -70,7 +70,10 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                     textAlign: TextAlign.start,
                   ),
                 ),
-                HomeMethodsList(methods: state.brewingMethods),
+                HomeMethodsList(
+                  methods: state.brewingMethods,
+                  callback: viewModel.onMethodPressed,
+                ),
                 SizedBox(height: theme.spacing.s),
                 Expanded(
                   child: CaffeioBottomContainer(
@@ -94,7 +97,8 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                               child: TextButton(
                                 onPressed: viewModel.onLoginPressed,
                                 child: const Text(
-                                    'Login to start recording your brews'),
+                                  'Login to start recording your brews',
+                                ),
                               ),
                             ),
                             child: HomeHistoryList(history: state.history),

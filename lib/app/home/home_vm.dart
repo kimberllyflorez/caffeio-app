@@ -96,6 +96,12 @@ class HomeViewModel extends ViewModel {
     _router.add(RouteSpec.push(route: const MethodSelectionRoute()));
   }
 
+  void onMethodPressed(BrewingMethod method) {
+    _router.add(
+      RouteSpec.push(route: MethodRoute(method: method)),
+    );
+  }
+
   @override
   void dispose() {
     _state.close();
