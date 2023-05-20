@@ -1,6 +1,7 @@
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
+import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:equatable/equatable.dart';
@@ -33,6 +34,7 @@ class MethodSelectionState extends Equatable {
 }
 
 class MethodSelectionViewModel extends ViewModel {
+  final FetchBrewingMethodsUseCase _fetchBrewingMethodsUseCase;
   final GetBrewingMethodsUseCase _getBrewingMethodsUseCase;
 
   final _subscription = CompositeSubscription();
@@ -40,7 +42,10 @@ class MethodSelectionViewModel extends ViewModel {
     const MethodSelectionState(),
   );
 
-  MethodSelectionViewModel(this._getBrewingMethodsUseCase);
+  MethodSelectionViewModel(
+    this._getBrewingMethodsUseCase,
+    this._fetchBrewingMethodsUseCase,
+  );
 
   Stream<MethodSelectionState> get state => _state;
   final _router = BehaviorSubject<RouteSpec>();
@@ -48,7 +53,8 @@ class MethodSelectionViewModel extends ViewModel {
   Stream<RouteSpec> get router => _router;
 
   @override
-  void init() {
+  Future<void> init() async {
+    await _fetchBrewingMethodsUseCase();
     _subscription.add(_getBrewingMethodsUseCase().listen((event) {
       _state.add(_state.value.copyWith(brewingMethods: event));
     }));
