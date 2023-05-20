@@ -4,15 +4,16 @@ import 'package:caffeio/app/brew/recommendations/widgets/video_card_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
 class RecommendationsPage extends StatefulWidget {
-  final int id;
+  final BrewingMethod method;
 
   const RecommendationsPage({
     Key? key,
-    required this.id,
+    required this.method,
   }) : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class _RecommendationsPageState
   void initState() {
     super.initState();
     listenToNavigation(viewModel.router);
-    viewModel.listVideos(widget.id);
+    viewModel.listVideos(widget.method);
   }
 
   @override
@@ -66,7 +67,7 @@ class _RecommendationsPageState
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-              onPressed: viewModel.onNextPressed,
+              onPressed: () => viewModel.onNextPressed(widget.method),
               icon: Icon(
                 Icons.navigate_next_rounded,
                 color: context.theme.palette.blueScale.primaryColor,

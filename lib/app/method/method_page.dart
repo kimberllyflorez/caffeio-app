@@ -72,7 +72,7 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
       bottomNavigationBar: Padding(
         padding: theme.insets.xs,
         child: CaffeioButton(
-          callback: () => viewModel.onBrewButtonPressed(widget.method.id),
+          callback: () => viewModel.onBrewButtonPressed(widget.method),
           text: 'Brew',
         ),
       ),

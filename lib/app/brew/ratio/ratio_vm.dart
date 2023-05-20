@@ -3,6 +3,7 @@ import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/ratio/caculate_water_ratio_uc.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -77,8 +78,9 @@ class RatioViewModel extends ViewModel {
     return _water(ratioModel).floor();
   }
 
-  void nextPage() {
-    _router.add(RouteSpec.push(route: const TimerRoute()));
+  void nextPage(BrewingMethod method) {
+    final ratioModel = _state.value.ratioModel.copyWith(method: method);
+    _router.add(RouteSpec.push(route: TimerRoute(ratioMode: ratioModel)));
   }
 
   @override

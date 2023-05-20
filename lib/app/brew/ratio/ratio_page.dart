@@ -3,12 +3,18 @@ import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 @RoutePage()
 class RatioPage extends StatefulWidget {
-  const RatioPage({Key? key}) : super(key: key);
+  final BrewingMethod brewingMethod;
+
+  const RatioPage({
+    Key? key,
+    required this.brewingMethod,
+  }) : super(key: key);
 
   @override
   State<RatioPage> createState() => _RatioPageState();
@@ -109,7 +115,7 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
           ),
           bottomNavigationBar: _BottomSection(
             totalWater: state.totalWater.toString(),
-            onNextPageCallback: viewModel.nextPage,
+            onNextPageCallback: () => viewModel.nextPage(widget.brewingMethod),
           ),
         );
       },
