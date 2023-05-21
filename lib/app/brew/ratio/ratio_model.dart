@@ -6,6 +6,7 @@ class RatioModelView extends Equatable {
   final double gramsCoffee;
   final int water;
   final BrewingMethod method;
+  final DateTime? creationDate;
 
   const RatioModelView({
     this.water = 320,
@@ -18,6 +19,7 @@ class RatioModelView extends Equatable {
       image: '',
       history: '',
     ),
+    this.creationDate,
   });
 
   RatioModelView copyWith({
@@ -25,12 +27,14 @@ class RatioModelView extends Equatable {
     int? ratio,
     double? gramsCoffee,
     BrewingMethod? method,
+    DateTime? creationDate,
   }) {
     return RatioModelView(
       method: method ?? this.method,
       gramsCoffee: gramsCoffee ?? this.gramsCoffee,
       ratio: ratio ?? this.ratio,
       water: water ?? this.water,
+      creationDate: creationDate ?? this.creationDate,
     );
   }
 
@@ -40,5 +44,6 @@ class RatioModelView extends Equatable {
         gramsCoffee,
         water,
         method,
+        creationDate,
       ];
 }

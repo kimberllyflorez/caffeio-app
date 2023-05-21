@@ -101,7 +101,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                                 ),
                               ),
                             ),
-                            child: HomeHistoryList(history: state.history),
+                            child: HomeHistoryList(brews: state.userBrews),
                           ),
                         ),
                       ],

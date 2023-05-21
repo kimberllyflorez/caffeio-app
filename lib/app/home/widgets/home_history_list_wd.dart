@@ -1,12 +1,13 @@
+import 'package:caffeio/app/brew/ratio/ratio_model.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 class HomeHistoryList extends StatelessWidget {
-  final List<dynamic> history;
+  final List<RatioModelView> brews;
 
   const HomeHistoryList({
     Key? key,
-    required this.history,
+    required this.brews,
   }) : super(key: key);
 
   @override
@@ -14,15 +15,23 @@ class HomeHistoryList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.only(bottom: 112),
-      itemCount: 200,
-      itemBuilder: (_, index) => const _HistoryItemCard(),
+      itemCount: brews.length,
+      itemBuilder: (_, index) {
+        final brew = brews[index];
+        return _HistoryItemCard(brew: brew);
+      },
       // separatorBuilder: (_, index) => const Divider(),
     );
   }
 }
 
 class _HistoryItemCard extends StatelessWidget {
-  const _HistoryItemCard({Key? key}) : super(key: key);
+  final RatioModelView brew;
+
+  const _HistoryItemCard({
+    Key? key,
+    required this.brew,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,27 +49,27 @@ class _HistoryItemCard extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              // 'assets/images/aeropress-icon.png',
-              // 'assets/images/chemex-icon.png',
-              'assets/images/v60-icon.png',
-              // 'assets/images/french-press-icon.png',
+              _getImage(brew.method.id),
               width: 60,
               height: 60,
             ),
-            SizedBox(width: theme.spacing.xxs),
+            SizedBox(width: theme.spacing.xs),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'V60',
+                    brew.method.name,
+                    style: theme.typo.body,
+                  ),
+                  SizedBox(width: theme.spacing.xxs),
+                  Text(
+                    '${brew.gramsCoffee.toInt()}gr',
                     style: theme.typo.title.copyWith(
                       color: theme.palette.brownScale.primaryColor,
                     ),
                   ),
-                  SizedBox(width: theme.spacing.xxs),
-                  Text('20 gr', style: theme.typo.body),
                 ],
               ),
             ),
@@ -68,9 +77,9 @@ class _HistoryItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text('1:16', style: theme.typo.body),
+                Text('1:${brew.ratio}', style: theme.typo.body),
                 Text(
-                  '200 ml',
+                  '${brew.water}ml',
                   style: theme.typo.title.copyWith(
                     color: theme.palette.blueScale.primaryColor,
                   ),
@@ -81,5 +90,12 @@ class _HistoryItemCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getImage(int id) {
+    if (id == 5) return 'assets/images/v60-icon.png';
+    if (id == 6) return 'assets/images/french-press-icon.png';
+    if (id == 7) return 'assets/images/aeropress-icon.png';
+    return 'assets/images/chemex-icon.png';
   }
 }

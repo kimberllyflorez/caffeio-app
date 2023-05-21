@@ -4,7 +4,6 @@ import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/ratio/caculate_water_ratio_uc.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
-
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
