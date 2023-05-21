@@ -11,9 +11,15 @@ abstract class SupabaseAdapter {
 
   Future<AuthResponse> signInWithPassword(String email, String password);
 
-  Future<List<dynamic>> selectAll(String table);
+  Future<bool> signInWithOAuth(Provider provider);
 
   Future<void> logOut();
+
+  Session? get currentSession;
+
+  User? get currentUser;
+
+  Future<List<dynamic>> selectAll(String table);
 
   Future<List<dynamic>> selectWhere(
       String table, String field, String condition);
@@ -40,6 +46,17 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
   Future<AuthResponse> signInWithPassword(String email, String password) {
     return _client.auth.signInWithPassword(email: email, password: password);
   }
+
+  @override
+  Future<bool> signInWithOAuth(Provider provider) {
+    return _client.auth.signInWithOAuth(provider);
+  }
+
+  @override
+  User? get currentUser => _client.auth.currentUser;
+
+  @override
+  Session? get currentSession => _client.auth.currentSession;
 
   @override
   Future<void> logOut() {

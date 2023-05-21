@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:caffeio/adapters/secure_storage_adapter.dart';
 import 'package:caffeio/adapters/supabase_adapter.dart';
 import 'package:caffeio/data/repositories/auth_repository.abs.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -42,6 +43,24 @@ class AuthRepositoryImpl implements AuthRepository {
       return false;
     } catch (e) {
       return await signUp(email, password);
+    }
+  }
+
+  @override
+  Future<bool> signInWithOAuth(Provider provider) async {
+    try {
+      await _client.signInWithOAuth(provider);
+      final Session? session = _client.currentSession;
+      final User? user = _client.currentUser;
+      if (session != null && user != null) {
+        _emitSessionUser((session, user));
+        _persistSessionUser((session, user));
+        return true;
+      }
+      return false;
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
     }
   }
 

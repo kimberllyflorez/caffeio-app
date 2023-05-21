@@ -22,7 +22,11 @@ class DiViewModel {
       );
     });
     getIt.registerFactory(() => SettingsViewModel(getIt.get(), getIt.get()));
-    getIt.registerFactory(() => LoginPageViewModel(getIt.get(), getIt.get()));
+    getIt.registerFactory(() => LoginPageViewModel(
+          getIt.get(),
+          getIt.get(),
+          getIt.get(),
+        ));
     getIt.registerFactory(() => MethodSelectionViewModel(
           getIt.get(),
           getIt.get(),

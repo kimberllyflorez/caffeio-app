@@ -2,6 +2,7 @@ import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/get_session_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/log_out_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/sign_in_with_oauth_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_up_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
@@ -21,6 +22,7 @@ class DiUseCase {
   static Future<void> setUp(GetIt getIt) async {
     getIt.registerFactory(() => SignUpUseCase(getIt.get()));
     getIt.registerFactory(() => SignInWithPasswordUseCase(getIt.get()));
+    getIt.registerFactory(() => SignInWithOAuthUseCase(getIt.get()));
     getIt.registerFactory(() => GetSessionUseCase(getIt.get()));
     getIt.registerFactory(() => IsSessionValidUseCase(getIt.get()));
     getIt.registerFactory(() => GetProfileUseCase(getIt.get()));
