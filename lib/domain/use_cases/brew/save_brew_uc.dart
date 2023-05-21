@@ -8,7 +8,10 @@ class SaveBrewUseCase extends FutureUseCase<void, RatioModelView> {
   final BrewingMethodsRepository _brewingMethodsRepository;
   final GetProfileUseCase _getProfileUseCase;
 
-  SaveBrewUseCase(this._brewingMethodsRepository, this._getProfileUseCase);
+  SaveBrewUseCase(
+    this._brewingMethodsRepository,
+    this._getProfileUseCase,
+  );
 
   @override
   Future<void> call(RatioModelView params) async {

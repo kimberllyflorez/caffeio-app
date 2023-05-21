@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 const String supabaseUrl = 'https://yrvlqdyomyadfxbguhgw.supabase.co';
@@ -61,7 +62,7 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
     try{
       await _client.from(table).insert(body);
     }catch(e){
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }
