@@ -1,15 +1,15 @@
 import 'package:caffeio/app/brew/ratio/ratio_model.dart';
-import 'package:caffeio/data/repositories/brewing_methods_repository.abs.dart';
+import 'package:caffeio/data/repositories/brew_repository.abs.dart';
 import 'package:caffeio/domain/use_cases.abs.dart';
 import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
 import 'package:caffeio/entities/brew/brew.dart';
 
 class SaveBrewUseCase extends FutureUseCase<void, RatioModelView> {
-  final BrewingMethodsRepository _brewingMethodsRepository;
+  final BrewRepository _brewRepository;
   final GetProfileUseCase _getProfileUseCase;
 
   SaveBrewUseCase(
-    this._brewingMethodsRepository,
+    this._brewRepository,
     this._getProfileUseCase,
   );
 
@@ -24,6 +24,6 @@ class SaveBrewUseCase extends FutureUseCase<void, RatioModelView> {
       coffeeGrams: params.gramsCoffee.toInt(),
       userId: profile?.id ?? "",
     );
-    await _brewingMethodsRepository.saveBrew(brew);
+    await _brewRepository.saveBrew(brew);
   }
 }

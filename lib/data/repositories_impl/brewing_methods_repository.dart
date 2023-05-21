@@ -1,7 +1,6 @@
 import 'package:caffeio/data/data_source/brewing_methods_data_source.dart';
 import 'package:caffeio/data/data_source/methods_videos_data_source.dart';
 import 'package:caffeio/data/repositories/brewing_methods_repository.abs.dart';
-import 'package:caffeio/entities/brew/brew.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:caffeio/entities/brew/method_video.dart';
 import 'package:rxdart/rxdart.dart';
@@ -44,10 +43,5 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
         .toList();
 
     _methodsVideos.add(result);
-  }
-
-  @override
-  Future<void> saveBrew(Brew brew) async {
-    await _brewingMethodsDataSource.insetBrew(brew.toJson());
   }
 }
