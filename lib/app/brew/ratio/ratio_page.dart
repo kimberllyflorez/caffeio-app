@@ -29,6 +29,7 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return StreamBuilder<RatioState>(
       stream: viewModel.state,
       builder: (context, snapshot) {
@@ -41,19 +42,20 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
             onTap: FocusScope.of(context).unfocus,
             child: Column(
               children: [
+                SizedBox(height: theme.spacing.m),
                 Expanded(
                   child: Column(
                     children: [
                       Padding(
-                        padding: context.theme.insets.xs.toHorizontal,
+                        padding: theme.insets.xs.toHorizontal,
                         child: Text(
                           'How many grams of coffee do you want to brew?',
-                          style: context.theme.typo.title,
+                          style: theme.typo.title,
                         ),
                       ),
-                      SizedBox(height: context.theme.spacing.xxs),
+                      SizedBox(height: theme.spacing.xxs),
                       Padding(
-                        padding: context.theme.insets.xs.toHorizontal,
+                        padding: theme.insets.xs.toHorizontal,
                         child: TextFormField(
                           onChanged: (grams) =>
                               viewModel.saveGramsCoffee(grams),
@@ -71,23 +73,23 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                           ],
                         ),
                       ),
-                      SizedBox(height: context.theme.spacing.l),
+                      SizedBox(height: theme.spacing.l),
                       Container(
                         width: double.maxFinite,
-                        padding: context.theme.insets.xs.toHorizontal,
+                        padding: theme.insets.xs.toHorizontal,
                         child: Text(
                           "Which ratio do you want to use?",
-                          style: context.theme.typo.title,
+                          style: theme.typo.title,
                           textAlign: TextAlign.start,
                         ),
                       ),
-                      SizedBox(height: context.theme.spacing.s),
+                      SizedBox(height: theme.spacing.s),
                       Container(
                         width: double.maxFinite,
-                        padding: context.theme.insets.xs.toHorizontal,
+                        padding: theme.insets.xs.toHorizontal,
                         child: Text(
                           "1:${state.ratioModel.ratio.toString()}",
-                          style: context.theme.typo.body,
+                          style: theme.typo.body,
                           textAlign: TextAlign.center,
                         ),
                       ),
