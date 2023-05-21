@@ -4,7 +4,7 @@ import 'package:caffeio/app/brew/ratio/ratio_model.dart';
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
-import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
+import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/get_user_brews_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
@@ -52,9 +52,9 @@ class HomePageState extends Equatable {
 class HomeViewModel extends ViewModel {
   final FetchBrewingMethodsUseCase _fetchBrewingMethodsUseCase;
   final GetBrewingMethodsUseCase _getBrewingMethodsUseCase;
-  final IsSessionValidUseCase _isSessionValidUseCase;
   final FetchUserBrewsUseCase _fetchUserBrewsUseCase;
   final GetUserBrewsUseCase _getUserBrewsUseCase;
+  final GetProfileUseCase _getProfileUseCase;
 
   final _state = BehaviorSubject<HomePageState>.seeded(const HomePageState());
 
@@ -66,14 +66,12 @@ class HomeViewModel extends ViewModel {
 
   StreamSubscription<HomePageState>? _homeSubscription;
 
-  final _brewsSubscription = CompositeSubscription();
-
   HomeViewModel(
     this._fetchBrewingMethodsUseCase,
     this._getBrewingMethodsUseCase,
-    this._isSessionValidUseCase,
     this._fetchUserBrewsUseCase,
     this._getUserBrewsUseCase,
+    this._getProfileUseCase,
   );
 
   @override
@@ -83,21 +81,18 @@ class HomeViewModel extends ViewModel {
     _homeSubscription?.cancel();
     _homeSubscription = Rx.combineLatest3(
         _getBrewingMethodsUseCase(),
-        _isSessionValidUseCase().asStream(),
-        _getUserBrewsUseCase(), (methods, isUserLogged, userBrews) {
+        _getUserBrewsUseCase(),
+        _getProfileUseCase(), (methods, userBrews, profile) {
+
       return HomePageState(
         brewingMethods: methods,
-        isUserLogged: isUserLogged,
+        isUserLogged: profile != null,
         userBrews: userBrews,
         loading: false,
       );
     }).listen((event) {
       _state.add(event);
     });
-
-    _brewsSubscription.add(_getUserBrewsUseCase().listen((userBrews) {
-      _state.add(_state.value.copyWith(userBrews: userBrews));
-    }));
   }
 
   void onUserPressed() {
@@ -122,7 +117,6 @@ class HomeViewModel extends ViewModel {
   void dispose() {
     _state.close();
     _router.close();
-    _brewsSubscription.clear();
     _homeSubscription?.cancel();
   }
 }

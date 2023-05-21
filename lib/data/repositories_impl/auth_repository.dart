@@ -14,19 +14,18 @@ class AuthRepositoryImpl implements AuthRepository {
   final SecureStorage _storage;
 
   final _sessionSubject = BehaviorSubject<Session?>();
-
-  @override
-  Stream<Session?> get sessionStream => _sessionSubject;
-
   final _userSubject = BehaviorSubject<User?>();
-
-  @override
-  Stream<User?> get profileStream => _userSubject;
 
   AuthRepositoryImpl(this._client, this._storage) {
     _loadProfileFromCache();
     _loadSessionFromCache();
   }
+
+  @override
+  Stream<Session?> get sessionStream => _sessionSubject;
+
+  @override
+  Stream<User?> get profileStream => _userSubject;
 
   @override
   Future<bool> signInWithPassword(String email, String password) async {
