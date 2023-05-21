@@ -59,9 +59,9 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
 
   @override
   Future<void> insert(String table, Map<String, dynamic> body) async {
-    try{
+    try {
       await _client.from(table).insert(body);
-    }catch(e){
+    } catch (e) {
       debugPrint(e.toString());
     }
   }

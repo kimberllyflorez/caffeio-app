@@ -18,8 +18,8 @@ class Brew extends Equatable {
   final String userId;
 
   const Brew({
-     this.id,
-     this.createdAt,
+    this.id,
+    this.createdAt,
     required this.methodId,
     required this.ratio,
     required this.water,
