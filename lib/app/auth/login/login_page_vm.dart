@@ -1,4 +1,5 @@
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
+import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/models/auth/user_login.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
@@ -76,7 +77,7 @@ class LoginPageViewModel extends ViewModel {
     final result = await _signInUseCase.call(loginData);
     await _fetchUserBrewsUseCase();
     if (result) {
-      _router.add(RouteSpec.pop());
+      _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
     }
   }
 

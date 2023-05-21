@@ -50,8 +50,8 @@ class _HistoryItemCard extends StatelessWidget {
           children: [
             Image.asset(
               _getImage(brew.method.id),
-              width: 60,
-              height: 60,
+              width: 40,
+              height: 40,
             ),
             SizedBox(width: theme.spacing.xs),
             Expanded(

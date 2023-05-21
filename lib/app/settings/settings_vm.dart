@@ -52,6 +52,7 @@ class SettingsViewModel extends ViewModel {
 
   void onLogOut() {
     _logOutUseCase();
+    _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
   }
 
   @override
