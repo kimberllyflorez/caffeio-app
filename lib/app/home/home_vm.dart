@@ -83,7 +83,6 @@ class HomeViewModel extends ViewModel {
         _getBrewingMethodsUseCase(),
         _getUserBrewsUseCase(),
         _getProfileUseCase(), (methods, userBrews, profile) {
-
       return HomePageState(
         brewingMethods: methods,
         isUserLogged: profile != null,

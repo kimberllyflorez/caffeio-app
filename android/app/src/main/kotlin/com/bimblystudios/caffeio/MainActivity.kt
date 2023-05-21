@@ -1,4 +1,4 @@
-package com.bimblystudios.caffeio.caffeio
+package com.bimblystudios.caffeio
 
 import io.flutter.embedding.android.FlutterActivity
 
