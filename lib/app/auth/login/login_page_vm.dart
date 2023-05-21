@@ -2,10 +2,12 @@ import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/models/auth/user_login.dart';
+import 'package:caffeio/domain/use_cases/auth/sign_in_with_oauth_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginPageState extends Equatable {
   final String email;
@@ -40,6 +42,7 @@ class LoginPageState extends Equatable {
 class LoginPageViewModel extends ViewModel {
   final SignInWithPasswordUseCase _signInUseCase;
   final FetchUserBrewsUseCase _fetchUserBrewsUseCase;
+  final SignInWithOAuthUseCase _signInWithOAuthUseCase;
 
   final _state = BehaviorSubject<LoginPageState>.seeded(const LoginPageState());
 
@@ -52,6 +55,7 @@ class LoginPageViewModel extends ViewModel {
   LoginPageViewModel(
     this._signInUseCase,
     this._fetchUserBrewsUseCase,
+    this._signInWithOAuthUseCase,
   );
 
   @override
@@ -87,6 +91,10 @@ class LoginPageViewModel extends ViewModel {
 
   void onChangeEmail(String value) {
     _state.add(_state.value.copyWith(email: value));
+  }
+
+  Future<void> signInWithGoogle() async {
+    await _signInWithOAuthUseCase(Provider.google);
   }
 
   @override

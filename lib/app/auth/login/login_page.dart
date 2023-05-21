@@ -92,7 +92,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CaffeioCircularButton(
-                    callback: () {},
+                    callback: viewModel.signInWithGoogle,
                     child: Icon(PhosphorIcons.googleLogo()),
                   ),
                   CaffeioCircularButton(
