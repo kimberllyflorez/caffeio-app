@@ -141,7 +141,7 @@ class _BottomSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: theme.spacing.l),
+          SizedBox(height: theme.spacing.m),
           Padding(
             padding: theme.insets.xs.toHorizontal,
             child: Row(
@@ -167,21 +167,22 @@ class _BottomSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: theme.spacing.l),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                onPressed: onNextPageCallback,
-                icon: const Icon(
-                  Icons.navigate_next_rounded,
-                  color: Colors.white,
-                  size: 36,
+          Padding(
+            padding: theme.insets.xs.toVertical,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: onNextPageCallback,
+                  icon: const Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: 36,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          SizedBox(height: theme.spacing.xs),
         ],
       ),
     );

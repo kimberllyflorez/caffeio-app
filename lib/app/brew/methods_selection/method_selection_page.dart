@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/brew/methods_selection/method_selection_vm.dart';
+import 'package:caffeio/app/common/responsive.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
@@ -49,14 +50,14 @@ class _MethodSelectionPageState
                   ),
                 ),
                 SizedBox(
-                  height: 250,
+                  height: context.responsive.heightPercent(32),
                   child: PageView(
                     onPageChanged: viewModel.onChangePageView,
                     controller: _pageController,
                     scrollDirection: Axis.horizontal,
                     children: state.brewingMethods
                         .map(
-                          (e) => _Card(
+                          (e) => _MethodCard(
                             name: e.name,
                             description: e.description,
                             image: e.image,
@@ -79,47 +80,10 @@ class _MethodSelectionPageState
               ],
             ),
           ),
-          bottomNavigationBar: state.brewingMethods.isNotEmpty
-              ? CaffeioBottomContainer(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(height: theme.spacing.l),
-                      Container(
-                        width: double.maxFinite,
-                        padding: theme.insets.xs.toHorizontal,
-                        child: Text(
-                          state.brewingMethods[state.pageSelection].name,
-                          style: theme.typo.title.copyWith(color: Colors.white),
-                        ),
-                      ),
-                      SizedBox(height: context.theme.spacing.xxs),
-                      Padding(
-                        padding: theme.insets.xs.toHorizontal,
-                        child: Text(
-                          state.brewingMethods[state.pageSelection].description,
-                          style: theme.typo.body.copyWith(color: Colors.white),
-                        ),
-                      ),
-                      SizedBox(height: context.theme.spacing.l),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            onPressed: viewModel.onNextPressed,
-                            icon: const Icon(
-                              Icons.navigate_next_rounded,
-                              color: Colors.white,
-                              size: 36,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: context.theme.spacing.xs),
-                    ],
-                  ),
-                )
-              : const SizedBox.shrink(),
+          bottomNavigationBar: _BottomSection(
+            state: state,
+            onNextCallback: viewModel.onNextPressed,
+          ),
         );
       },
     );
@@ -132,12 +96,12 @@ class _MethodSelectionPageState
   }
 }
 
-class _Card extends StatelessWidget {
+class _MethodCard extends StatelessWidget {
   final String name;
   final String description;
   final String image;
 
-  const _Card({
+  const _MethodCard({
     Key? key,
     required this.name,
     required this.description,
@@ -149,13 +113,74 @@ class _Card extends StatelessWidget {
     return Card(
       margin: context.theme.insets.xs,
       child: Container(
+        width: 300,
+        height: 200,
         padding: context.theme.insets.xs,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        width: 300,
-        height: 200,
-        child: Image.asset(image),
+        child: Image.asset(
+          image,
+        ),
+      ),
+    );
+  }
+}
+
+class _BottomSection extends StatelessWidget {
+  final MethodSelectionState state;
+  final VoidCallback onNextCallback;
+
+  const _BottomSection({
+    Key? key,
+    required this.state,
+    required this.onNextCallback,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    if (state.brewingMethods.isEmpty) {
+      return const SizedBox.shrink();
+    }
+    return CaffeioBottomContainer(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(height: theme.spacing.m),
+          Container(
+            width: double.maxFinite,
+            padding: theme.insets.xs.toHorizontal,
+            child: Text(
+              state.brewingMethods[state.pageSelection].name,
+              style: theme.typo.title.copyWith(color: Colors.white),
+            ),
+          ),
+          SizedBox(height: context.theme.spacing.xxs),
+          Padding(
+            padding: theme.insets.xs.toHorizontal,
+            child: Text(
+              state.brewingMethods[state.pageSelection].description,
+              style: theme.typo.body.copyWith(color: Colors.white),
+            ),
+          ),
+          Padding(
+            padding: theme.insets.xs.toVertical,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: onNextCallback,
+                  icon: const Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: 36,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

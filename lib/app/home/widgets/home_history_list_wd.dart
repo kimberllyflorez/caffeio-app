@@ -56,7 +56,7 @@ class _HistoryItemCard extends StatelessWidget {
                   Text(
                     'V60',
                     style: theme.typo.title.copyWith(
-                      color: theme.palette.brownScale.tertiaryColor,
+                      color: theme.palette.brownScale.primaryColor,
                     ),
                   ),
                   SizedBox(width: theme.spacing.xxs),

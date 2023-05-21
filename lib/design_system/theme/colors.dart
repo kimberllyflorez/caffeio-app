@@ -37,5 +37,5 @@ class YellowScale {
 class BrownScale {
   const BrownScale();
 
-  Color get tertiaryColor => const Color(0xFF4D4B46);
+  Color get primaryColor => const Color(0xFF652714);
 }
