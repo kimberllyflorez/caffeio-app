@@ -41,9 +41,11 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
                     name: state.userProfile?.email?.split('@').first ?? '',
                     email: state.userProfile?.email ?? '',
                   ),
-                  child: CaffeioButton(
-                    callback: viewModel.onLoginPressed,
-                    text: 'Login',
+                  child: Center(
+                    child: CaffeioButton(
+                      callback: viewModel.onLoginPressed,
+                      text: 'Login',
+                    ),
                   ),
                 ),
                 const Spacer(),

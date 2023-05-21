@@ -140,7 +140,6 @@ class TimerViewModel extends ViewModel {
 
   Future<void> nextPage(RatioModelView brew) async {
     await _saveBrewUseCase(brew);
-
     if (_getUserBrewUseCase() == null) {
       _setUserBrewUseCase();
     }

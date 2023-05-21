@@ -44,7 +44,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
                   child: TextField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'email',
+                      labelText: 'Email',
                     ),
                     onChanged: viewModel.onChangeEmail,
                   ),
@@ -59,6 +59,14 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
                       labelText: 'Password',
                     ),
                     onChanged: viewModel.onChangePassword,
+                  ),
+                ),
+                SizedBox(height: theme.spacing.s),
+                Visibility(
+                  visible: state.error != null,
+                  child: Text(
+                    '${state.error}',
+                    style: theme.typo.body.copyWith(color: Colors.deepOrange),
                   ),
                 ),
                 SizedBox(height: theme.spacing.s),
