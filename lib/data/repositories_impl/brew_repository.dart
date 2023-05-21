@@ -19,7 +19,7 @@ class BrewRepositoryImpl implements BrewRepository {
   );
 
   @override
-  Stream<List<RatioModelView>> get userBrews => _userBrews.stream;
+  Stream<List<RatioModelView>> get userBrews => _userBrews;
 
   @override
   Future<void> fetchUserBrews(String userId) async {

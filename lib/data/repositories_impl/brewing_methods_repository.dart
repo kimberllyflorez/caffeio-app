@@ -19,11 +19,10 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
   );
 
   @override
-  Stream<List<BrewingMethod>> get brewingMethodsStream =>
-      _brewingMethods.stream;
+  Stream<List<BrewingMethod>> get brewingMethodsStream => _brewingMethods;
 
   @override
-  Stream<List<MethodVideo>> get methodsVideo => _methodsVideos.stream;
+  Stream<List<MethodVideo>> get methodsVideoStream => _methodsVideos;
 
   @override
   Future<void> fetchBrewingMethods() async {
@@ -38,10 +37,8 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
   Future<void> fetchMethodsVideos(int methodId) async {
     final data = await _methodsVideosDataSource.fetchMethodsVideos(methodId);
     final result = data
-        .map((methodsVideos) =>
-            MethodVideo.fromJson(methodsVideos as Map<String, dynamic>))
+        .map((videos) => MethodVideo.fromJson(videos as Map<String, dynamic>))
         .toList();
-
     _methodsVideos.add(result);
   }
 }

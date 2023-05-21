@@ -8,5 +8,5 @@ abstract class BrewingMethodsRepository {
 
   Stream<List<BrewingMethod>> get brewingMethodsStream;
 
-  Stream<List<MethodVideo>> get methodsVideo;
+  Stream<List<MethodVideo>> get methodsVideoStream;
 }

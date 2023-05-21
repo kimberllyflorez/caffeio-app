@@ -9,6 +9,6 @@ class GetMethodVideosUseCase extends NoParamsStreamUseCase<List<MethodVideo>> {
 
   @override
   Stream<List<MethodVideo>> call() {
-    return _repository.methodsVideo;
+    return _repository.methodsVideoStream;
   }
 }
