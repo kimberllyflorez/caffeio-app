@@ -16,7 +16,7 @@ class FetchUserBrewsUseCase extends NoParamsFutureUseCase<void> {
     final session = await _getSessionUseCase().take(1).last;
     final userId = session?.user.id ?? '';
     if (userId.isNotEmpty) {
-      return _repository.fetchUserBrews(userId);
+      await _repository.fetchUserBrews(userId);
     }
   }
 }

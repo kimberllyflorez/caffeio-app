@@ -24,7 +24,7 @@ class DiUseCase {
     getIt.registerFactory(() => GetSessionUseCase(getIt.get()));
     getIt.registerFactory(() => IsSessionValidUseCase(getIt.get()));
     getIt.registerFactory(() => GetProfileUseCase(getIt.get()));
-    getIt.registerFactory(() => LogOutUseCase(getIt.get()));
+    getIt.registerFactory(() => LogOutUseCase(getIt.get(), getIt.get()));
     getIt.registerFactory(() => FetchBrewingMethodsUseCase(getIt.get()));
     getIt.registerFactory(() => GetBrewingMethodsUseCase(getIt.get()));
     getIt.registerFactory(() => FormatStopwatchTimeUseCase());
@@ -37,6 +37,6 @@ class DiUseCase {
     getIt.registerFactory(
       () => FetchUserBrewsUseCase(getIt.get(), getIt.get()),
     );
-    getIt.registerFactory(() => GetUserBrewsUseCase(getIt.get(), getIt.get()));
+    getIt.registerFactory(() => GetUserBrewsUseCase(getIt.get()));
   }
 }

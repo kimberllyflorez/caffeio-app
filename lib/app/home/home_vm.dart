@@ -66,6 +66,8 @@ class HomeViewModel extends ViewModel {
 
   StreamSubscription<HomePageState>? _homeSubscription;
 
+  final _brewsSubscription = CompositeSubscription();
+
   HomeViewModel(
     this._fetchBrewingMethodsUseCase,
     this._getBrewingMethodsUseCase,
@@ -82,16 +84,20 @@ class HomeViewModel extends ViewModel {
     _homeSubscription = Rx.combineLatest3(
         _getBrewingMethodsUseCase(),
         _isSessionValidUseCase().asStream(),
-        _getUserBrewsUseCase().asStream(), (methods, isUserLogged, userBrews) {
+        _getUserBrewsUseCase(), (methods, isUserLogged, userBrews) {
       return HomePageState(
         brewingMethods: methods,
-        userBrews: userBrews,
         isUserLogged: isUserLogged,
+        userBrews: userBrews,
         loading: false,
       );
     }).listen((event) {
       _state.add(event);
     });
+
+    _brewsSubscription.add(_getUserBrewsUseCase().listen((userBrews) {
+      _state.add(_state.value.copyWith(userBrews: userBrews));
+    }));
   }
 
   void onUserPressed() {
@@ -116,6 +122,7 @@ class HomeViewModel extends ViewModel {
   void dispose() {
     _state.close();
     _router.close();
+    _brewsSubscription.clear();
     _homeSubscription?.cancel();
   }
 }

@@ -15,7 +15,7 @@ class DiRepositories {
       AuthRepositoryImpl(getIt.get(), getIt.get()),
     );
     getIt.registerSingleton<BrewRepository>(
-      BrewRepositoryImpl(getIt.get()),
+      BrewRepositoryImpl(getIt.get(), getIt.get()),
     );
   }
 }
