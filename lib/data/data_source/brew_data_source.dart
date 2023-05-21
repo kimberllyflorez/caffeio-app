@@ -18,6 +18,7 @@ class BrewDataSourceImpl extends BrewDataSource {
 
   @override
   Future<void> insetBrew(Map<String, dynamic> brew) async {
-    await _supabase.insert('brews', brew);
+    final newBrew = brew..remove('id')..remove('created_at');
+    await _supabase.insert('brews', newBrew);
   }
 }

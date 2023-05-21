@@ -17,7 +17,6 @@ class SaveBrewUseCase extends FutureUseCase<void, RatioModelView> {
   Future<void> call(RatioModelView params) async {
     final profile = await _getProfileUseCase().take(1).last;
     final brew = Brew(
-      id: 0,
       methodId: params.method.id,
       ratio: params.ratio,
       water: params.water,
