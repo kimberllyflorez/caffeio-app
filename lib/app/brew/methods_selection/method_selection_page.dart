@@ -50,7 +50,7 @@ class _MethodSelectionPageState
                   ),
                 ),
                 SizedBox(
-                  height: context.responsive.heightPercent(32),
+                  height: context.responsive.heightPercent(40),
                   child: PageView(
                     onPageChanged: viewModel.onChangePageView,
                     controller: _pageController,
@@ -112,15 +112,15 @@ class _MethodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: context.theme.insets.xs,
-      child: Container(
-        width: 300,
-        height: 200,
-        padding: context.theme.insets.xs,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Image.asset(
-          image,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(image),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

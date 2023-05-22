@@ -93,9 +93,9 @@ class _HistoryItemCard extends StatelessWidget {
   }
 
   String _getImage(int id) {
-    if (id == 5) return 'assets/images/v60-icon.png';
-    if (id == 6) return 'assets/images/french-press-icon.png';
-    if (id == 7) return 'assets/images/aeropress-icon.png';
-    return 'assets/images/chemex-icon.png';
+    if (id == 5) return 'assets/images/v60.png';
+    if (id == 6) return 'assets/images/french-press.png';
+    if (id == 7) return 'assets/images/aeropress.png';
+    return 'assets/images/chemex.png';
   }
 }

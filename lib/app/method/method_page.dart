@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:caffeio/app/common/responsive.dart';
 import 'package:caffeio/app/method/method_page_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
@@ -31,7 +32,7 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
     final theme = context.theme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Methods Page'),
+        title: Text(widget.method.name),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -39,23 +40,21 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
           children: [
             Hero(
               tag: widget.method.name,
-              child: Center(
-                child: Container(
-                  margin: theme.insets.xs,
-                  width: 150,
-                  height: 150,
-                  child: Image.asset(
-                    widget.method.image,
-                    fit: BoxFit.fitHeight,
+              child: Container(
+                margin: theme.insets.xs,
+                width: context.responsive.width,
+                height: context.responsive.heightPercent(40),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(widget.method.image),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: theme.insets.xs,
-              child: Text(
-                widget.method.name,
-                style: theme.typo.title,
               ),
             ),
             Padding(

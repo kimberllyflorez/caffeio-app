@@ -51,30 +51,39 @@ class _HomeBrewMethodCard extends StatelessWidget {
       onTap: callback,
       child: Card(
         margin: theme.insets.xxs,
-        child: Container(
+        child: SizedBox(
           width: 120,
           height: 120,
-          padding: theme.insets.xxs,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
               Hero(
                 tag: methodName,
-                child: SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: Image.asset(
-                    image,
-                    fit: BoxFit.fitHeight,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(image),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.3),
+                          BlendMode.darken,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: theme.spacing.xxs),
-              Text(
-                methodName,
-                maxLines: 1,
-                style: theme.typo.body.copyWith(
-                  overflow: TextOverflow.ellipsis,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  methodName,
+                  maxLines: 1,
+                  style: theme.typo.body.copyWith(
+                    overflow: TextOverflow.ellipsis,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
             ],

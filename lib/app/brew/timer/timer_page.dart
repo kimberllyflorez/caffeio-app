@@ -103,7 +103,7 @@ class _BrewInfoCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              brew.method.image,
+              _getImage(brew.method.id),
               width: 62,
               height: 62,
             ),
@@ -155,5 +155,12 @@ class _BrewInfoCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getImage(int id) {
+    if (id == 5) return 'assets/images/v60.png';
+    if (id == 6) return 'assets/images/french-press.png';
+    if (id == 7) return 'assets/images/aeropress.png';
+    return 'assets/images/chemex.png';
   }
 }
