@@ -3,6 +3,7 @@ import 'package:caffeio/app/home/home_vm.dart';
 import 'package:caffeio/app/home/widgets/home_history_list_wd.dart';
 import 'package:caffeio/app/home/widgets/home_methods_list_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
@@ -97,18 +98,16 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                               child: TextButton(
                                 onPressed: viewModel.onLoginPressed,
                                 child: const Text(
-                                  'Login to start recording your brews',
+                                  'LogIn to start recording your brews',
                                 ),
                               ),
                             ),
                             child: Visibility(
                               visible: state.userBrews.isNotEmpty,
                               replacement: Center(
-                                child: TextButton(
-                                  onPressed: viewModel.onBrewPressed,
-                                  child: const Text(
-                                    "Let's start make some coffee",
-                                  ),
+                                child: CaffeioButton(
+                                  callback: viewModel.onBrewPressed,
+                                  text: "Let's start make some coffee",
                                 ),
                               ),
                               child: HomeHistoryList(brews: state.userBrews),
@@ -123,7 +122,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
             ),
           ),
           floatingActionButton: Visibility(
-            visible: state.userBrews.isNotEmpty,
+            visible: !state.isUserLogged || state.userBrews.isNotEmpty,
             child: FloatingActionButton(
               onPressed: viewModel.onBrewPressed,
               child: Image.asset(
