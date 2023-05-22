@@ -7,6 +7,7 @@ import 'package:caffeio/domain/use_cases/auth/sign_in_with_oauth_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_up_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
+import 'package:caffeio/domain/use_cases/brew/get_brews_by_date_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/get_user_brews_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/save_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
@@ -42,5 +43,6 @@ class DiUseCase {
       () => FetchUserBrewsUseCase(getIt.get(), getIt.get()),
     );
     getIt.registerFactory(() => GetUserBrewsUseCase(getIt.get()));
+    getIt.registerFactory(() => GetBrewsByDateUseCase());
   }
 }

@@ -19,6 +19,7 @@ class DiViewModel {
         getIt.get(),
         getIt.get(),
         getIt.get(),
+        getIt.get(),
       );
     });
     getIt.registerFactory(() => SettingsViewModel(getIt.get(), getIt.get()));
