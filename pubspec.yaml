@@ -28,6 +28,7 @@ dependencies:
     git:
       url: https://github.com/phosphor-icons/flutter
       ref: f370dd2c25d3ea51ffb8f1c7c183bc9f33889c82
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
