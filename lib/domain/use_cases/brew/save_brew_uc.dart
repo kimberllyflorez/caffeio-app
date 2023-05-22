@@ -15,6 +15,7 @@ class SaveBrewUseCase extends FutureUseCase<void, RatioModelView> {
   @override
   Future<void> call(RatioModelView params) async {
     final profile = await _getProfileUseCase().take(1).last;
-    await _brewRepository.saveBrew(params, profile?.id ?? "");
+    final userId = profile?.id ?? '';
+    await _brewRepository.saveBrew(params, userId);
   }
 }

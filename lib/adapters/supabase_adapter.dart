@@ -51,8 +51,10 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
 
   @override
   Future<bool> signInWithOAuth(Provider provider) {
-    return _client.auth.signInWithOAuth(provider,
-        redirectTo: 'bimblystudios.caffeio://login-callback/');
+    return _client.auth.signInWithOAuth(
+      provider,
+      redirectTo: 'bimblystudios.caffeio://login-callback/',
+    );
   }
 
   @override
@@ -60,6 +62,9 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
 
   @override
   Session? get currentSession => _client.auth.currentSession;
+
+  @override
+  Stream<AuthState> get authStream => _client.auth.onAuthStateChange;
 
   @override
   Future<void> logOut() {
@@ -85,6 +90,4 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
       debugPrint(e.toString());
     }
   }
-
-  Stream<AuthState> get authStream => _client.auth.onAuthStateChange;
 }

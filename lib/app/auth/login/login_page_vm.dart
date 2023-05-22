@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/models/auth/user_login.dart';
+import 'package:caffeio/domain/use_cases/auth/get_authstate_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_oauth_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
@@ -44,6 +47,7 @@ class LoginPageViewModel extends ViewModel {
   final SignInWithPasswordUseCase _signInUseCase;
   final FetchUserBrewsUseCase _fetchUserBrewsUseCase;
   final SignInWithOAuthUseCase _signInWithOAuthUseCase;
+  final GetAuthStateUseCase _getAuthStateUseCase;
 
   final _state = BehaviorSubject<LoginPageState>.seeded(const LoginPageState());
 
@@ -53,14 +57,24 @@ class LoginPageViewModel extends ViewModel {
 
   Stream<RouteSpec> get router => _router;
 
+  late final StreamSubscription<AuthState> _authStateSubscription;
+
   LoginPageViewModel(
     this._signInUseCase,
     this._fetchUserBrewsUseCase,
     this._signInWithOAuthUseCase,
+    this._getAuthStateUseCase,
   );
 
   @override
-  void init() {}
+  void init() {
+    _authStateSubscription = _getAuthStateUseCase().listen((event) {
+      if (event.session != null) {
+        _fetchUserBrewsUseCase();
+        _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
+      }
+    });
+  }
 
   Future<void> onLogin() async {
     if (_state.value.email.isEmpty) {
@@ -79,11 +93,7 @@ class LoginPageViewModel extends ViewModel {
       email: _state.value.email,
       password: _state.value.password,
     );
-    final result = await _signInUseCase.call(loginData);
-    await _fetchUserBrewsUseCase();
-    if (result) {
-      _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
-    }
+    await _signInUseCase.call(loginData);
   }
 
   void onChangePassword(String value) {
@@ -95,15 +105,16 @@ class LoginPageViewModel extends ViewModel {
   }
 
   Future<void> signInWithGoogle() async {
-    try{
+    try {
       await _signInWithOAuthUseCase(Provider.google);
-      _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
-    }catch(e){
+    } catch (e) {
       //TODO: Handle errors in the respository
       debugPrint(e.toString());
     }
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+    _authStateSubscription.cancel();
+  }
 }

@@ -2,13 +2,13 @@ import 'package:caffeio/data/repositories/auth_repository.abs.dart';
 import 'package:caffeio/domain/use_cases.abs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SignInWithOAuthUseCase extends FutureUseCase<bool, Provider> {
+class GetAuthStateUseCase extends NoParamsStreamUseCase<AuthState> {
   final AuthRepository _repository;
 
-  SignInWithOAuthUseCase(this._repository);
+  GetAuthStateUseCase(this._repository);
 
   @override
-  Future<bool> call(Provider params) {
-    return _repository.signInWithOAuth(params);
+  Stream<AuthState> call() {
+    return _repository.authStateStream;
   }
 }

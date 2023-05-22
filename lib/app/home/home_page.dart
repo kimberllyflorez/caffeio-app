@@ -101,7 +101,18 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                                 ),
                               ),
                             ),
-                            child: HomeHistoryList(brews: state.userBrews),
+                            child: Visibility(
+                              visible: state.userBrews.isNotEmpty,
+                              replacement: Center(
+                                child: TextButton(
+                                  onPressed: viewModel.onBrewPressed,
+                                  child: const Text(
+                                    "Let's start make some coffee",
+                                  ),
+                                ),
+                              ),
+                              child: HomeHistoryList(brews: state.userBrews),
+                            ),
                           ),
                         ),
                       ],
@@ -111,12 +122,15 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: viewModel.onBrewPressed,
-            child: Image.asset(
-              'assets/images/coffee-bean-icon.png',
-              width: 26,
-              height: 26,
+          floatingActionButton: Visibility(
+            visible: state.userBrews.isNotEmpty,
+            child: FloatingActionButton(
+              onPressed: viewModel.onBrewPressed,
+              child: Image.asset(
+                'assets/images/coffee-bean-icon.png',
+                width: 26,
+                height: 26,
+              ),
             ),
           ),
         );

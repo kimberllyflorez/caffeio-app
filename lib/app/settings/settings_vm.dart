@@ -41,8 +41,8 @@ class SettingsViewModel extends ViewModel {
 
   @override
   void init() {
-    _getProfileUseCase().listen((user) {
-      _state.add(SettingsPageState(userProfile: user));
+    _getProfileUseCase().listen((data) {
+      _state.add(SettingsPageState(userProfile: data));
     });
   }
 

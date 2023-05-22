@@ -11,5 +11,7 @@ abstract class AuthRepository {
 
   Stream<User?> get profileStream;
 
+  Stream<AuthState> get authStateStream;
+
   void cleanSession();
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:caffeio/adapters/secure_storage_adapter.dart';
@@ -16,8 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   final _sessionSubject = BehaviorSubject<Session?>();
   final _userSubject = BehaviorSubject<User?>();
-
-  final _authSubscription = CompositeSubscription();
+  late final _authStateSubscription = CompositeSubscription();
 
   AuthRepositoryImpl(this._client, this._storage) {
     _loadProfileFromCache();
@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   void init() {
-    _authSubscription.add(_client.authStream.listen((authData) {
+    _authStateSubscription.add(_client.authStream.listen((authData) {
       final session = authData.session;
       if (session != null) {
         _emitSessionUser((session, session.user));
@@ -40,6 +40,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Stream<User?> get profileStream => _userSubject;
+
+  @override
+  Stream<AuthState> get authStateStream => _client.authStream;
 
   @override
   Future<bool> signInWithPassword(String email, String password) async {

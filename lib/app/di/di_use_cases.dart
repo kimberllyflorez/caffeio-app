@@ -1,3 +1,4 @@
+import 'package:caffeio/domain/use_cases/auth/get_authstate_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/get_session_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/is_session_valid_uc.dart';
@@ -26,6 +27,7 @@ class DiUseCase {
     getIt.registerFactory(() => GetSessionUseCase(getIt.get()));
     getIt.registerFactory(() => IsSessionValidUseCase(getIt.get()));
     getIt.registerFactory(() => GetProfileUseCase(getIt.get()));
+    getIt.registerFactory(() => GetAuthStateUseCase(getIt.get()));
     getIt.registerFactory(() => LogOutUseCase(getIt.get(), getIt.get()));
     getIt.registerFactory(() => FetchBrewingMethodsUseCase(getIt.get()));
     getIt.registerFactory(() => GetBrewingMethodsUseCase(getIt.get()));
