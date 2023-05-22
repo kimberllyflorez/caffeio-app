@@ -17,9 +17,22 @@ class AuthRepositoryImpl implements AuthRepository {
   final _sessionSubject = BehaviorSubject<Session?>();
   final _userSubject = BehaviorSubject<User?>();
 
+  final _authSubscription = CompositeSubscription();
+
   AuthRepositoryImpl(this._client, this._storage) {
     _loadProfileFromCache();
     _loadSessionFromCache();
+    init();
+  }
+
+  void init() {
+    _authSubscription.add(_client.authStream.listen((authData) {
+      final session = authData.session;
+      if (session != null) {
+        _emitSessionUser((session, session.user));
+        _persistSessionUser((session, session.user));
+      }
+    }));
   }
 
   @override

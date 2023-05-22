@@ -19,6 +19,8 @@ abstract class SupabaseAdapter {
 
   User? get currentUser;
 
+  Stream<AuthState> get authStream;
+
   Future<List<dynamic>> selectAll(String table);
 
   Future<List<dynamic>> selectWhere(
@@ -49,7 +51,8 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
 
   @override
   Future<bool> signInWithOAuth(Provider provider) {
-    return _client.auth.signInWithOAuth(provider);
+    return _client.auth.signInWithOAuth(provider,
+        redirectTo: 'bimblystudios.caffeio://login-callback/');
   }
 
   @override
@@ -82,4 +85,6 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
       debugPrint(e.toString());
     }
   }
+
+  Stream<AuthState> get authStream => _client.auth.onAuthStateChange;
 }
