@@ -8,7 +8,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DiAdapters {
   static Future<void> setUp(GetIt getIt) async {
-    await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
+    const String supabaseUrl = 'https://yrvlqdyomyadfxbguhgw.supabase.co';
+
+    const supabaseKey = String.fromEnvironment(
+      'SUPABASE_KEY',
+      defaultValue: 'SOME_DEFAULT_VALUE',
+    );
+    await Supabase.initialize(
+      url: supabaseUrl,
+      anonKey: supabaseKey,
+    );
     final supabaseClient = Supabase.instance.client;
 
     getIt.registerSingleton<SupabaseAdapter>(

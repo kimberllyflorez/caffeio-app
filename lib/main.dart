@@ -5,6 +5,7 @@ import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
+
   await DependencyInjection.setup();
   final appRouter = AppRouter(locator.get<FirstUserBrewGuard>());
   runApp(CaffeioApp(appRouter: appRouter));
