@@ -62,10 +62,9 @@ class _HistoryByDateSection extends StatelessWidget {
                 ),
               ),
               Text(
-                '${total}gr',
+                '${total} gr',
                 textAlign: TextAlign.start,
                 style: context.theme.typo.body.copyWith(
-                  fontWeight: FontWeight.bold,
                   color: theme.palette.brownScale.primaryColor,
                 ),
               ),
@@ -126,14 +125,15 @@ class _HistoryItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '${brew.gramsCoffee.toInt()}gr',
-                  style: theme.typo.title.copyWith(
-                    color: theme.palette.brownScale.primaryColor,
-                  ),
+                  '${brew.gramsCoffee.toInt()} gr',
+                  style: theme.typo.body.copyWith(
+                      color: theme.palette.brownScale.primaryColor,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '${brew.water}ml',
-                  style: theme.typo.title.copyWith(
+                  '${brew.water} ml',
+                  style: theme.typo.body.copyWith(
+                    fontWeight: FontWeight.bold,
                     color: theme.palette.blueScale.primaryColor,
                   ),
                 ),
