@@ -95,10 +95,6 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
                     callback: viewModel.signInWithGoogle,
                     child: Icon(PhosphorIcons.googleLogo()),
                   ),
-                  CaffeioCircularButton(
-                    callback: () {},
-                    child: Icon(PhosphorIcons.facebookLogo()),
-                  )
                 ],
               ),
               const Spacer(),
