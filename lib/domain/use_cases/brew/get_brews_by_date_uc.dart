@@ -16,7 +16,7 @@ class GetBrewsByDateUseCase
         0.compareTo(b.creationDate?.millisecondsSinceEpoch ?? 0));
 
     for (var brew in params) {
-      final String date = DateFormat('dd/MM/yyyy').format(
+      final String date = DateFormat('MMMMd').format(
         brew.creationDate ?? DateTime.now(),
       );
       double grams = brew.gramsCoffee;
