@@ -133,7 +133,7 @@ class _BrewInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "${brew.gramsCoffee.toInt()}gr",
+                    "${brew.gramsCoffee.toInt()} gr",
                     style: theme.typo.title.copyWith(
                       color: theme.palette.brownScale.primaryColor,
                       fontWeight: FontWeight.bold,
@@ -141,7 +141,7 @@ class _BrewInfoCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${brew.water}ml",
+                    "${brew.water} ml",
                     style: theme.typo.title.copyWith(
                       color: Colors.cyan,
                       fontWeight: FontWeight.bold,
