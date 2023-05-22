@@ -157,6 +157,7 @@ class _BottomSection extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(width: theme.spacing.xxs),
                 Text(
                   totalWater,
                   style: theme.typo.title.copyWith(
