@@ -6,6 +6,7 @@ import 'package:caffeio/domain/use_cases/auth/sign_in_with_oauth_uc.dart';
 import 'package:caffeio/domain/use_cases/auth/sign_in_with_password_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -94,7 +95,13 @@ class LoginPageViewModel extends ViewModel {
   }
 
   Future<void> signInWithGoogle() async {
-    await _signInWithOAuthUseCase(Provider.google);
+    try{
+      await _signInWithOAuthUseCase(Provider.google);
+      _router.add(RouteSpec.replaceAllWithOne(route: const HomeRoute()));
+    }catch(e){
+      //TODO: Handle errors in the respository
+      debugPrint(e.toString());
+    }
   }
 
   @override
