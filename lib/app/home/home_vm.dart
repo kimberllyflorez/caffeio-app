@@ -1,11 +1,12 @@
 import 'dart:async';
 
-import 'package:caffeio/app/brew/ratio/ratio_model.dart';
+import 'package:caffeio/app/home/model/brew_by_date.dart';
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/fetch_user_brews_uc.dart';
+import 'package:caffeio/domain/use_cases/brew/get_brews_by_date_uc.dart';
 import 'package:caffeio/domain/use_cases/brew/get_user_brews_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/fetch_brewing_methods_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/get_brewing_methods_uc.dart';
@@ -15,7 +16,7 @@ import 'package:rxdart/rxdart.dart';
 
 class HomePageState extends Equatable {
   final List<BrewingMethod> brewingMethods;
-  final List<RatioModelView> userBrews;
+  final List<BrewByDate> userBrews;
   final bool isUserLogged;
   final bool loading;
 
@@ -28,7 +29,7 @@ class HomePageState extends Equatable {
 
   HomePageState copyWith({
     List<BrewingMethod>? brewingMethods,
-    List<RatioModelView>? userBrews,
+    List<BrewByDate>? userBrews,
     bool? isUserLogged,
     bool? loading,
   }) {
@@ -55,6 +56,7 @@ class HomeViewModel extends ViewModel {
   final FetchUserBrewsUseCase _fetchUserBrewsUseCase;
   final GetUserBrewsUseCase _getUserBrewsUseCase;
   final GetProfileUseCase _getProfileUseCase;
+  final GetBrewsByDateUseCase _getBrewsByDateUseCase;
 
   final _state = BehaviorSubject<HomePageState>.seeded(const HomePageState());
 
@@ -72,6 +74,7 @@ class HomeViewModel extends ViewModel {
     this._fetchUserBrewsUseCase,
     this._getUserBrewsUseCase,
     this._getProfileUseCase,
+    this._getBrewsByDateUseCase,
   );
 
   @override
@@ -83,10 +86,11 @@ class HomeViewModel extends ViewModel {
         _getBrewingMethodsUseCase(),
         _getUserBrewsUseCase(),
         _getProfileUseCase(), (methods, userBrews, profile) {
+      final datedBrews = _getBrewsByDateUseCase(userBrews);
       return HomePageState(
         brewingMethods: methods,
         isUserLogged: profile != null,
-        userBrews: userBrews,
+        userBrews: datedBrews,
         loading: false,
       );
     }).listen((event) {

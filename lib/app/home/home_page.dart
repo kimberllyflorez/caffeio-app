@@ -110,7 +110,9 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                                   text: "Let's start make some coffee",
                                 ),
                               ),
-                              child: HomeHistoryList(brews: state.userBrews),
+                              child: HomeHistoryList(
+                                userBrewsByDate: state.userBrews,
+                              ),
                             ),
                           ),
                         ),

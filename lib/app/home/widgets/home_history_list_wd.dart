@@ -1,13 +1,14 @@
 import 'package:caffeio/app/brew/ratio/ratio_model.dart';
+import 'package:caffeio/app/home/model/brew_by_date.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 class HomeHistoryList extends StatelessWidget {
-  final List<RatioModelView> brews;
+  final List<BrewByDate> userBrewsByDate;
 
   const HomeHistoryList({
     Key? key,
-    required this.brews,
+    required this.userBrewsByDate,
   }) : super(key: key);
 
   @override
@@ -15,12 +16,64 @@ class HomeHistoryList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.only(bottom: 112),
-      itemCount: brews.length,
+      itemCount: userBrewsByDate.length,
       itemBuilder: (_, index) {
-        final brew = brews[index];
-        return _HistoryItemCard(brew: brew);
+        final brews = userBrewsByDate[index];
+        return _HistoryByDateSection(
+            brewByDate: brews.items,
+            date: brews.brewByDate,
+            total: brews.total.toInt().toString());
       },
-      // separatorBuilder: (_, index) => const Divider(),
+    );
+  }
+}
+
+class _HistoryByDateSection extends StatelessWidget {
+  final String date;
+  final String total;
+  final List<RatioModelView> brewByDate;
+
+  const _HistoryByDateSection({
+    Key? key,
+    required this.brewByDate,
+    required this.date,
+    required this.total,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.spacing.xs,
+            vertical: theme.spacing.xxs,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                date,
+                textAlign: TextAlign.start,
+                style: context.theme.typo.body.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '${total}gr',
+                textAlign: TextAlign.start,
+                style: context.theme.typo.body.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: theme.palette.brownScale.primaryColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+        ...brewByDate.map((e) => _HistoryItemCard(brew: e)),
+      ],
     );
   }
 }
@@ -64,12 +117,7 @@ class _HistoryItemCard extends StatelessWidget {
                     style: theme.typo.body,
                   ),
                   SizedBox(width: theme.spacing.xxs),
-                  Text(
-                    '${brew.gramsCoffee.toInt()}gr',
-                    style: theme.typo.title.copyWith(
-                      color: theme.palette.brownScale.primaryColor,
-                    ),
-                  ),
+                  Text('1:${brew.ratio}', style: theme.typo.body),
                 ],
               ),
             ),
@@ -77,7 +125,12 @@ class _HistoryItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text('1:${brew.ratio}', style: theme.typo.body),
+                Text(
+                  '${brew.gramsCoffee.toInt()}gr',
+                  style: theme.typo.title.copyWith(
+                    color: theme.palette.brownScale.primaryColor,
+                  ),
+                ),
                 Text(
                   '${brew.water}ml',
                   style: theme.typo.title.copyWith(
