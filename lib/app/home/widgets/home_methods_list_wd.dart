@@ -80,10 +80,9 @@ class _HomeBrewMethodCard extends StatelessWidget {
                   methodName,
                   maxLines: 1,
                   style: theme.typo.body.copyWith(
-                    overflow: TextOverflow.ellipsis,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
+                      overflow: TextOverflow.ellipsis,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ],

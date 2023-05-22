@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 
 class GetBrewsByDateUseCase
     extends UseCase<List<BrewByDate>, List<RatioModelView>> {
-
   //TODO: Improve logic
   @override
   List<BrewByDate> call(List<RatioModelView> params) {
