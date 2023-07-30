@@ -35,6 +35,12 @@ You cant test our app downloading our last release [**v0.0.1-alpha**](https://gi
 
 [![v0.0.1](https://img.shields.io/github/v/tag/curregoz/caffeio-app)](https://github.com/curregoz/caffeio-app/releases/tag/v0.0.1-alpha)
 
+## Awards
+
+<img src="https://supabase.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsupabase-logo-wordmark--dark.53d797e9.png&w=256&q=75" height="15" alt="Caffeio Logo"/> [Flutter Hackaton](https://supabase.com/blog/flutter-hackathon-winners) | Most visually pleasing
+
+![img.png](https://yrvlqdyomyadfxbguhgw.supabase.co/storage/v1/object/public/app/screenshots/image_2023-07-30_205045194.png)
+
 ## Contact
 
 ### Kimberlly Florez
@@ -46,3 +52,7 @@ You cant test our app downloading our last release [**v0.0.1-alpha**](https://gi
 
 [![GitHub](https://img.shields.io/badge/GitHub-caurregoz-blue?style=flat&logo=github)](https://github.com/curregoz)
 [![Twitter](https://img.shields.io/badge/Twitter-caurregoz-blue?style=flat&logo=twitter)](https://twitter.com/caurregoz)
+
+Powered by
+
+<img src="https://supabase.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsupabase-logo-wordmark--dark.53d797e9.png&w=256&q=75" height="15" alt="Caffeio Logo"/>
