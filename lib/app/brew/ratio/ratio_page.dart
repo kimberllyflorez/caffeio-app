@@ -12,9 +12,9 @@ class RatioPage extends StatefulWidget {
   final BrewingMethod brewingMethod;
 
   const RatioPage({
-    Key? key,
+    super.key,
     required this.brewingMethod,
-  }) : super(key: key);
+  });
 
   @override
   State<RatioPage> createState() => _RatioPageState();
@@ -130,10 +130,9 @@ class _BottomSection extends StatelessWidget {
   final String totalWater;
 
   const _BottomSection({
-    Key? key,
     required this.onNextPageCallback,
     required this.totalWater,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

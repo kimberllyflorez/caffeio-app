@@ -7,9 +7,9 @@ class HomeHistoryList extends StatelessWidget {
   final List<BrewByDate> userBrewsByDate;
 
   const HomeHistoryList({
-    Key? key,
+    super.key,
     required this.userBrewsByDate,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +34,10 @@ class _HistoryByDateSection extends StatelessWidget {
   final List<RatioModelView> brewByDate;
 
   const _HistoryByDateSection({
-    Key? key,
     required this.brewByDate,
     required this.date,
     required this.total,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,7 @@ class _HistoryByDateSection extends StatelessWidget {
                 ),
               ),
               Text(
-                '${total} gr',
+                '$total gr',
                 textAlign: TextAlign.start,
                 style: context.theme.typo.body.copyWith(
                   color: theme.palette.brownScale.primaryColor,
@@ -81,9 +80,8 @@ class _HistoryItemCard extends StatelessWidget {
   final RatioModelView brew;
 
   const _HistoryItemCard({
-    Key? key,
     required this.brew,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

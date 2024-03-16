@@ -8,107 +8,156 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:caffeio/app/auth/login/login_page.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:caffeio/app/auth/login/login_page.dart' as _i2;
 import 'package:caffeio/app/brew/methods_selection/method_selection_page.dart'
     as _i5;
-import 'package:caffeio/app/brew/ratio/ratio_model.dart' as _i13;
-import 'package:caffeio/app/brew/ratio/ratio_page.dart' as _i6;
+import 'package:caffeio/app/brew/ratio/ratio_model.dart' as _i14;
+import 'package:caffeio/app/brew/ratio/ratio_page.dart' as _i7;
 import 'package:caffeio/app/brew/recommendations/recommendations_page.dart'
-    as _i4;
-import 'package:caffeio/app/brew/timer/timer_page.dart' as _i7;
-import 'package:caffeio/app/home/home_page.dart' as _i2;
-import 'package:caffeio/app/method/method_page.dart' as _i1;
-import 'package:caffeio/app/onboarding/onboarding_page.dart' as _i9;
-import 'package:caffeio/app/settings/settings_page.dart' as _i8;
-import 'package:caffeio/entities/brew/brewing_method.dart' as _i12;
-import 'package:flutter/material.dart' as _i11;
+    as _i8;
+import 'package:caffeio/app/brew/timer/timer_page.dart' as _i10;
+import 'package:caffeio/app/home/home_page.dart' as _i1;
+import 'package:caffeio/app/main/main_page.dart' as _i3;
+import 'package:caffeio/app/method/method_page.dart' as _i4;
+import 'package:caffeio/app/onboarding/onboarding_page.dart' as _i6;
+import 'package:caffeio/app/settings/settings_page.dart' as _i9;
+import 'package:caffeio/entities/brew/brewing_method.dart' as _i13;
+import 'package:flutter/material.dart' as _i12;
 
-abstract class $AppRouter extends _i10.RootStackRouter {
+abstract class $AppRouter extends _i11.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i10.PageFactory> pagesMap = {
-    MethodRoute.name: (routeData) {
-      final args = routeData.argsAs<MethodRouteArgs>();
-      return _i10.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i1.MethodPage(
-          key: args.key,
-          method: args.method,
-        ),
-      );
-    },
+  final Map<String, _i11.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomePage(),
+        child: const _i1.HomePage(),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.LoginPage(),
+        child: const _i2.LoginPage(),
       );
     },
-    RecommendationsRoute.name: (routeData) {
-      final args = routeData.argsAs<RecommendationsRouteArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+    MainRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.RecommendationsPage(
+        child: const _i3.MainPage(),
+      );
+    },
+    MethodRoute.name: (routeData) {
+      final args = routeData.argsAs<MethodRouteArgs>();
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i4.MethodPage(
           key: args.key,
           method: args.method,
         ),
       );
     },
     MethodSelectionRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.MethodSelectionPage(),
       );
     },
+    OnboardingRoute.name: (routeData) {
+      return _i11.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.OnboardingPage(),
+      );
+    },
     RatioRoute.name: (routeData) {
       final args = routeData.argsAs<RatioRouteArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.RatioPage(
+        child: _i7.RatioPage(
           key: args.key,
           brewingMethod: args.brewingMethod,
         ),
       );
     },
-    TimerRoute.name: (routeData) {
-      final args = routeData.argsAs<TimerRouteArgs>();
-      return _i10.AutoRoutePage<dynamic>(
+    RecommendationsRoute.name: (routeData) {
+      final args = routeData.argsAs<RecommendationsRouteArgs>();
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i7.TimerPage(
+        child: _i8.RecommendationsPage(
           key: args.key,
-          ratioMode: args.ratioMode,
+          method: args.method,
         ),
       );
     },
     SettingsRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.SettingsPage(),
+        child: const _i9.SettingsPage(),
       );
     },
-    OnboardingRoute.name: (routeData) {
-      return _i10.AutoRoutePage<dynamic>(
+    TimerRoute.name: (routeData) {
+      final args = routeData.argsAs<TimerRouteArgs>();
+      return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.OnboardingPage(),
+        child: _i10.TimerPage(
+          key: args.key,
+          ratioMode: args.ratioMode,
+        ),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.MethodPage]
-class MethodRoute extends _i10.PageRouteInfo<MethodRouteArgs> {
+/// [_i1.HomePage]
+class HomeRoute extends _i11.PageRouteInfo<void> {
+  const HomeRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.LoginPage]
+class LoginRoute extends _i11.PageRouteInfo<void> {
+  const LoginRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.MainPage]
+class MainRoute extends _i11.PageRouteInfo<void> {
+  const MainRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.MethodPage]
+class MethodRoute extends _i11.PageRouteInfo<MethodRouteArgs> {
   MethodRoute({
-    _i11.Key? key,
-    required _i12.BrewingMethod method,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    required _i13.BrewingMethod method,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           MethodRoute.name,
           args: MethodRouteArgs(
@@ -120,8 +169,8 @@ class MethodRoute extends _i10.PageRouteInfo<MethodRouteArgs> {
 
   static const String name = 'MethodRoute';
 
-  static const _i10.PageInfo<MethodRouteArgs> page =
-      _i10.PageInfo<MethodRouteArgs>(name);
+  static const _i11.PageInfo<MethodRouteArgs> page =
+      _i11.PageInfo<MethodRouteArgs>(name);
 }
 
 class MethodRouteArgs {
@@ -130,9 +179,9 @@ class MethodRouteArgs {
     required this.method,
   });
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
-  final _i12.BrewingMethod method;
+  final _i13.BrewingMethod method;
 
   @override
   String toString() {
@@ -141,76 +190,9 @@ class MethodRouteArgs {
 }
 
 /// generated route for
-/// [_i2.HomePage]
-class HomeRoute extends _i10.PageRouteInfo<void> {
-  const HomeRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i3.LoginPage]
-class LoginRoute extends _i10.PageRouteInfo<void> {
-  const LoginRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LoginRoute';
-
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.RecommendationsPage]
-class RecommendationsRoute
-    extends _i10.PageRouteInfo<RecommendationsRouteArgs> {
-  RecommendationsRoute({
-    _i11.Key? key,
-    required _i12.BrewingMethod method,
-    List<_i10.PageRouteInfo>? children,
-  }) : super(
-          RecommendationsRoute.name,
-          args: RecommendationsRouteArgs(
-            key: key,
-            method: method,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'RecommendationsRoute';
-
-  static const _i10.PageInfo<RecommendationsRouteArgs> page =
-      _i10.PageInfo<RecommendationsRouteArgs>(name);
-}
-
-class RecommendationsRouteArgs {
-  const RecommendationsRouteArgs({
-    this.key,
-    required this.method,
-  });
-
-  final _i11.Key? key;
-
-  final _i12.BrewingMethod method;
-
-  @override
-  String toString() {
-    return 'RecommendationsRouteArgs{key: $key, method: $method}';
-  }
-}
-
-/// generated route for
 /// [_i5.MethodSelectionPage]
-class MethodSelectionRoute extends _i10.PageRouteInfo<void> {
-  const MethodSelectionRoute({List<_i10.PageRouteInfo>? children})
+class MethodSelectionRoute extends _i11.PageRouteInfo<void> {
+  const MethodSelectionRoute({List<_i11.PageRouteInfo>? children})
       : super(
           MethodSelectionRoute.name,
           initialChildren: children,
@@ -218,16 +200,30 @@ class MethodSelectionRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'MethodSelectionRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.RatioPage]
-class RatioRoute extends _i10.PageRouteInfo<RatioRouteArgs> {
+/// [_i6.OnboardingPage]
+class OnboardingRoute extends _i11.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          OnboardingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OnboardingRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.RatioPage]
+class RatioRoute extends _i11.PageRouteInfo<RatioRouteArgs> {
   RatioRoute({
-    _i11.Key? key,
-    required _i12.BrewingMethod brewingMethod,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    required _i13.BrewingMethod brewingMethod,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           RatioRoute.name,
           args: RatioRouteArgs(
@@ -239,8 +235,8 @@ class RatioRoute extends _i10.PageRouteInfo<RatioRouteArgs> {
 
   static const String name = 'RatioRoute';
 
-  static const _i10.PageInfo<RatioRouteArgs> page =
-      _i10.PageInfo<RatioRouteArgs>(name);
+  static const _i11.PageInfo<RatioRouteArgs> page =
+      _i11.PageInfo<RatioRouteArgs>(name);
 }
 
 class RatioRouteArgs {
@@ -249,9 +245,9 @@ class RatioRouteArgs {
     required this.brewingMethod,
   });
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
-  final _i12.BrewingMethod brewingMethod;
+  final _i13.BrewingMethod brewingMethod;
 
   @override
   String toString() {
@@ -260,12 +256,65 @@ class RatioRouteArgs {
 }
 
 /// generated route for
-/// [_i7.TimerPage]
-class TimerRoute extends _i10.PageRouteInfo<TimerRouteArgs> {
+/// [_i8.RecommendationsPage]
+class RecommendationsRoute
+    extends _i11.PageRouteInfo<RecommendationsRouteArgs> {
+  RecommendationsRoute({
+    _i12.Key? key,
+    required _i13.BrewingMethod method,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
+          RecommendationsRoute.name,
+          args: RecommendationsRouteArgs(
+            key: key,
+            method: method,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RecommendationsRoute';
+
+  static const _i11.PageInfo<RecommendationsRouteArgs> page =
+      _i11.PageInfo<RecommendationsRouteArgs>(name);
+}
+
+class RecommendationsRouteArgs {
+  const RecommendationsRouteArgs({
+    this.key,
+    required this.method,
+  });
+
+  final _i12.Key? key;
+
+  final _i13.BrewingMethod method;
+
+  @override
+  String toString() {
+    return 'RecommendationsRouteArgs{key: $key, method: $method}';
+  }
+}
+
+/// generated route for
+/// [_i9.SettingsPage]
+class SettingsRoute extends _i11.PageRouteInfo<void> {
+  const SettingsRoute({List<_i11.PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
+
+  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.TimerPage]
+class TimerRoute extends _i11.PageRouteInfo<TimerRouteArgs> {
   TimerRoute({
-    _i11.Key? key,
-    required _i13.RatioModelView ratioMode,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    required _i14.RatioModelView ratioMode,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           TimerRoute.name,
           args: TimerRouteArgs(
@@ -277,8 +326,8 @@ class TimerRoute extends _i10.PageRouteInfo<TimerRouteArgs> {
 
   static const String name = 'TimerRoute';
 
-  static const _i10.PageInfo<TimerRouteArgs> page =
-      _i10.PageInfo<TimerRouteArgs>(name);
+  static const _i11.PageInfo<TimerRouteArgs> page =
+      _i11.PageInfo<TimerRouteArgs>(name);
 }
 
 class TimerRouteArgs {
@@ -287,40 +336,12 @@ class TimerRouteArgs {
     required this.ratioMode,
   });
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
-  final _i13.RatioModelView ratioMode;
+  final _i14.RatioModelView ratioMode;
 
   @override
   String toString() {
     return 'TimerRouteArgs{key: $key, ratioMode: $ratioMode}';
   }
-}
-
-/// generated route for
-/// [_i8.SettingsPage]
-class SettingsRoute extends _i10.PageRouteInfo<void> {
-  const SettingsRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          SettingsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingsRoute';
-
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i9.OnboardingPage]
-class OnboardingRoute extends _i10.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          OnboardingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'OnboardingRoute';
-
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }

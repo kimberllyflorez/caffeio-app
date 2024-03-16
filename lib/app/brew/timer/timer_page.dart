@@ -13,9 +13,9 @@ class TimerPage extends StatefulWidget {
   final RatioModelView ratioMode;
 
   const TimerPage({
-    Key? key,
+    super.key,
     required this.ratioMode,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => _TimerPageState();
@@ -86,9 +86,8 @@ class _BrewInfoCard extends StatelessWidget {
   final RatioModelView brew;
 
   const _BrewInfoCard({
-    Key? key,
     required this.brew,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

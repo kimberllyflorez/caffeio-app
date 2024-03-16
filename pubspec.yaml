@@ -10,34 +10,32 @@ dependencies:
   flutter:
     sdk: flutter
 
-  supabase_flutter: ^1.9.2
-  get_it: ^7.6.0
-  rxdart: ^0.27.7
-  auto_route: ^7.2.0
-  dio: ^5.1.1
-  retrofit: ^4.0.1
+  animated_bottom_navigation_bar: ^1.2.0
+  auto_route: ^7.8.3
+  dio: ^5.3.2
   equatable: ^2.0.5
-  shared_preferences: ^2.1.0
-  flutter_secure_storage: ^8.0.0
-  json_serializable: ^6.7.0
-  json_annotation: ^4.8.1
-  smooth_page_indicator: ^1.1.0
-  youtube_player_flutter: ^8.1.2
-  wave: ^0.2.2
-  phosphor_flutter:
-    git:
-      url: https://github.com/phosphor-icons/flutter
-      ref: f370dd2c25d3ea51ffb8f1c7c183bc9f33889c82
+  flutter_secure_storage: ^9.0.0
+  get_it: ^7.6.2
   intl: ^0.18.1
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  phosphor_flutter: ^2.0.1
+  retrofit: ^4.1.0
+  rxdart: ^0.27.7
+  shared_preferences: ^2.2.1
+  smooth_page_indicator: ^1.1.0
+  supabase_flutter: ^2.3.4
+  wave: ^0.2.2
+  youtube_player_flutter: ^9.0.0
 
 dev_dependencies:
+  auto_route_generator: 7.3.2
+  build_runner: ^2.4.6
+  flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
-  auto_route_generator: 7.1.1
-  mockito: ^5.4.0
-  build_runner: ^2.3.3
-  flutter_lints: ^2.0.1
-  flutter_launcher_icons: ^0.13.1
+  mockito: ^5.4.2
 
 flutter:
   uses-material-design: true

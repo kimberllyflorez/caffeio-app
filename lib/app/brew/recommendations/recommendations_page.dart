@@ -12,9 +12,9 @@ class RecommendationsPage extends StatefulWidget {
   final BrewingMethod method;
 
   const RecommendationsPage({
-    Key? key,
+    super.key,
     required this.method,
-  }) : super(key: key);
+  });
 
   @override
   State<RecommendationsPage> createState() => _RecommendationsPageState();

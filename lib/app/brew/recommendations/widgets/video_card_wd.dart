@@ -6,9 +6,9 @@ class RecommendationVideoCard extends StatefulWidget {
   final String url;
 
   const RecommendationVideoCard({
-    Key? key,
+    super.key,
     required this.url,
-  }) : super(key: key);
+  });
 
   @override
   State<RecommendationVideoCard> createState() =>

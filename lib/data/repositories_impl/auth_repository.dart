@@ -63,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> signInWithOAuth(Provider provider) async {
+  Future<bool> signInWithOAuth(OAuthProvider provider) async {
     try {
       await _client.signInWithOAuth(provider);
       final Session? session = _client.currentSession;
