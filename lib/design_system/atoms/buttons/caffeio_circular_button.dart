@@ -6,10 +6,10 @@ class CaffeioCircularButton extends StatelessWidget {
   final Widget child;
 
   const CaffeioCircularButton({
-    Key? key,
+    super.key,
     required this.callback,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,10 +5,10 @@ class HomeBrewMethodCard extends StatelessWidget {
   final VoidCallback callback;
 
   const HomeBrewMethodCard({
-    Key? key,
+    super.key,
     required this.methodName,
     required this.callback,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

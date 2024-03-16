@@ -6,10 +6,10 @@ class CaffeioButton extends StatelessWidget {
   final String text;
 
   const CaffeioButton({
-    Key? key,
+    super.key,
     required this.callback,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

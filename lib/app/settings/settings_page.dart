@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -76,10 +76,9 @@ class _UserCard extends StatelessWidget {
   final String email;
 
   const _UserCard({
-    Key? key,
     required this.name,
     required this.email,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

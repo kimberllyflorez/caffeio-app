@@ -106,7 +106,7 @@ class LoginPageViewModel extends ViewModel {
 
   Future<void> signInWithGoogle() async {
     try {
-      await _signInWithOAuthUseCase(Provider.google);
+      await _signInWithOAuthUseCase(OAuthProvider.google);
     } catch (e) {
       //TODO: Handle errors in the respository
       debugPrint(e.toString());

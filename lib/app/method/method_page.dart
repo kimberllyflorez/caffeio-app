@@ -12,9 +12,9 @@ class MethodPage extends StatefulWidget {
   final BrewingMethod method;
 
   const MethodPage({
-    Key? key,
+    super.key,
     required this.method,
-  }) : super(key: key);
+  });
 
   @override
   State<MethodPage> createState() => _MethodPageState();

@@ -10,7 +10,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
 class MethodSelectionPage extends StatefulWidget {
-  const MethodSelectionPage({Key? key}) : super(key: key);
+  const MethodSelectionPage({super.key});
 
   @override
   State<MethodSelectionPage> createState() => _MethodSelectionPageState();
@@ -102,11 +102,10 @@ class _MethodCard extends StatelessWidget {
   final String image;
 
   const _MethodCard({
-    Key? key,
     required this.name,
     required this.description,
     required this.image,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -132,10 +131,9 @@ class _BottomSection extends StatelessWidget {
   final VoidCallback onNextCallback;
 
   const _BottomSection({
-    Key? key,
     required this.state,
     required this.onNextCallback,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

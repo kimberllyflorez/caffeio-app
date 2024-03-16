@@ -8,12 +8,12 @@ class CaffeioBottomContainer extends StatelessWidget {
   final double? height;
 
   const CaffeioBottomContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.backgroundColor,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

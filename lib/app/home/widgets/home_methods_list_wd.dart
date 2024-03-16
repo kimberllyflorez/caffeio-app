@@ -9,10 +9,10 @@ class HomeMethodsList extends StatelessWidget {
   final MethodCallback callback;
 
   const HomeMethodsList({
-    Key? key,
+    super.key,
     required this.methods,
     required this.callback,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,10 @@ class _HomeBrewMethodCard extends StatelessWidget {
   final VoidCallback callback;
 
   const _HomeBrewMethodCard({
-    Key? key,
     required this.methodName,
     required this.callback,
     required this.image,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ abstract class AuthRepository {
 
   Future<bool> signInWithPassword(String email, String password);
 
-  Future<bool> signInWithOAuth(Provider provider);
+  Future<bool> signInWithOAuth(OAuthProvider provider);
 
   Stream<Session?> get sessionStream;
 

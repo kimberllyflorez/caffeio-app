@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:caffeio/app/di/di.dart';
 import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/route_spec.dart';
-import 'package:caffeio/app/di/di.dart';
 import 'package:flutter/material.dart';
 
 abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
@@ -33,7 +33,7 @@ abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
           context.router.replaceAll(routeInfo.routes);
           break;
         case RouteAction.pop:
-          context.router.pop();
+          context.router.maybePop();
           break;
         case RouteAction.popForced:
           context.router.popForced();

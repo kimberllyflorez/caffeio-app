@@ -6,7 +6,7 @@ abstract class SupabaseAdapter {
 
   Future<AuthResponse> signInWithPassword(String email, String password);
 
-  Future<bool> signInWithOAuth(Provider provider);
+  Future<bool> signInWithOAuth(OAuthProvider provider);
 
   Future<void> logOut();
 
@@ -45,7 +45,7 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
   }
 
   @override
-  Future<bool> signInWithOAuth(Provider provider) {
+  Future<bool> signInWithOAuth(OAuthProvider provider) {
     return _client.auth.signInWithOAuth(
       provider,
       redirectTo: 'bimblystudios.caffeio://login-callback/',
@@ -72,8 +72,7 @@ class SupabaseAdapterImpl implements SupabaseAdapter {
     String field,
     String condition,
   ) async {
-    final result =
-        await _client.from(table).select<List<dynamic>>().eq(field, condition);
+    final result = await _client.from(table).select().eq(field, condition);
     return result;
   }
 

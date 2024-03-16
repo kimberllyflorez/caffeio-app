@@ -14,7 +14,7 @@ class TimerSection extends StatelessWidget {
   final bool isPaused;
 
   const TimerSection({
-    Key? key,
+    super.key,
     required this.timer,
     required this.milliseconds,
     required this.onStart,
@@ -22,7 +22,7 @@ class TimerSection extends StatelessWidget {
     required this.isRunning,
     required this.isPaused,
     required this.time,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -115,13 +115,13 @@ class TimerActions extends StatelessWidget {
   final bool isPaused;
 
   const TimerActions({
-    Key? key,
+    super.key,
     required this.onStart,
     required this.onPause,
     required this.onRestart,
     required this.isRunning,
     required this.isPaused,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
