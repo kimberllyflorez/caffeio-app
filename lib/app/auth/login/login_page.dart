@@ -36,73 +36,75 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
           if (state == null) {
             return const LoadingIndicator();
           }
-          return Column(
-            children: [
-              SizedBox(height: theme.spacing.s),
-              Image.asset(
-                'assets/images/caffeio-icon-name.png',
-                width: 180,
-                height: 180,
-              ),
-              SizedBox(height: theme.spacing.s),
-              Padding(
-                padding: theme.insets.s.toHorizontal,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: theme.spacing.s),
+                Image.asset(
+                  'assets/images/caffeio-icon-name.png',
+                  width: 180,
+                  height: 180,
+                ),
+                SizedBox(height: theme.spacing.s),
+                Padding(
+                  padding: theme.insets.s.toHorizontal,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                    ),
+                    onChanged: viewModel.onChangeEmail,
                   ),
-                  onChanged: viewModel.onChangeEmail,
                 ),
-              ),
-              SizedBox(height: theme.spacing.s),
-              Padding(
-                padding: theme.insets.s.toHorizontal,
-                child: TextField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+                SizedBox(height: theme.spacing.s),
+                Padding(
+                  padding: theme.insets.s.toHorizontal,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                    onChanged: viewModel.onChangePassword,
                   ),
-                  onChanged: viewModel.onChangePassword,
                 ),
-              ),
-              SizedBox(height: theme.spacing.s),
-              Visibility(
-                visible: state.error != null,
-                child: Text(
-                  '${state.error}',
-                  style: theme.typo.body.copyWith(color: Colors.deepOrange),
-                ),
-              ),
-              SizedBox(height: theme.spacing.s),
-              CaffeioButton(
-                callback: viewModel.onLogin,
-                text: 'Log in',
-              ),
-              SizedBox(height: theme.spacing.s),
-              Padding(
-                padding: theme.insets.xxl.toHorizontal,
-                child: Divider(
-                  color: theme.palette.blueScale.primaryColor,
-                ),
-              ),
-              SizedBox(height: theme.spacing.s),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CaffeioCircularButton(
-                    callback: viewModel.signInWithGoogle,
-                    child: Icon(PhosphorIcons.googleLogo()),
+                SizedBox(height: theme.spacing.s),
+                Visibility(
+                  visible: state.error != null,
+                  child: Text(
+                    '${state.error}',
+                    style: theme.typo.body.copyWith(color: Colors.deepOrange),
                   ),
-                ],
-              ),
-              const Spacer(),
-              const VersionCard(),
-              SizedBox(height: theme.spacing.xxs),
-            ],
+                ),
+                SizedBox(height: theme.spacing.s),
+                CaffeioButton(
+                  callback: viewModel.onLogin,
+                  text: 'Log in',
+                ),
+                SizedBox(height: theme.spacing.s),
+                Padding(
+                  padding: theme.insets.xxl.toHorizontal,
+                  child: Divider(
+                    color: theme.palette.blueScale.primaryColor,
+                  ),
+                ),
+                SizedBox(height: theme.spacing.s),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CaffeioCircularButton(
+                      callback: viewModel.signInWithGoogle,
+                      child: Icon(PhosphorIcons.googleLogo()),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         },
+      ),
+      bottomNavigationBar: const SafeArea(
+        child: CaffeioBrandCard(),
       ),
     );
   }

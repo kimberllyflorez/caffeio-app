@@ -4,6 +4,7 @@ import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -169,20 +170,22 @@ class _BottomSection extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: theme.insets.xs.toVertical,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: onNextPageCallback,
-                  icon: const Icon(
-                    Icons.navigate_next_rounded,
-                    color: Colors.white,
-                    size: 36,
+          SafeArea(
+            child: Padding(
+              padding: theme.insets.xs.toVertical,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: onNextPageCallback,
+                    icon: const Icon(
+                      Icons.navigate_next_rounded,
+                      color: Colors.white,
+                      size: 36,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

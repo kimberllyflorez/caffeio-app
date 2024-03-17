@@ -162,20 +162,22 @@ class _BottomSection extends StatelessWidget {
               style: theme.typo.body.copyWith(color: Colors.white),
             ),
           ),
-          Padding(
-            padding: theme.insets.xs.toVertical,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: onNextCallback,
-                  icon: const Icon(
-                    Icons.navigate_next_rounded,
-                    color: Colors.white,
-                    size: 36,
+          SafeArea(
+            child: Padding(
+              padding: theme.insets.xs.toVertical,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: onNextCallback,
+                    icon: const Icon(
+                      Icons.navigate_next_rounded,
+                      color: Colors.white,
+                      size: 36,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
