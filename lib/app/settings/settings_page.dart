@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/app/settings/settings_vm.dart';
 import 'package:caffeio/app/settings/widgets/version_card_wd.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 @RoutePage()
 class SettingsPage extends StatefulWidget {
@@ -45,23 +47,24 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
                   child: Center(
                     child: CaffeioButton(
                       callback: viewModel.onLoginPressed,
-                      text: 'Login',
+                      text: CaffeioStrings.loginButtonLabel,
                     ),
                   ),
+                ),
+                ListTile(
+                  leading: Icon(PhosphorIcons.headset()),
+                  title: const Text(CaffeioStrings.supportButtonLabel),
+                  onTap: viewModel.onSupportPressed,
+                ),
+                ListTile(
+                  leading: Icon(PhosphorIcons.signOut()),
+                  title: const Text(CaffeioStrings.logoutButtonLabel),
+                  onTap: viewModel.onLogOut,
                 ),
                 const Spacer(),
-                Visibility(
-                  visible: state.userProfile != null,
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: theme.insets.xs,
-                    child: ElevatedButton(
-                      onPressed: viewModel.onLogOut,
-                      child: const Text('Log out'),
-                    ),
-                  ),
+                const SafeArea(
+                  child: CaffeioBrandCard(),
                 ),
-                const VersionCard(),
               ],
             ),
           ),

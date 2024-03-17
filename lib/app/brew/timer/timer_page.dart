@@ -71,11 +71,13 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
           return const LoadingIndicator();
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: theme.insets.xs,
-        child: CaffeioButton(
-          text: 'Finish',
-          callback: () => viewModel.nextPage(widget.ratioMode),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: theme.insets.xs,
+          child: CaffeioButton(
+            text: 'Finish',
+            callback: () => viewModel.nextPage(widget.ratioMode),
+          ),
         ),
       ),
     );

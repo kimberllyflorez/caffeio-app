@@ -61,20 +61,22 @@ class _RecommendationsPageState
           return const LoadingIndicator();
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: context.theme.insets.xs,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            IconButton(
-              onPressed: () => viewModel.onNextPressed(widget.method),
-              icon: Icon(
-                Icons.navigate_next_rounded,
-                color: context.theme.palette.blueScale.primaryColor,
-                size: 36,
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: context.theme.insets.xs,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () => viewModel.onNextPressed(widget.method),
+                icon: Icon(
+                  Icons.navigate_next_rounded,
+                  color: context.theme.palette.blueScale.primaryColor,
+                  size: 36,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -7,10 +7,10 @@ import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SettingsPageState extends Equatable {
+class SupportPageState extends Equatable {
   final User? userProfile;
 
-  const SettingsPageState({
+  const SupportPageState({
     this.userProfile,
   });
 
@@ -28,11 +28,11 @@ class SettingsViewModel extends ViewModel {
 
   Stream<RouteSpec> get router => _router;
 
-  final _state = BehaviorSubject<SettingsPageState>.seeded(
-    const SettingsPageState(),
+  final _state = BehaviorSubject<SupportPageState>.seeded(
+    const SupportPageState(),
   );
 
-  Stream<SettingsPageState> get state => _state.stream;
+  Stream<SupportPageState> get state => _state.stream;
 
   SettingsViewModel(
     this._getProfileUseCase,
@@ -42,7 +42,7 @@ class SettingsViewModel extends ViewModel {
   @override
   void init() {
     _getProfileUseCase().listen((data) {
-      _state.add(SettingsPageState(userProfile: data));
+      _state.add(SupportPageState(userProfile: data));
     });
   }
 

@@ -1,4 +1,5 @@
 import 'package:caffeio/app/di/di.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/app/router/app_router.dart';
 import 'package:caffeio/app/router/guards/first_user_brew_guard.dart';
 import 'package:caffeio/design_system/design_system.dart';
@@ -22,13 +23,15 @@ class CaffeioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: appRouter.config(),
-      title: 'Caffeio App',
+      title: CaffeioStrings.appTitle,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: context.theme.palette.blueScale.primaryColor,
         ),
-        useMaterial3: true,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+        ),
       ),
     );
   }

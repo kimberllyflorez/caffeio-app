@@ -15,13 +15,14 @@ class AppRouter extends $AppRouter {
           guards: [_firstUserBrewGuard],
           initial: true,
         ),
+        AutoRoute(page: OnboardingRoute.page),
         AutoRoute(page: MethodSelectionRoute.page),
         AutoRoute(page: RatioRoute.page),
         AutoRoute(page: RecommendationsRoute.page),
         AutoRoute(page: MethodRoute.page),
-        AutoRoute(page: SettingsRoute.page),
-        AutoRoute(page: LoginRoute.page),
         AutoRoute(page: TimerRoute.page),
-        AutoRoute(page: OnboardingRoute.page),
+        AutoRoute(page: LoginRoute.page),
+        AutoRoute(page: SettingsRoute.page),
+        AutoRoute(page: SupportRoute.page),
       ];
 }
