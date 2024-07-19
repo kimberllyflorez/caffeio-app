@@ -20,7 +20,8 @@ class RecommendationsPage extends StatefulWidget {
   State<RecommendationsPage> createState() => _RecommendationsPageState();
 }
 
-class _RecommendationsPageState extends ViewState<RecommendationsPage, RecommendationViewModel> {
+class _RecommendationsPageState
+    extends ViewState<RecommendationsPage, RecommendationViewModel> {
   @override
   void initState() {
     super.initState();

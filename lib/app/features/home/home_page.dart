@@ -35,7 +35,8 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
           backgroundColor: theme.palette.blueScale.primaryColor,
           appBar: AppBar(
             backgroundColor: theme.palette.blueScale.primaryColor,
-            iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
+            iconTheme:
+                Theme.of(context).iconTheme.copyWith(color: Colors.white),
             title: Text(
               'Home page',
               style: theme.typo.subtitle.copyWith(

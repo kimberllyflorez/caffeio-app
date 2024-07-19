@@ -57,7 +57,8 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                       Padding(
                         padding: theme.insets.xs.toHorizontal,
                         child: TextFormField(
-                          onChanged: (grams) => viewModel.saveGramsCoffee(grams),
+                          onChanged: (grams) =>
+                              viewModel.saveGramsCoffee(grams),
                           decoration: const InputDecoration(
                             hintText: "20",
                             suffixText: "gr",
@@ -67,7 +68,9 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                             FocusScope.of(context).unfocus();
                           },
                           textAlign: TextAlign.center,
-                          inputFormatters: [LengthLimitingTextInputFormatter(2)],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(2)
+                          ],
                         ),
                       ),
                       SizedBox(height: theme.spacing.l),
@@ -96,8 +99,14 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                         divisions: 8,
                         value: state.ratio,
                         onChanged: viewModel.onRatioSliderChange,
-                        activeColor: Theme.of(context).colorScheme.primary.withOpacity(.12),
-                        inactiveColor: Theme.of(context).colorScheme.primary.withOpacity(.12),
+                        activeColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(.12),
+                        inactiveColor: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(.12),
                         thumbColor: Theme.of(context).colorScheme.primary,
                       ),
                     ],

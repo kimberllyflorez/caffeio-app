@@ -12,7 +12,8 @@ class OnboardingPage extends StatefulWidget {
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends ViewState<OnboardingPage, OnboardingPageViewModel> {
+class _OnboardingPageState
+    extends ViewState<OnboardingPage, OnboardingPageViewModel> {
   @override
   void initState() {
     super.initState();

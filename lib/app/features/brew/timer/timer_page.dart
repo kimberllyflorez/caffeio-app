@@ -21,7 +21,8 @@ class TimerPage extends StatefulWidget {
   State<StatefulWidget> createState() => _TimerPageState();
 }
 
-class _TimerPageState extends ViewState<TimerPage, TimerViewModel> with SingleTickerProviderStateMixin {
+class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
+    with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();

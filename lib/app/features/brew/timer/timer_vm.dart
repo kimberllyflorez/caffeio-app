@@ -88,7 +88,8 @@ class TimerViewModel extends ViewModel {
       _timer = Timer.periodic(
         const Duration(milliseconds: 10),
         (_) {
-          final timer = _state.value.elapsedTime + const Duration(milliseconds: 10);
+          final timer =
+              _state.value.elapsedTime + const Duration(milliseconds: 10);
           final String seeTimer = _formatUseCase(timer);
           String milliseconds = timer.inMilliseconds.toString();
           int secondLastDigit = getSecondLastDigit(milliseconds);

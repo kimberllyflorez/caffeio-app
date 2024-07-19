@@ -20,7 +20,9 @@ class HomeHistoryList extends StatelessWidget {
       itemBuilder: (_, index) {
         final brews = userBrewsByDate[index];
         return _HistoryByDateSection(
-            brewByDate: brews.items, date: brews.brewByDate, total: brews.total.toInt().toString());
+            brewByDate: brews.items,
+            date: brews.brewByDate,
+            total: brews.total.toInt().toString());
       },
     );
   }
@@ -122,8 +124,9 @@ class _HistoryItemCard extends StatelessWidget {
               children: [
                 Text(
                   '${brew.gramsCoffee.toInt()} gr',
-                  style: theme.typo.body
-                      .copyWith(color: theme.palette.brownScale.primaryColor, fontWeight: FontWeight.bold),
+                  style: theme.typo.body.copyWith(
+                      color: theme.palette.brownScale.primaryColor,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '${brew.water} ml',
