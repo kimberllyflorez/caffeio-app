@@ -82,8 +82,10 @@ class HomeViewModel extends ViewModel {
     await _fetchBrewingMethodsUseCase();
     await _fetchUserBrewsUseCase();
     _homeSubscription?.cancel();
-    _homeSubscription = Rx.combineLatest3(_getBrewingMethodsUseCase(), _getUserBrewsUseCase(), _getProfileUseCase(),
-        (methods, userBrews, profile) {
+    _homeSubscription = Rx.combineLatest3(
+        _getBrewingMethodsUseCase(),
+        _getUserBrewsUseCase(),
+        _getProfileUseCase(), (methods, userBrews, profile) {
       final datedBrews = _getBrewsByDateUseCase(userBrews);
       return HomePageState(
         brewingMethods: methods,

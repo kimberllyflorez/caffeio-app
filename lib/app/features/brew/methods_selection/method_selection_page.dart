@@ -16,7 +16,8 @@ class MethodSelectionPage extends StatefulWidget {
   State<MethodSelectionPage> createState() => _MethodSelectionPageState();
 }
 
-class _MethodSelectionPageState extends ViewState<MethodSelectionPage, MethodSelectionViewModel> {
+class _MethodSelectionPageState
+    extends ViewState<MethodSelectionPage, MethodSelectionViewModel> {
   final PageController _pageController = PageController();
 
   @override

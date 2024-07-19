@@ -24,11 +24,15 @@ class BrewRepositoryImpl implements BrewRepository {
   @override
   Future<void> fetchUserBrews(String userId) async {
     final data = await _brewDataSource.fetchUserBrews(userId);
-    final userBrews = data.map((method) => Brew.fromJson(method as Map<String, dynamic>)).toList();
+    final userBrews = data
+        .map((method) => Brew.fromJson(method as Map<String, dynamic>))
+        .toList();
     List<RatioModelView> brews = [];
-    final methods = await _brewingMethodsRepository.brewingMethodsStream.take(1).last;
+    final methods =
+        await _brewingMethodsRepository.brewingMethodsStream.take(1).last;
     for (final userBrew in userBrews) {
-      final brewMethod = methods.firstWhere((element) => element.id == userBrew.methodId);
+      final brewMethod =
+          methods.firstWhere((element) => element.id == userBrew.methodId);
       final brew = RatioModelView(
         method: brewMethod,
         water: userBrew.water,
