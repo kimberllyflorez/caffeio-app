@@ -1,4 +1,4 @@
-import 'package:caffeio/app/brew/ratio/ratio_model.dart';
+import 'package:caffeio/app/features/brew/ratio/ratio_model.dart';
 
 abstract class BrewRepository {
   Stream<List<RatioModelView>> get userBrews;

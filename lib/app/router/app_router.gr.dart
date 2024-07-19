@@ -9,19 +9,19 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:caffeio/app/auth/login/login_page.dart' as _i2;
-import 'package:caffeio/app/brew/methods_selection/method_selection_page.dart'
+import 'package:caffeio/app/features/auth/login/login_page.dart' as _i2;
+import 'package:caffeio/app/features/brew/methods_selection/method_selection_page.dart'
     as _i4;
-import 'package:caffeio/app/brew/ratio/ratio_model.dart' as _i14;
-import 'package:caffeio/app/brew/ratio/ratio_page.dart' as _i6;
-import 'package:caffeio/app/brew/recommendations/recommendations_page.dart'
+import 'package:caffeio/app/features/brew/ratio/ratio_model.dart' as _i14;
+import 'package:caffeio/app/features/brew/ratio/ratio_page.dart' as _i6;
+import 'package:caffeio/app/features/brew/recommendations/recommendations_page.dart'
     as _i7;
-import 'package:caffeio/app/brew/timer/timer_page.dart' as _i10;
-import 'package:caffeio/app/home/home_page.dart' as _i1;
-import 'package:caffeio/app/method/method_page.dart' as _i3;
-import 'package:caffeio/app/onboarding/onboarding_page.dart' as _i5;
-import 'package:caffeio/app/settings/settings_page.dart' as _i8;
-import 'package:caffeio/app/support/support_page.dart' as _i9;
+import 'package:caffeio/app/features/brew/timer/timer_page.dart' as _i10;
+import 'package:caffeio/app/features/home/home_page.dart' as _i1;
+import 'package:caffeio/app/features/method/method_page.dart' as _i3;
+import 'package:caffeio/app/features/onboarding/onboarding_page.dart' as _i5;
+import 'package:caffeio/app/features/settings/settings_page.dart' as _i8;
+import 'package:caffeio/app/features/support/support_page.dart' as _i9;
 import 'package:caffeio/entities/brew/brewing_method.dart' as _i13;
 import 'package:flutter/material.dart' as _i12;
 

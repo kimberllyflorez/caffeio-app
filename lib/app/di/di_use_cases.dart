@@ -17,6 +17,7 @@ import 'package:caffeio/domain/use_cases/brewing_methods/get_methods_video_uc.da
 import 'package:caffeio/domain/use_cases/brewing_methods/get_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/brewing_methods/set_user_brew_uc.dart';
 import 'package:caffeio/domain/use_cases/ratio/caculate_water_ratio_uc.dart';
+import 'package:caffeio/domain/use_cases/support/send_support_message_uc.dart';
 import 'package:caffeio/domain/use_cases/timer/format_stopwatch_time_uc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -44,5 +45,6 @@ class DiUseCase {
     );
     getIt.registerFactory(() => GetUserBrewsUseCase(getIt.get()));
     getIt.registerFactory(() => GetBrewsByDateUseCase());
+    getIt.registerFactory(() => SendSupportMessageUseCase(getIt.get()));
   }
 }

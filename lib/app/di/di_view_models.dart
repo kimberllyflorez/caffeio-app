@@ -1,14 +1,14 @@
-import 'package:caffeio/app/brew/methods_selection/method_selection_vm.dart';
-import 'package:caffeio/app/brew/ratio/ratio_vm.dart';
-import 'package:caffeio/app/brew/recommendations/recommendations_vm.dart';
-import 'package:caffeio/app/auth/login/login_page_vm.dart';
-import 'package:caffeio/app/home/home_vm.dart';
-import 'package:caffeio/app/method/method_page_vm.dart';
-import 'package:caffeio/app/onboarding/onboarding_page_vm.dart';
-import 'package:caffeio/app/settings/settings_vm.dart';
+import 'package:caffeio/app/features/auth/login/login_page_vm.dart';
+import 'package:caffeio/app/features/brew/methods_selection/method_selection_vm.dart';
+import 'package:caffeio/app/features/brew/ratio/ratio_vm.dart';
+import 'package:caffeio/app/features/brew/recommendations/recommendations_vm.dart';
+import 'package:caffeio/app/features/brew/timer/timer_vm.dart';
+import 'package:caffeio/app/features/home/home_vm.dart';
+import 'package:caffeio/app/features/method/method_page_vm.dart';
+import 'package:caffeio/app/features/onboarding/onboarding_page_vm.dart';
+import 'package:caffeio/app/features/settings/settings_vm.dart';
+import 'package:caffeio/app/features/support/support_vm.dart';
 import 'package:get_it/get_it.dart';
-
-import '../brew/timer/timer_vm.dart';
 
 class DiViewModel {
   static Future<void> setUp(GetIt getIt) async {
@@ -53,6 +53,9 @@ class DiViewModel {
     });
     getIt.registerFactory(() {
       return OnboardingPageViewModel();
+    });
+    getIt.registerFactory(() {
+      return SupportViewModel(getIt.get());
     });
   }
 }

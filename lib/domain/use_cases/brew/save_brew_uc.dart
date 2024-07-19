@@ -1,4 +1,4 @@
-import 'package:caffeio/app/brew/ratio/ratio_model.dart';
+import 'package:caffeio/app/features/brew/ratio/ratio_model.dart';
 import 'package:caffeio/data/repositories/brew_repository.abs.dart';
 import 'package:caffeio/domain/use_cases.abs.dart';
 import 'package:caffeio/domain/use_cases/auth/get_profile_uc.dart';
