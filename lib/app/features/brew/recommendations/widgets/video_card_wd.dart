@@ -1,4 +1,5 @@
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -11,8 +12,7 @@ class RecommendationVideoCard extends StatefulWidget {
   });
 
   @override
-  State<RecommendationVideoCard> createState() =>
-      _RecommendationVideoCardState();
+  State<RecommendationVideoCard> createState() => _RecommendationVideoCardState();
 }
 
 class _RecommendationVideoCardState extends State<RecommendationVideoCard> {
@@ -30,7 +30,7 @@ class _RecommendationVideoCardState extends State<RecommendationVideoCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: context.theme.spacing.xxs,
+      elevation: CaffeioSpacing.xxs,
       child: YoutubePlayerBuilder(
         player: YoutubePlayer(
           controller: _controller,

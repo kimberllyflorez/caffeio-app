@@ -1,4 +1,5 @@
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +50,7 @@ class _HomeBrewMethodCard extends StatelessWidget {
     return GestureDetector(
       onTap: callback,
       child: Card(
-        margin: theme.insets.xxs,
+        margin: CaffeioInsets.xxs,
         child: SizedBox(
           width: 120,
           height: 120,
@@ -78,10 +79,8 @@ class _HomeBrewMethodCard extends StatelessWidget {
                 child: Text(
                   methodName,
                   maxLines: 1,
-                  style: theme.typo.body.copyWith(
-                      overflow: TextOverflow.ellipsis,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                  style: theme.typo.body
+                      .copyWith(overflow: TextOverflow.ellipsis, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

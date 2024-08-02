@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/common/responsive.dart';
 import 'package:caffeio/app/features/method/method_page_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +44,7 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
             Hero(
               tag: widget.method.name,
               child: Container(
-                margin: theme.insets.xs,
+                margin: CaffeioInsets.xs,
                 width: context.responsive.width,
                 height: context.responsive.heightPercent(40),
                 child: ClipRRect(
@@ -58,22 +61,22 @@ class _MethodPageState extends ViewState<MethodPage, MethodPageViewModel> {
               ),
             ),
             Padding(
-              padding: theme.insets.xs.toHorizontal,
+              padding: CaffeioInsets.xs.toHorizontal,
               child: Text(
                 widget.method.history,
                 style: theme.typo.body,
               ),
             ),
-            SizedBox(height: theme.spacing.xs),
+            const SizedBox(height: CaffeioSpacing.xs),
           ],
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: theme.insets.xs,
+          padding: CaffeioInsets.xs,
           child: CaffeioButton(
             callback: () => viewModel.onBrewButtonPressed(widget.method),
-            text: 'Brew',
+            text: CaffeioStrings.brew,
           ),
         ),
       ),

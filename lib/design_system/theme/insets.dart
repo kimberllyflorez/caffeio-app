@@ -1,26 +1,17 @@
 import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/cupertino.dart';
 
-class Insets {
-  Spacing get _spacing => const Spacing();
+class CaffeioInsets {
+  const CaffeioInsets();
 
-  const Insets();
-
-  CaffeioEdgeInsets get none => CaffeioEdgeInsets(_spacing.none);
-
-  CaffeioEdgeInsets get xxs => CaffeioEdgeInsets(_spacing.xxs);
-
-  CaffeioEdgeInsets get xs => CaffeioEdgeInsets(_spacing.xs);
-
-  CaffeioEdgeInsets get s => CaffeioEdgeInsets(_spacing.s);
-
-  CaffeioEdgeInsets get m => CaffeioEdgeInsets(_spacing.m);
-
-  CaffeioEdgeInsets get l => CaffeioEdgeInsets(_spacing.l);
-
-  CaffeioEdgeInsets get xl => CaffeioEdgeInsets(_spacing.xl);
-
-  CaffeioEdgeInsets get xxl => CaffeioEdgeInsets(_spacing.xxl);
+  static CaffeioEdgeInsets none = const CaffeioEdgeInsets(CaffeioSpacing.none);
+  static CaffeioEdgeInsets xxs = const CaffeioEdgeInsets(CaffeioSpacing.xxs);
+  static CaffeioEdgeInsets xs = const CaffeioEdgeInsets(CaffeioSpacing.xs);
+  static CaffeioEdgeInsets s = const CaffeioEdgeInsets(CaffeioSpacing.s);
+  static CaffeioEdgeInsets m = const CaffeioEdgeInsets(CaffeioSpacing.m);
+  static CaffeioEdgeInsets l = const CaffeioEdgeInsets(CaffeioSpacing.l);
+  static CaffeioEdgeInsets xl = const CaffeioEdgeInsets(CaffeioSpacing.xl);
+  static CaffeioEdgeInsets xxl = const CaffeioEdgeInsets(CaffeioSpacing.xxl);
 }
 
 class CaffeioEdgeInsets extends EdgeInsets {

@@ -1,10 +1,10 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'brewing_method.g.dart';
+part 'brewing_method.mapper.dart';
 
-@JsonSerializable(createToJson: false)
-class BrewingMethod extends Equatable {
+@MappableClass()
+class BrewingMethod extends Equatable with BrewingMethodMappable {
   final int id;
   final String name;
   final String description;
@@ -18,9 +18,6 @@ class BrewingMethod extends Equatable {
     required this.image,
     required this.history,
   });
-
-  factory BrewingMethod.fromJson(Map<String, dynamic> json) =>
-      _$BrewingMethodFromJson(json);
 
   @override
   List<Object?> get props => [

@@ -1,4 +1,4 @@
-import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
 import 'package:flutter/material.dart';
 
 class CaffeioCircularButton extends StatelessWidget {
@@ -19,7 +19,7 @@ class CaffeioCircularButton extends StatelessWidget {
         shape: const CircleBorder(),
         elevation: 2,
         shadowColor: Colors.grey,
-        padding: context.theme.insets.xs,
+        padding: CaffeioInsets.xs,
       ),
       child: child,
     );

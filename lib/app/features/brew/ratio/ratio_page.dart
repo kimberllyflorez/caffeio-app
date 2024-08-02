@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/features/brew/ratio/ratio_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,57 +39,54 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
         final state = snapshot.data ?? const RatioState();
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Preparation'),
+            title: const Text(CaffeioStrings.preparation),
           ),
           body: GestureDetector(
             onTap: FocusScope.of(context).unfocus,
             child: Column(
               children: [
-                SizedBox(height: theme.spacing.m),
+                const SizedBox(height: CaffeioSpacing.m),
                 Expanded(
                   child: Column(
                     children: [
                       Padding(
-                        padding: theme.insets.xs.toHorizontal,
+                        padding: CaffeioInsets.xs.toHorizontal,
                         child: Text(
-                          'How many grams of coffee do you want to brew?',
+                          CaffeioStrings.preparationDescription,
                           style: theme.typo.title,
                         ),
                       ),
-                      SizedBox(height: theme.spacing.xxs),
+                      const SizedBox(height: CaffeioSpacing.xxs),
                       Padding(
-                        padding: theme.insets.xs.toHorizontal,
+                        padding: CaffeioInsets.xs.toHorizontal,
                         child: TextFormField(
-                          onChanged: (grams) =>
-                              viewModel.saveGramsCoffee(grams),
+                          onChanged: (grams) => viewModel.saveGramsCoffee(grams),
                           decoration: const InputDecoration(
-                            hintText: "20",
-                            suffixText: "gr",
+                            hintText: CaffeioStrings.gramsHint,
+                            suffixText: CaffeioStrings.gramsSuffix,
                           ),
                           keyboardType: TextInputType.number,
                           onFieldSubmitted: (_) {
                             FocusScope.of(context).unfocus();
                           },
                           textAlign: TextAlign.center,
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(2)
-                          ],
+                          inputFormatters: [LengthLimitingTextInputFormatter(2)],
                         ),
                       ),
-                      SizedBox(height: theme.spacing.l),
+                      const SizedBox(height: CaffeioSpacing.l),
                       Container(
                         width: double.maxFinite,
-                        padding: theme.insets.xs.toHorizontal,
+                        padding: CaffeioInsets.xs.toHorizontal,
                         child: Text(
-                          "Which ratio do you want to use?",
+                          CaffeioStrings.gramsRatio,
                           style: theme.typo.title,
                           textAlign: TextAlign.start,
                         ),
                       ),
-                      SizedBox(height: theme.spacing.s),
+                      const SizedBox(height: CaffeioSpacing.s),
                       Container(
                         width: double.maxFinite,
-                        padding: theme.insets.xs.toHorizontal,
+                        padding: CaffeioInsets.xs.toHorizontal,
                         child: Text(
                           "1:${state.ratioModel.ratio.toString()}",
                           style: theme.typo.body,
@@ -99,14 +99,8 @@ class _RatioPageState extends ViewState<RatioPage, RatioViewModel> {
                         divisions: 8,
                         value: state.ratio,
                         onChanged: viewModel.onRatioSliderChange,
-                        activeColor: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(.12),
-                        inactiveColor: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(.12),
+                        activeColor: Theme.of(context).colorScheme.primary.withOpacity(.12),
+                        inactiveColor: Theme.of(context).colorScheme.primary.withOpacity(.12),
                         thumbColor: Theme.of(context).colorScheme.primary,
                       ),
                     ],
@@ -142,21 +136,21 @@ class _BottomSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: theme.spacing.m),
+          const SizedBox(height: CaffeioSpacing.m),
           Padding(
-            padding: theme.insets.xs.toHorizontal,
+            padding: CaffeioInsets.xs.toHorizontal,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
                   child: Text(
-                    "Required amount of water (ml) for this brew is:",
+                    CaffeioStrings.waterAmount,
                     style: theme.typo.subtitle.copyWith(
                       color: Colors.white,
                     ),
                   ),
                 ),
-                SizedBox(width: theme.spacing.xxs),
+                const SizedBox(width: CaffeioSpacing.xxs),
                 Text(
                   totalWater,
                   style: theme.typo.title.copyWith(
@@ -171,7 +165,7 @@ class _BottomSection extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: theme.insets.xs.toVertical,
+              padding: CaffeioInsets.xs.toVertical,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

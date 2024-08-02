@@ -1,5 +1,6 @@
 import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
 import 'package:flutter/material.dart';
 
 class CaffeioBrandCard extends StatelessWidget {
@@ -9,7 +10,7 @@ class CaffeioBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return Container(
-      padding: theme.insets.xs,
+      padding: CaffeioInsets.xs,
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,

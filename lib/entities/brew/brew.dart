@@ -1,20 +1,20 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'brew.g.dart';
+part 'brew.mapper.dart';
 
-@JsonSerializable()
-class Brew extends Equatable {
+@MappableClass()
+class Brew extends Equatable with BrewMappable {
   final int? id;
-  @JsonKey(name: 'created_at')
+  @MappableField(key: 'created_at')
   final DateTime? createdAt;
-  @JsonKey(name: 'method_id')
+  @MappableField(key: 'method_id')
   final int methodId;
   final int ratio;
   final int water;
-  @JsonKey(name: 'coffee_grams')
+  @MappableField(key: 'coffee_grams')
   final int coffeeGrams;
-  @JsonKey(name: 'user_id')
+  @MappableField(key: 'user_id')
   final String userId;
 
   const Brew({
@@ -26,10 +26,6 @@ class Brew extends Equatable {
     required this.coffeeGrams,
     required this.userId,
   });
-
-  factory Brew.fromJson(Map<String, dynamic> json) => _$BrewFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BrewToJson(this);
 
   @override
   List<Object?> get props => [

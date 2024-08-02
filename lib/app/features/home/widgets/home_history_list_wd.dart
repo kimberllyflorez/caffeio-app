@@ -1,14 +1,16 @@
 import 'package:caffeio/app/features/brew/ratio/ratio_model.dart';
 import 'package:caffeio/app/features/home/model/brew_by_date.dart';
+import 'package:caffeio/app/res/assets.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 class HomeHistoryList extends StatelessWidget {
-  final List<BrewByDate> userBrewsByDate;
+  final List<BrewByDate> brews;
 
   const HomeHistoryList({
     super.key,
-    required this.userBrewsByDate,
+    required this.brews,
   });
 
   @override
@@ -16,13 +18,14 @@ class HomeHistoryList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.only(bottom: 112),
-      itemCount: userBrewsByDate.length,
+      itemCount: brews.length,
       itemBuilder: (_, index) {
-        final brews = userBrewsByDate[index];
+        final brew = brews[index];
         return _HistoryByDateSection(
-            brewByDate: brews.items,
-            date: brews.brewByDate,
-            total: brews.total.toInt().toString());
+          brewByDate: brew.items,
+          date: brew.brewByDate,
+          total: brew.total.toInt().toString(),
+        );
       },
     );
   }
@@ -46,9 +49,9 @@ class _HistoryByDateSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: theme.spacing.xs,
-            vertical: theme.spacing.xxs,
+          padding: const EdgeInsets.symmetric(
+            horizontal: CaffeioSpacing.xs,
+            vertical: CaffeioSpacing.xxs,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,14 +90,14 @@ class _HistoryItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return Card(
-      margin: EdgeInsets.symmetric(
-        horizontal: theme.spacing.xs,
-        vertical: theme.spacing.xxs,
+      margin: const EdgeInsets.symmetric(
+        horizontal: CaffeioSpacing.xs,
+        vertical: CaffeioSpacing.xxs,
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: theme.spacing.xs,
-          vertical: theme.spacing.xxs,
+        padding: const EdgeInsets.symmetric(
+          horizontal: CaffeioSpacing.xs,
+          vertical: CaffeioSpacing.xxs,
         ),
         child: Row(
           children: [
@@ -103,7 +106,7 @@ class _HistoryItemCard extends StatelessWidget {
               width: 40,
               height: 40,
             ),
-            SizedBox(width: theme.spacing.xs),
+            const SizedBox(width: CaffeioSpacing.xs),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +116,7 @@ class _HistoryItemCard extends StatelessWidget {
                     brew.method.name,
                     style: theme.typo.body,
                   ),
-                  SizedBox(width: theme.spacing.xxs),
+                  const SizedBox(width: CaffeioSpacing.xxs),
                   Text('1:${brew.ratio}', style: theme.typo.body),
                 ],
               ),
@@ -124,9 +127,8 @@ class _HistoryItemCard extends StatelessWidget {
               children: [
                 Text(
                   '${brew.gramsCoffee.toInt()} gr',
-                  style: theme.typo.body.copyWith(
-                      color: theme.palette.brownScale.primaryColor,
-                      fontWeight: FontWeight.bold),
+                  style: theme.typo.body
+                      .copyWith(color: theme.palette.brownScale.primaryColor, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   '${brew.water} ml',
@@ -144,9 +146,9 @@ class _HistoryItemCard extends StatelessWidget {
   }
 
   String _getImage(int id) {
-    if (id == 5) return 'assets/images/v60.png';
-    if (id == 6) return 'assets/images/french-press.png';
-    if (id == 7) return 'assets/images/aeropress.png';
-    return 'assets/images/chemex.png';
+    if (id == 5) return CaffeioAssets.iconV60;
+    if (id == 6) return CaffeioAssets.iconFrenchPress;
+    if (id == 7) return CaffeioAssets.iconAeropress;
+    return CaffeioAssets.iconChemex;
   }
 }

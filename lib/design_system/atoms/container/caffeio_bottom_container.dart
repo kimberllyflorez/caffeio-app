@@ -1,4 +1,6 @@
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 class CaffeioBottomContainer extends StatelessWidget {
@@ -22,13 +24,13 @@ class CaffeioBottomContainer extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(theme.spacing.l),
-          topLeft: Radius.circular(theme.spacing.l),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(CaffeioSpacing.l),
+          topLeft: Radius.circular(CaffeioSpacing.l),
         ),
         color: backgroundColor ?? theme.palette.blueScale.primaryColor,
       ),
-      padding: theme.insets.xs.toHorizontal,
+      padding: CaffeioInsets.xs.toHorizontal,
       child: child,
     );
   }

@@ -1,12 +1,12 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'method_video.g.dart';
+part 'method_video.mapper.dart';
 
-@JsonSerializable(createToJson: false)
-class MethodVideo extends Equatable {
+@MappableClass()
+class MethodVideo extends Equatable with MethodVideoMappable {
   final int id;
-  @JsonKey(name: 'method_id')
+  @MappableField(key: 'method_id')
   final int methodId;
   final String url;
 
@@ -16,9 +16,10 @@ class MethodVideo extends Equatable {
     required this.url,
   });
 
-  factory MethodVideo.fromJson(Map<String, dynamic> json) =>
-      _$MethodVideoFromJson(json);
-
   @override
-  List<Object?> get props => [id, methodId, url];
+  List<Object?> get props => [
+        id,
+        methodId,
+        url,
+      ];
 }

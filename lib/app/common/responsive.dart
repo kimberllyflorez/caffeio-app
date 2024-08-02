@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 extension Responsive on BuildContext {
   ResponsiveSize get responsive => ResponsiveSize(this);
@@ -23,11 +24,10 @@ class ResponsiveSize {
   static ResponsiveSize of(BuildContext context) => ResponsiveSize(context);
 
   ResponsiveSize(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
     _width = size.width;
     _height = size.height;
 
-    // c2+ a2+b2 => c = srt(a2+b2)
     _diagonal = math.sqrt(math.pow(_width!, 2) + math.pow(_height!, 2));
 
     _isTablet = size.shortestSide >= 600;

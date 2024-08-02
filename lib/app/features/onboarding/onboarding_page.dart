@@ -1,7 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:caffeio/app/features/onboarding/onboarding_page_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/assets.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -12,8 +16,7 @@ class OnboardingPage extends StatefulWidget {
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState
-    extends ViewState<OnboardingPage, OnboardingPageViewModel> {
+class _OnboardingPageState extends ViewState<OnboardingPage, OnboardingPageViewModel> {
   @override
   void initState() {
     super.initState();
@@ -26,25 +29,25 @@ class _OnboardingPageState
     return Scaffold(
       backgroundColor: theme.palette.blueScale.primaryColor,
       body: Padding(
-        padding: theme.insets.xs,
+        padding: CaffeioInsets.xs,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/caffeio-icon-name-white.png',
+              CaffeioAssets.brandIconWhite,
               width: 180,
               height: 180,
             ),
-            SizedBox(height: theme.spacing.s),
+            const SizedBox(height: CaffeioSpacing.s),
             Text(
-              'Introducing Caffeio, the ultimate app for coffee aficionados. Explore a variety of coffee brewing methods like V60, AeroPress, and Chemex, with comprehensive guides and assistance to elevate your coffee experience. Uncover the captivating stories behind each method, deepening your appreciation for your favorites.',
+              CaffeioStrings.caffeioDescription,
               style: theme.typo.body.copyWith(color: Colors.white),
             ),
           ],
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: theme.insets.xs,
+        padding: CaffeioInsets.xs,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

@@ -2,10 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/features/auth/login/login_page_vm.dart';
 import 'package:caffeio/app/features/settings/widgets/version_card_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/assets.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_circular_button.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -39,36 +43,36 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Image.asset(
-                  'assets/images/caffeio-icon-name.png',
+                  CaffeioAssets.brandIconName,
                   width: 180,
                   height: 180,
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Padding(
-                  padding: theme.insets.s.toHorizontal,
+                  padding: CaffeioInsets.s.toHorizontal,
                   child: TextField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Email',
+                      labelText: CaffeioStrings.email,
                     ),
                     onChanged: viewModel.onChangeEmail,
                   ),
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Padding(
-                  padding: theme.insets.s.toHorizontal,
+                  padding: CaffeioInsets.s.toHorizontal,
                   child: TextField(
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Password',
+                      labelText: CaffeioStrings.password,
                     ),
                     onChanged: viewModel.onChangePassword,
                   ),
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Visibility(
                   visible: state.error != null,
                   child: Text(
@@ -76,19 +80,19 @@ class _LoginPageState extends ViewState<LoginPage, LoginPageViewModel> {
                     style: theme.typo.body.copyWith(color: Colors.deepOrange),
                   ),
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 CaffeioButton(
                   callback: viewModel.onLogin,
-                  text: 'Log in',
+                  text: CaffeioStrings.login,
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Padding(
-                  padding: theme.insets.xxl.toHorizontal,
+                  padding: CaffeioInsets.xxl.toHorizontal,
                   child: Divider(
                     color: theme.palette.blueScale.primaryColor,
                   ),
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

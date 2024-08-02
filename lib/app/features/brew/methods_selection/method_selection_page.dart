@@ -2,9 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:caffeio/app/common/responsive.dart';
 import 'package:caffeio/app/features/brew/methods_selection/method_selection_vm.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -16,8 +19,7 @@ class MethodSelectionPage extends StatefulWidget {
   State<MethodSelectionPage> createState() => _MethodSelectionPageState();
 }
 
-class _MethodSelectionPageState
-    extends ViewState<MethodSelectionPage, MethodSelectionViewModel> {
+class _MethodSelectionPageState extends ViewState<MethodSelectionPage, MethodSelectionViewModel> {
   final PageController _pageController = PageController();
 
   @override
@@ -35,7 +37,9 @@ class _MethodSelectionPageState
       builder: (context, snapshot) {
         final state = snapshot.data ?? const MethodSelectionState();
         return Scaffold(
-          appBar: AppBar(title: const Text('Select Method')),
+          appBar: AppBar(
+            title: const Text(CaffeioStrings.brewSelectMethod),
+          ),
           body: Visibility(
             visible: state.brewingMethods.isNotEmpty,
             replacement: const LoadingIndicator(),
@@ -43,9 +47,9 @@ class _MethodSelectionPageState
               children: [
                 Container(
                   width: double.maxFinite,
-                  padding: theme.insets.xs.toHorizontal,
+                  padding: CaffeioInsets.xs.toHorizontal,
                   child: Text(
-                    'Which method do you want to use today?',
+                    CaffeioStrings.brewSelectionQuestion,
                     style: theme.typo.title,
                   ),
                 ),
@@ -55,18 +59,16 @@ class _MethodSelectionPageState
                     onPageChanged: viewModel.onChangePageView,
                     controller: _pageController,
                     scrollDirection: Axis.horizontal,
-                    children: state.brewingMethods
-                        .map(
-                          (e) => _MethodCard(
-                            name: e.name,
-                            description: e.description,
-                            image: e.image,
-                          ),
-                        )
-                        .toList(),
+                    children: state.brewingMethods.map((method) {
+                      return _MethodCard(
+                        name: method.name,
+                        description: method.description,
+                        image: method.image,
+                      );
+                    }).toList(),
                   ),
                 ),
-                SizedBox(height: theme.spacing.xs),
+                const SizedBox(height: CaffeioSpacing.xs),
                 SmoothPageIndicator(
                   controller: _pageController,
                   count: state.brewingMethods.length,
@@ -80,7 +82,7 @@ class _MethodSelectionPageState
               ],
             ),
           ),
-          bottomNavigationBar: _BottomSection(
+          bottomSheet: _BottomSection(
             state: state,
             onNextCallback: viewModel.onNextPressed,
           ),
@@ -110,7 +112,7 @@ class _MethodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: context.theme.insets.xs,
+      margin: CaffeioInsets.xs,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Container(
@@ -142,41 +144,41 @@ class _BottomSection extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return CaffeioBottomContainer(
+      height: context.responsive.heightPercent(32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: theme.spacing.m),
+          const SizedBox(height: CaffeioSpacing.m),
           Container(
             width: double.maxFinite,
-            padding: theme.insets.xs.toHorizontal,
+            padding: CaffeioInsets.xs.toHorizontal,
             child: Text(
               state.brewingMethods[state.pageSelection].name,
               style: theme.typo.title.copyWith(color: Colors.white),
             ),
           ),
-          SizedBox(height: context.theme.spacing.xxs),
+          const SizedBox(height: CaffeioSpacing.xxs),
           Padding(
-            padding: theme.insets.xs.toHorizontal,
+            padding: CaffeioInsets.xs.toHorizontal,
             child: Text(
               state.brewingMethods[state.pageSelection].description,
               style: theme.typo.body.copyWith(color: Colors.white),
             ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: theme.insets.xs.toVertical,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: onNextCallback,
-                    icon: const Icon(
-                      Icons.navigate_next_rounded,
-                      color: Colors.white,
-                      size: 36,
-                    ),
+          const Spacer(),
+          Padding(
+            padding: CaffeioInsets.xs.toRight,
+            child: SafeArea(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: onNextCallback,
+                  icon: const Icon(
+                    Icons.navigate_next_rounded,
+                    color: Colors.white,
+                    size: 36,
                   ),
-                ],
+                ),
               ),
             ),
           ),

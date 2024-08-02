@@ -5,6 +5,7 @@ import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -25,7 +26,6 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
     return StreamBuilder<SettingsPageState>(
       stream: viewModel.state,
       builder: (context, snapshot) {
@@ -34,7 +34,7 @@ class _SettingsPageState extends ViewState<SettingsPage, SettingsViewModel> {
           appBar: AppBar(),
           body: Container(
             width: double.infinity,
-            padding: theme.insets.xxs,
+            padding: CaffeioInsets.xxs,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -87,7 +87,7 @@ class _UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme;
     return Padding(
-      padding: theme.insets.xs,
+      padding: CaffeioInsets.xs,
       child: Row(
         children: [
           Expanded(
@@ -95,7 +95,6 @@ class _UserCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  ///TODO: Move this logic to vm
                   name,
                   style: theme.typo.title,
                 ),

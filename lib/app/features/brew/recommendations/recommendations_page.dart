@@ -4,6 +4,7 @@ import 'package:caffeio/app/features/brew/recommendations/widgets/video_card_wd.
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
 import 'package:caffeio/entities/brew/brewing_method.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +21,7 @@ class RecommendationsPage extends StatefulWidget {
   State<RecommendationsPage> createState() => _RecommendationsPageState();
 }
 
-class _RecommendationsPageState
-    extends ViewState<RecommendationsPage, RecommendationViewModel> {
+class _RecommendationsPageState extends ViewState<RecommendationsPage, RecommendationViewModel> {
   @override
   void initState() {
     super.initState();
@@ -47,7 +47,7 @@ class _RecommendationsPageState
                     itemCount: state.videos.length,
                     itemBuilder: (context, i) {
                       return Padding(
-                        padding: EdgeInsets.all(context.theme.spacing.xs),
+                        padding: CaffeioInsets.xs,
                         child: RecommendationVideoCard(
                           url: state.videos[i].url,
                         ),
@@ -61,9 +61,9 @@ class _RecommendationsPageState
           return const LoadingIndicator();
         },
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: context.theme.insets.xs,
+      bottomNavigationBar: Padding(
+        padding: CaffeioInsets.xs.toRight,
+        child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

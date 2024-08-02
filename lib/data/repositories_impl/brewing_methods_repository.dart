@@ -27,18 +27,14 @@ class BrewingMethodsRepositoryImpl implements BrewingMethodsRepository {
   @override
   Future<void> fetchBrewingMethods() async {
     final data = await _brewingMethodsDataSource.fetchBrewingMethods();
-    final brewingMethods = data
-        .map((method) => BrewingMethod.fromJson(method as Map<String, dynamic>))
-        .toList();
+    final brewingMethods = data.map((method) => BrewingMethodMapper.fromMap(method as Map<String, dynamic>)).toList();
     _brewingMethods.add(brewingMethods);
   }
 
   @override
   Future<void> fetchMethodsVideos(int methodId) async {
     final data = await _methodsVideosDataSource.fetchMethodsVideos(methodId);
-    final result = data
-        .map((videos) => MethodVideo.fromJson(videos as Map<String, dynamic>))
-        .toList();
+    final result = data.map((videos) => MethodVideoMapper.fromMap(videos as Map<String, dynamic>)).toList();
     _methodsVideos.add(result);
   }
 }

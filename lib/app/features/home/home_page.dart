@@ -3,10 +3,14 @@ import 'package:caffeio/app/features/home/home_vm.dart';
 import 'package:caffeio/app/features/home/widgets/home_history_list_wd.dart';
 import 'package:caffeio/app/features/home/widgets/home_methods_list_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/assets.dart';
+import 'package:caffeio/app/res/strings.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/container/caffeio_bottom_container.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -35,23 +39,20 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
           backgroundColor: theme.palette.blueScale.primaryColor,
           appBar: AppBar(
             backgroundColor: theme.palette.blueScale.primaryColor,
-            iconTheme:
-                Theme.of(context).iconTheme.copyWith(color: Colors.white),
+            iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
             title: Text(
-              'Home page',
+              CaffeioStrings.home,
               style: theme.typo.subtitle.copyWith(
                 fontSize: 22,
                 color: Colors.white,
               ),
             ),
             actions: [
-              Visibility(
-                visible: state.isUserLogged,
-                child: IconButton(
+              if (state.isUserLogged)
+                IconButton(
                   onPressed: viewModel.onUserPressed,
                   icon: const Icon(Icons.account_circle_outlined),
-                ),
-              )
+                )
             ],
           ),
           body: Visibility(
@@ -60,11 +61,11 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: theme.spacing.xs),
+                const SizedBox(height: CaffeioSpacing.xs),
                 Padding(
-                  padding: theme.insets.xs.toLRB,
+                  padding: CaffeioInsets.xs.toLRB,
                   child: Text(
-                    'Meet the methods',
+                    CaffeioStrings.meetMethods,
                     style: context.theme.typo.subtitle.copyWith(
                       color: Colors.white,
                     ),
@@ -75,18 +76,18 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                   methods: state.brewingMethods,
                   callback: viewModel.onMethodPressed,
                 ),
-                SizedBox(height: theme.spacing.s),
+                const SizedBox(height: CaffeioSpacing.s),
                 Expanded(
                   child: CaffeioBottomContainer(
                     backgroundColor: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: theme.spacing.s),
+                        const SizedBox(height: CaffeioSpacing.s),
                         Padding(
-                          padding: theme.insets.xs.toLRB,
+                          padding: CaffeioInsets.xs.toLRB,
                           child: Text(
-                            'Brewing history',
+                            CaffeioStrings.brewingHistory,
                             style: context.theme.typo.subtitle,
                             textAlign: TextAlign.start,
                           ),
@@ -97,9 +98,7 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                             replacement: Center(
                               child: TextButton(
                                 onPressed: viewModel.onLoginPressed,
-                                child: const Text(
-                                  'LogIn to start recording your brews',
-                                ),
+                                child: const Text(CaffeioStrings.loginToStart),
                               ),
                             ),
                             child: Visibility(
@@ -107,11 +106,11 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
                               replacement: Center(
                                 child: CaffeioButton(
                                   callback: viewModel.onBrewPressed,
-                                  text: "Let's start make some coffee",
+                                  text: CaffeioStrings.startBrewingCoffee,
                                 ),
                               ),
                               child: HomeHistoryList(
-                                userBrewsByDate: state.userBrews,
+                                brews: state.userBrews,
                               ),
                             ),
                           ),
@@ -123,17 +122,16 @@ class _HomePageState extends ViewState<HomePage, HomeViewModel> {
               ],
             ),
           ),
-          floatingActionButton: Visibility(
-            visible: !state.isUserLogged || state.userBrews.isNotEmpty,
-            child: FloatingActionButton(
-              onPressed: viewModel.onBrewPressed,
-              child: Image.asset(
-                'assets/images/coffee-bean-icon.png',
-                width: 26,
-                height: 26,
-              ),
-            ),
-          ),
+          floatingActionButton: !state.isUserLogged || state.userBrews.isNotEmpty
+              ? FloatingActionButton(
+                  onPressed: viewModel.onBrewPressed,
+                  child: Image.asset(
+                    CaffeioAssets.coffeeBeanIcon,
+                    width: 26,
+                    height: 26,
+                  ),
+                )
+              : null,
         );
       },
     );

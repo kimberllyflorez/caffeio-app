@@ -3,9 +3,12 @@ import 'package:caffeio/app/features/brew/ratio/ratio_model.dart';
 import 'package:caffeio/app/features/brew/timer/timer_vm.dart';
 import 'package:caffeio/app/features/brew/timer/widgets/timer_wd.dart';
 import 'package:caffeio/app/mvvm/view_state.abs.dart';
+import 'package:caffeio/app/res/assets.dart';
 import 'package:caffeio/design_system/atoms/buttons/caffeio_button.dart';
 import 'package:caffeio/design_system/atoms/loading/loading_indicator.dart';
 import 'package:caffeio/design_system/design_system.dart';
+import 'package:caffeio/design_system/theme/insets.dart';
+import 'package:caffeio/design_system/theme/spacing.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -21,8 +24,7 @@ class TimerPage extends StatefulWidget {
   State<StatefulWidget> createState() => _TimerPageState();
 }
 
-class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
-    with SingleTickerProviderStateMixin {
+class _TimerPageState extends ViewState<TimerPage, TimerViewModel> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -73,7 +75,7 @@ class _TimerPageState extends ViewState<TimerPage, TimerViewModel>
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: theme.insets.xs,
+          padding: CaffeioInsets.xs,
           child: CaffeioButton(
             text: 'Finish',
             callback: () => viewModel.nextPage(widget.ratioMode),
@@ -96,9 +98,9 @@ class _BrewInfoCard extends StatelessWidget {
     final theme = context.theme;
     return Card(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: theme.spacing.xxs,
-          horizontal: theme.spacing.xs,
+        padding: const EdgeInsets.symmetric(
+          vertical: CaffeioSpacing.xxs,
+          horizontal: CaffeioSpacing.xs,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -108,7 +110,7 @@ class _BrewInfoCard extends StatelessWidget {
               width: 62,
               height: 62,
             ),
-            SizedBox(width: theme.spacing.xs),
+            const SizedBox(width: CaffeioSpacing.xs),
             SizedBox(
               height: 80,
               child: Column(
@@ -126,7 +128,7 @@ class _BrewInfoCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: theme.spacing.xs),
+            const SizedBox(width: CaffeioSpacing.xs),
             SizedBox(
               height: 80,
               child: Column(
@@ -159,9 +161,9 @@ class _BrewInfoCard extends StatelessWidget {
   }
 
   String _getImage(int id) {
-    if (id == 5) return 'assets/images/v60.png';
-    if (id == 6) return 'assets/images/french-press.png';
-    if (id == 7) return 'assets/images/aeropress.png';
-    return 'assets/images/chemex.png';
+    if (id == 5) return CaffeioAssets.iconV60;
+    if (id == 6) return CaffeioAssets.iconFrenchPress;
+    if (id == 7) return CaffeioAssets.iconAeropress;
+    return CaffeioAssets.iconChemex;
   }
 }
