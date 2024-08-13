@@ -25,90 +25,6 @@ import 'package:caffeio/app/features/support/support_page.dart' as _i9;
 import 'package:caffeio/entities/brew/brewing_method.dart' as _i13;
 import 'package:flutter/material.dart' as _i12;
 
-abstract class $AppRouter extends _i11.RootStackRouter {
-  $AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i11.PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i1.HomePage(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i2.LoginPage(),
-      );
-    },
-    MethodRoute.name: (routeData) {
-      final args = routeData.argsAs<MethodRouteArgs>();
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i3.MethodPage(
-          key: args.key,
-          method: args.method,
-        ),
-      );
-    },
-    MethodSelectionRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.MethodSelectionPage(),
-      );
-    },
-    OnboardingRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.OnboardingPage(),
-      );
-    },
-    RatioRoute.name: (routeData) {
-      final args = routeData.argsAs<RatioRouteArgs>();
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i6.RatioPage(
-          key: args.key,
-          brewingMethod: args.brewingMethod,
-        ),
-      );
-    },
-    RecommendationsRoute.name: (routeData) {
-      final args = routeData.argsAs<RecommendationsRouteArgs>();
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i7.RecommendationsPage(
-          key: args.key,
-          method: args.method,
-        ),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i8.SettingsPage(),
-      );
-    },
-    SupportRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i9.SupportPage(),
-      );
-    },
-    TimerRoute.name: (routeData) {
-      final args = routeData.argsAs<TimerRouteArgs>();
-      return _i11.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i10.TimerPage(
-          key: args.key,
-          ratioMode: args.ratioMode,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.HomePage]
 class HomeRoute extends _i11.PageRouteInfo<void> {
@@ -120,7 +36,12 @@ class HomeRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.HomePage();
+    },
+  );
 }
 
 /// generated route for
@@ -134,7 +55,12 @@ class LoginRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.LoginPage();
+    },
+  );
 }
 
 /// generated route for
@@ -155,8 +81,16 @@ class MethodRoute extends _i11.PageRouteInfo<MethodRouteArgs> {
 
   static const String name = 'MethodRoute';
 
-  static const _i11.PageInfo<MethodRouteArgs> page =
-      _i11.PageInfo<MethodRouteArgs>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MethodRouteArgs>();
+      return _i3.MethodPage(
+        key: args.key,
+        method: args.method,
+      );
+    },
+  );
 }
 
 class MethodRouteArgs {
@@ -186,7 +120,12 @@ class MethodSelectionRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'MethodSelectionRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.MethodSelectionPage();
+    },
+  );
 }
 
 /// generated route for
@@ -200,7 +139,12 @@ class OnboardingRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'OnboardingRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i5.OnboardingPage();
+    },
+  );
 }
 
 /// generated route for
@@ -221,8 +165,16 @@ class RatioRoute extends _i11.PageRouteInfo<RatioRouteArgs> {
 
   static const String name = 'RatioRoute';
 
-  static const _i11.PageInfo<RatioRouteArgs> page =
-      _i11.PageInfo<RatioRouteArgs>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RatioRouteArgs>();
+      return _i6.RatioPage(
+        key: args.key,
+        brewingMethod: args.brewingMethod,
+      );
+    },
+  );
 }
 
 class RatioRouteArgs {
@@ -260,8 +212,16 @@ class RecommendationsRoute
 
   static const String name = 'RecommendationsRoute';
 
-  static const _i11.PageInfo<RecommendationsRouteArgs> page =
-      _i11.PageInfo<RecommendationsRouteArgs>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RecommendationsRouteArgs>();
+      return _i7.RecommendationsPage(
+        key: args.key,
+        method: args.method,
+      );
+    },
+  );
 }
 
 class RecommendationsRouteArgs {
@@ -291,7 +251,12 @@ class SettingsRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i8.SettingsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -305,7 +270,12 @@ class SupportRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'SupportRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      return const _i9.SupportPage();
+    },
+  );
 }
 
 /// generated route for
@@ -326,8 +296,16 @@ class TimerRoute extends _i11.PageRouteInfo<TimerRouteArgs> {
 
   static const String name = 'TimerRoute';
 
-  static const _i11.PageInfo<TimerRouteArgs> page =
-      _i11.PageInfo<TimerRouteArgs>(name);
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<TimerRouteArgs>();
+      return _i10.TimerPage(
+        key: args.key,
+        ratioMode: args.ratioMode,
+      );
+    },
+  );
 }
 
 class TimerRouteArgs {

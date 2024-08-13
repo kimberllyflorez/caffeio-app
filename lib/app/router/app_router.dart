@@ -3,7 +3,7 @@ import 'package:caffeio/app/router/app_router.gr.dart';
 import 'package:caffeio/app/router/guards/first_user_brew_guard.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   final FirstUserBrewGuard _firstUserBrewGuard;
 
   AppRouter(this._firstUserBrewGuard);

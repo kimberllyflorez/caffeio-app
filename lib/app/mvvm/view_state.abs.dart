@@ -4,8 +4,7 @@ import 'package:caffeio/app/mvvm/view_model.abs.dart';
 import 'package:caffeio/app/router/route_spec.dart';
 import 'package:flutter/material.dart';
 
-abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
-    extends State<T> {
+abstract class ViewState<T extends StatefulWidget, V extends ViewModel> extends State<T> {
   late final V _viewModel;
 
   V get viewModel => _viewModel;
@@ -19,8 +18,10 @@ abstract class ViewState<T extends StatefulWidget, V extends ViewModel>
 
   void listenToNavigation(Stream<RouteSpec> stream) {
     stream.listen((routeInfo) {
-      debugPrint(
-          'Navigation Action: ${routeInfo.action} route: ${routeInfo.routes}');
+      if (!mounted && !context.mounted) {
+        return;
+      }
+      debugPrint('Navigation Action: ${routeInfo.action} route: ${routeInfo.routes}');
       debugPrint('Current stack ${context.router.stack}');
       switch (routeInfo.action) {
         case RouteAction.push:
